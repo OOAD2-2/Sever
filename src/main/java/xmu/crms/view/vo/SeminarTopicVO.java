@@ -25,4 +25,12 @@ public class SeminarTopicVO {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "SeminarTopicVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

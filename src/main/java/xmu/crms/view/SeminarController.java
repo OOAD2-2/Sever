@@ -248,10 +248,11 @@ public class SeminarController {
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
 				for (SeminarGroup seminarGroup : seminarGroups) {
-					System.out.println(seminarGroup);
 					if (seminarGroup.getClassInfo().getId().intValue() == classId) {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
-						seminarGroupTopicsVOList.add(new SeminarGroupTopicsVO(seminarGroup, topicList));
+						//System.out.println(topicList);
+						SeminarGroupTopicsVO seminarGroupTopicsVO = new SeminarGroupTopicsVO(seminarGroup, topicList);
+						seminarGroupTopicsVOList.add(seminarGroupTopicsVO);
 					}
 				}
 				return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarGroupTopicsVOList);
