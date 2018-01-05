@@ -180,7 +180,7 @@ public class GroupController {
                                       IdVO id, HttpServletResponse response) {
         try {
             User user = userService.getUserByUserId(BigInteger.valueOf(id.getId()));
-            seminarGroupService.deleteSeminarGroupMemberById(user.getId(), BigInteger.valueOf(groupId));
+            seminarGroupService.deleteSeminarGroupMemberById(BigInteger.valueOf(groupId), user.getId());
             response.setStatus(204);
             return null;
         } catch (UserNotFoundException e) {
