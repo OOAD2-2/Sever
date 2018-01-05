@@ -42,7 +42,7 @@ public class SeminarGroupDAO {
     
     public BigInteger insertSeminarGroupBySeminarId(BigInteger seminarId, SeminarGroup seminarGroup) throws IllegalArgumentException {
         Seminar seminar = new Seminar();
-        seminar.setId(seminarId);
+        seminar = seminarMapper.getSeminarBySeminarId(seminarId);
         seminarGroup.setSeminar(seminar);
         seminarGroupMapper.insertSeminarGroupBySeminarId(seminarGroup);
         System.out.println(seminarGroup.getId());

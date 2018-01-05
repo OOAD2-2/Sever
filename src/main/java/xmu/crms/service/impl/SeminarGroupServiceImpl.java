@@ -203,6 +203,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             ClassInfo classInfo = new ClassInfo();
             classInfo.setId(classId);
             seminarGroup.setClassInfo(classInfo);
+            System.out.println(seminarGroup);
             BigInteger groupId = seminarGroupDAO.insertSeminarGroupBySeminarId(seminarId, seminarGroup);
             //add this student  in seminargroup member (set groupid for each student)
 //            for (int j = i * smallestlimit; (j < (i+1)*smallestlimit) && ((i * smallestlimit + j) < studentIdList.size()); j++) {

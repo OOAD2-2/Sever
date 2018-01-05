@@ -366,11 +366,12 @@ public class SeminarController {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			List<Attendance> list1=userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
-			List<User> list2=userService.listAbsenceStudent(BigInteger.valueOf(seminarId), BigInteger.valueOf(classId));
+			List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
+			int numStudent = userList.size();
 			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			SeminarClassAttendanceVO seminarClassAttendanceVO = new SeminarClassAttendanceVO();
 	        seminarClassAttendanceVO.setNumPresent(list1.size());
-	        seminarClassAttendanceVO.setNumStudent(list1.size()+list2.size());
+	        seminarClassAttendanceVO.setNumStudent(userList.size());
 	        if(location.getStatus()==1)
 	        {
 	        	seminarClassAttendanceVO.setStatus("calling");
@@ -381,8 +382,17 @@ public class SeminarController {
 	        	seminarClassAttendanceVO.setStatus("callend");
 	        	seminarClassAttendanceVO.setGroup("groupend");
 	        }
+			//List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
+			//int numStudent = userList.size();
+			//CourseSelectionVO courseSelectionVO = new CourseSelectionVO(numStudent);
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarClassAttendanceVO);
-		} catch (SeminarNotFoundException e) {
+			//return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(courseSelectionVO);
+		}
+		catch (SeminarNotFoundException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(404).build();
+		}
+		catch (UserNotFoundException e) {
 			e.printStackTrace();
 			return ResponseEntity.status(404).build();
 		}
