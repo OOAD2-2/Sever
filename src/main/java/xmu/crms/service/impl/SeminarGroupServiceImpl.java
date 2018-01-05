@@ -362,16 +362,15 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
         if (seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId) == null) {
             List<SeminarGroupMember> seminarGroupMemberList = seminarGroupMapper.listSeminarGroupIdByStudentId(userId);
             for (SeminarGroupMember seminarGroupMember : seminarGroupMemberList) {
-                if (seminarGroupMember.getSeminarGroup().getSeminar().getId() == seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getSeminarGroup().getSeminar().getId()) {
+                if (seminarGroupMember.getSeminarGroup().getSeminar().getId() == this.getSeminarGroupByGroupId(groupId).getSeminar().getId()) {
                     return BigInteger.valueOf(-1);
                 }
             }
+            seminarGroupMapper.insertSeminarGroupMemberById(userId, groupId);
+            return seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getId();
         } else {
             throw new InvalidOperationException("待添加学生已添加进小组");
         }
-        seminarGroupMapper.insertSeminarGroupMemberById(userId, groupId);
-        return seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getId();
-
     }
 
 
