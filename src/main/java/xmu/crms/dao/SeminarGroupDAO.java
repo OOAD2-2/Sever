@@ -37,7 +37,7 @@ public class SeminarGroupDAO {
      * @return BigInteger 若创建成功返回该小组的id，失败则返回-1
      * @throws IllegalArgumentException 信息不合法，id格式错误
      * @author YeHongjie
-     * @see SeminarGroupService #insertSeminarGroupMemberByGroupId(BigInteger groupId,SeminarGroupMember SeminarGroupMember)
+     //* @see SeminarGroupService #insertSeminarGroupMemberByGroupId(BigInteger groupId,SeminarGroupMember SeminarGroupMember)
      */
     
     public BigInteger insertSeminarGroupBySeminarId(BigInteger seminarId, SeminarGroup seminarGroup) throws IllegalArgumentException {
