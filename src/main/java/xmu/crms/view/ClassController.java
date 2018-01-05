@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import xmu.crms.entity.*;
+import xmu.crms.mapper.ClassMapper;
 import xmu.crms.service.*;
 import xmu.crms.exception.*;
 import xmu.crms.service.ClassService;
@@ -41,6 +42,8 @@ public class ClassController {
     SeminarGroupService seminarGroupService;
     @Autowired
     SeminarService seminarService;
+    @Autowired
+    ClassMapper classMapper;
 
 
     @RequestMapping(method = GET)
@@ -99,8 +102,8 @@ public class ClassController {
     public Response updateClassById(@PathVariable("classId") int classId,
                                     @RequestParam(required = false) int seminarId,
                                     @RequestParam(required = false) int calling,
-                                    @RequestParam(required = false) double longitude,
-                                    @RequestParam(required = false) double latitude,
+                                    //@RequestParam(required = false) double longitude,
+                                    //@RequestParam(required = false) double latitude,
                                     @RequestParam(required = false) ClassUpdateVO classUpdateVO, HttpServletResponse response) {
         try {
             if(calling != 0){
@@ -108,10 +111,7 @@ public class ClassController {
                     classService.endCallRollById(BigInteger.valueOf(seminarId), BigInteger.valueOf(classId));
                 }
                 else {
-                    ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
-                    Seminar seminar = seminarService.getSeminarBySeminarId(BigInteger.valueOf(seminarId));
-                    Location location = new Location(BigInteger.valueOf(0), classInfo, seminar, longitude, latitude, 1);
-                    classService.callInRollById(location);
+                    classMapper.startCallRollById(BigInteger.valueOf(seminarId), BigInteger.valueOf(classId));
                 }
             } else {
                 ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
@@ -137,27 +137,6 @@ public class ClassController {
             return null;
         }
     }
-    /*
-    @RequestMapping(value ="/{classId}", method = PUT)
-    public Response updateClassCallingByClassId(@PathVariable("classId") int classId,
-                                                CallingVO callingVO, HttpServletResponse response) {
-        try {
-            Location location = classService.get
-            if (callingVO.getCalling() != -1) {
-
-            } else {
-
-            }
-            Location location = classService.
-            response.setStatus(204);
-            return null;
-        } catch (ClassesNotFoundException e) {
-            e.printStackTrace();
-            response.setStatus(404);
-            return null;
-        }
-    }
-    */
 
     @RequestMapping(value = "/{classId}", method = DELETE)
     public Response deleteClassById(@PathVariable("classId") int classId, HttpServletResponse response) {
