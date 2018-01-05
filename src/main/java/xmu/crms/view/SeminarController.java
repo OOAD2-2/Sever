@@ -158,10 +158,13 @@ public class SeminarController {
 
     @RequestMapping(value = "/{seminarId}/my", method = GET)
     @ResponseBody
-    public ResponseEntity getStudentSeminarById(@PathVariable("seminarId") int seminarId) {
+    public ResponseEntity getStudentSeminarById(@PathVariable("seminarId") int seminarId,
+    		@RequestParam BigInteger classId) {
     	try {
     		StudentSeminarVO studentSeminarVO=new StudentSeminarVO();
 	        Seminar seminar=seminarService.getSeminarBySeminarId(new BigInteger(String.valueOf(seminarId)));
+	        Location location=classService.getCallStatusById(classId, BigInteger.valueOf(seminarId));
+	        studentSeminarVO.setClassCalling(location.getStatus());
 	        studentSeminarVO.setId(seminar.getId().intValue());
 	        studentSeminarVO.setName(seminar.getName());
 	        if(seminar.getFixed())
