@@ -252,6 +252,7 @@ public class SeminarController {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
 						//System.out.println(topicList);
 						SeminarGroupTopicsVO seminarGroupTopicsVO = new SeminarGroupTopicsVO(seminarGroup, topicList);
+						System.out.println(seminarGroupTopicsVO);
 						seminarGroupTopicsVOList.add(seminarGroupTopicsVO);
 					}
 				}

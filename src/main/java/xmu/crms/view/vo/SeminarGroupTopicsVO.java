@@ -18,7 +18,7 @@ public class SeminarGroupTopicsVO {
     public SeminarGroupTopicsVO(SeminarGroup seminarGroup, List<Topic> topicList) {
         seminarTopicVOList = new ArrayList<SeminarTopicVO>();
         this.id = seminarGroup.getId().intValue();
-        this.name = seminarGroup.getName();
+        this.name = seminarGroup.getClassInfo().getId().toString() + '-' + seminarGroup.getId().toString();
         for (Topic topic : topicList) {
             SeminarTopicVO seminarTopicVO = new SeminarTopicVO(topic.getId().intValue(), topic.getName());
             System.out.println(seminarTopicVO);
