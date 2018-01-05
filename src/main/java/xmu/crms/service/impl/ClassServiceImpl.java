@@ -19,9 +19,7 @@ import xmu.crms.dao.ClassDao;
 import xmu.crms.entity.*;
 import xmu.crms.exception.*;
 import xmu.crms.mapper.ClassMapper;
-import xmu.crms.service.ClassService;
-import xmu.crms.service.FixGroupService;
-import xmu.crms.service.SeminarGroupService;
+import xmu.crms.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import xmu.crms.exception.*;
@@ -39,6 +37,8 @@ public class ClassServiceImpl implements ClassService{
 	SeminarGroupServiceImpl seminarGroupService;
 	@Autowired
 	FixGroupService fixGroupService;
+	@Autowired
+	SeminarService seminarService;
 	@Override
 	public void deleteClassSelectionByClassId(BigInteger classId){
 		 classDao.deleteClassSelectionByClassId(classId);
@@ -104,7 +104,10 @@ public class ClassServiceImpl implements ClassService{
 	@Override
 	public void endCallRollById(BigInteger seminarId, BigInteger classId) throws SeminarNotFoundException, ClassesNotFoundException {
 		classDao.endCallRollById(seminarId, classId);
-		seminarGroupService.automaticallyGrouping(seminarId, classId);
+		Seminar seminar = seminarService.getSeminarBySeminarId(seminarId);
+		if (seminar.getFixed() == false) {
+			seminarGroupService.automaticallyGrouping(seminarId, classId);
+		}
 	}
 
 	@Override

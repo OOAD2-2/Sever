@@ -252,7 +252,7 @@ public class SeminarController {
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
 				for (SeminarGroup seminarGroup : seminarGroups) {
-					//System.out.println(seminarGroup);
+					System.out.println(seminarGroup);
 					if (seminarGroup.getClassInfo().getId().intValue() == classId) {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
 						//System.out.println(topicList);
@@ -366,11 +366,16 @@ public class SeminarController {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			List<Attendance> list1=userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
+			int PresentNum=0;
+			for (Attendance attendance : list1) {
+			    if (attendance.getAttendanceStatus() == 0)
+			        PresentNum++;
+            }
 			List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
 			int numStudent = userList.size();
 			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			SeminarClassAttendanceVO seminarClassAttendanceVO = new SeminarClassAttendanceVO();
-	        seminarClassAttendanceVO.setNumPresent(list1.size());
+	        seminarClassAttendanceVO.setNumPresent(PresentNum);
 	        seminarClassAttendanceVO.setNumStudent(userList.size());
 	        if(location.getStatus()==1)
 	        {
