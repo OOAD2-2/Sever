@@ -335,7 +335,6 @@ public class SeminarController {
 													 @RequestParam BigInteger userId) {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
-			Seminar seminar = seminarService.getSeminarBySeminarId(BigInteger.valueOf(seminarId));
 			SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), userId);
 			List<User> member = seminarGroupService.listSeminarGroupMemberByGroupId(seminarGroup.getId());
 			MemberVO leader = new MemberVO(seminarGroup.getLeader().getNumber(),seminarGroup.getLeader().getName());
@@ -346,15 +345,14 @@ public class SeminarController {
 			List<SeminarGroupTopic> list = topicService.listSeminarGroupTopicByGroupId(seminarGroup.getId());
 			List<MyTopicVO> topics = new ArrayList<MyTopicVO>();
 			for (SeminarGroupTopic seminarGroupTopic : list) {
+				System.out.println(seminarGroupTopic);
 				MyTopicVO topicVO = new MyTopicVO(seminarGroupTopic.getTopic().getId().toString(), seminarGroupTopic.getTopic().getName());
 				topics.add(topicVO);
 			}
-			 StudentGroupVO studentGroupVO = new StudentGroupVO(seminarGroup.getId().intValue(), seminarGroup.getId().toString(), leader, members, topics);
-			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(studentGroupVO);
+			 StudentGroupVO studentGroupVO = new StudentGroupVO(seminarGroup.getId().intValue(), seminarGroup.getName(), leader, members, topics);
+			System.out.println(studentGroupVO);
+			 return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(studentGroupVO);
 		} catch (GroupNotFoundException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(404).build();
-		} catch (SeminarNotFoundException e) {
 			e.printStackTrace();
 			return ResponseEntity.status(404).build();
 		}

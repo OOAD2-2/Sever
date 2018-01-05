@@ -1,6 +1,18 @@
 package xmu.crms.view.vo;
 
 public class MyTopicVO {
+public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 private String id;
 private String name;
 public MyTopicVO(String id,String name)
