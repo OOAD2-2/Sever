@@ -56,7 +56,12 @@ public class GroupController {
                 members.add(new StudentVO(user.getId().intValue(), user.getName(), user.getNumber()));
             }
             SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupByGroupId(BigInteger.valueOf(groupId));
-            if (embedTopics && embedGrade) {
+            if (embedTopics==null && embedGrade == null) {
+                GroupMembersVO groupMembersVO = new GroupMembersVO(seminarGroup.getId().intValue(),
+                        seminarGroup.getId().toString(), leader, members, "");
+                return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(groupMembersVO);
+            }
+            else if (embedTopics && embedGrade) {
                 List<SeminarGroupTopic> seminarGroupTopicList = topicService.listSeminarGroupTopicByGroupId(BigInteger.valueOf(groupId));
                 List<TopicGroupVO> topicGroupVOList = new ArrayList<TopicGroupVO>();
                 for (SeminarGroupTopic seminarGroupTopic : seminarGroupTopicList) {

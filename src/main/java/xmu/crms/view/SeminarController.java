@@ -251,6 +251,7 @@ public class SeminarController {
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
 				for (SeminarGroup seminarGroup : seminarGroups) {
+					System.out.println(seminarGroup);
 					if (seminarGroup.getClassInfo().getId().intValue() == classId) {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
 						//System.out.println(topicList);
