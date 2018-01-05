@@ -457,6 +457,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
         if (seminarGroupMapper.getSeminarGroupById(groupId) == null) {
             throw new GroupNotFoundException("该小组不存在时抛出");
         }
+        System.out.println(groupId.toString()+":"+topicId.toString());
         seminarGroupMapper.insertSeminarGroupTopicByTopicIdAndSeminarGroupId(topicId, groupId);
         return topicMapper.getSeminarGroupTopicById(topicId, groupId).getId();
     }

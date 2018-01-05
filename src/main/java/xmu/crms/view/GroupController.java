@@ -195,8 +195,9 @@ public class GroupController {
     		 				@RequestParam(value = "topicId") int topicId,
                                    IdVO id, HttpServletResponse response) {
         try {
-            seminarGroupService.insertTopicByGroupId(BigInteger.valueOf(groupId), BigInteger.valueOf(id.getId()));
+            seminarGroupService.insertTopicByGroupId(BigInteger.valueOf(groupId), BigInteger.valueOf(topicId));
             response.setStatus(204);
+            System.out.println(groupId+":"+topicId);
             String url = "/group/" + String.valueOf(groupId) + "/topic/" + String.valueOf(id.getId());
             UrlVO urlVO = new UrlVO(url);
             return urlVO;

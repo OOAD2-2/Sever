@@ -2,6 +2,7 @@ package xmu.crms.view;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+import xmu.crms.dao.TopicDAO;
 import xmu.crms.entity.*;
 import xmu.crms.exception.ClassesNotFoundException;
 import xmu.crms.exception.CourseNotFoundException;
@@ -245,7 +246,7 @@ public class SeminarController {
     public ResponseEntity getGroupBySeminarId(@RequestParam(value="gradeable", required=false) String gradeable,
 											  @RequestParam(value="classId", required=false) int classId,
 											  @RequestParam(value="userId", required=false) int userId,
-											  @PathVariable("seminarId") int seminarId) {
+											  @PathVariable("seminarId") int seminarId) throws IllegalArgumentException, SeminarNotFoundException {
 
 
 		if (classId!=0 && userId!=0) {
@@ -271,9 +272,36 @@ public class SeminarController {
         else if(gradeable.equals("true"))
         {
         		try {
-            		SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), BigInteger.valueOf(Integer.valueOf(userId)));
-        			SeminarGroupVO t=new SeminarGroupVO(seminarGroup.getId().intValue());
-            		return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(t);
+            		List<SeminarGroup> listGroup=seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
+            		List<SeminarGroupVO> listGroupGradeale=new ArrayList<SeminarGroupVO>();
+            		List<Topic> listTopic=topicService.listTopicBySeminarId(BigInteger.valueOf(seminarId));
+            		//List<SeminarGroup> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(groupId);
+            		SeminarGroup myGroup=seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), BigInteger.valueOf(userId));
+            		List<SeminarGroupTopic> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(myGroup.getId());
+            		List<BigInteger> listTopicId=new  ArrayList<BigInteger>();
+            		for(SeminarGroupTopic a:listGroupTopic)
+            		{
+            			listTopicId.add(a.getTopic().getId());
+            		}
+            		for(SeminarGroup a:listGroup)
+            		{
+	            		if(!a.getId().equals(myGroup.getId())&&a.getClassInfo().getId().equals(myGroup.getId()))
+	            		{
+	            			List<SeminarGroupTopic> listOtherGroupTopic=topicService.listSeminarGroupTopicByGroupId(a.getId());
+	            			boolean flag=true; 
+	            			for(SeminarGroupTopic b:listOtherGroupTopic)
+	            			{
+	            				for(BigInteger c:listTopicId)
+	                    		{
+	                    			if(c.equals(b.getTopic().getId()))
+	                    				flag=false;
+	                    		}
+	            			}
+	            			if(flag==true)
+	            				listGroupGradeale.add(new SeminarGroupVO(a.getId().intValue()));
+	            		}
+            		}
+            		return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(listGroupGradeale);
         		} catch (GroupNotFoundException e) {
         			e.printStackTrace();
         			return ResponseEntity.status(404).build();
@@ -337,6 +365,7 @@ public class SeminarController {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), userId);
+			System.out.println(seminarGroup);
 			List<User> member = seminarGroupService.listSeminarGroupMemberByGroupId(seminarGroup.getId());
 			MemberVO leader = new MemberVO(seminarGroup.getLeader().getNumber(),seminarGroup.getLeader().getName());
 			leader.setNumber(seminarGroup.getLeader().getId().toString());

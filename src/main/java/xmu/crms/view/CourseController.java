@@ -180,9 +180,11 @@ public class CourseController {
         try {
             //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             List<SeminarGroup> seminarGroupList = gradeService.listSeminarGradeByCourseId(userId, BigInteger.valueOf(courseId));
+            System.out.println(seminarGroupList);
             List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
             for (SeminarGroup seminarGroup : seminarGroupList) {
                 seminarVOList.add(new SeminarVO(seminarGroup.getSeminar(), seminarGroup.getFinalGrade()));
+                
             }
             respons.setStatus(200);
             return seminarVOList;
