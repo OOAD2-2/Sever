@@ -362,6 +362,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
         if (seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId) == null) {
             List<SeminarGroupMember> seminarGroupMemberList = seminarGroupMapper.listSeminarGroupIdByStudentId(userId);
             for (SeminarGroupMember seminarGroupMember : seminarGroupMemberList) {
+                System.out.println(this.getSeminarGroupByGroupId(groupId).getSeminar().getId());
                 if (seminarGroupMember.getSeminarGroup().getSeminar().getId() == this.getSeminarGroupByGroupId(groupId).getSeminar().getId()) {
                     return BigInteger.valueOf(-1);
                 }
