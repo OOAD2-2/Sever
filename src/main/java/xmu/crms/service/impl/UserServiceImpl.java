@@ -37,13 +37,13 @@ public class UserServiceImpl implements UserService {
         // Attendance有三种状态 PRESENT 0 正常签到 LATE 1 迟到 ABSENCE 2 缺勤
         if(location.getStatus().equals(Location.CALLING)){
             // 正常签到
-            return userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.PRESENT);
+        	return BigInteger.valueOf(userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.PRESENT));
         }else if(location.getStatus().equals(Location.END)){
             // 迟到
-            return userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.LATE);
+            return BigInteger.valueOf(userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.LATE));
         }else {
             // 缺勤
-            return userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.ABSENCE);
+            return BigInteger.valueOf(userMapper.insertAttendanceById(classId, seminarId, userId, Attendance.ABSENCE));
         }
     }
 

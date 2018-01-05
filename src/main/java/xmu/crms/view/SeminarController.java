@@ -469,7 +469,9 @@ public class SeminarController {
                                    HttpServletRequest httpServletRequest) throws NumberFormatException, IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
-			userService.insertAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId), BigInteger.valueOf(studentId), Double.valueOf(httpServletRequest.getParameter("longtitude")), Double.valueOf(httpServletRequest.getParameter("latitude")));
+			//double longtitude = Double.valueOf(httpServletRequest.getParameter("longtitude"));
+			//double latitue = Double.valueOf(httpServletRequest.getParameter("latitude"));
+			userService.insertAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId), BigInteger.valueOf(studentId), Double.valueOf(longitude), Double.valueOf(latitude));
 			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			AttendanceStatusVO temp;
 			if(location.getStatus()==1)

@@ -103,7 +103,7 @@ public interface UserMapper {
      * @param userId
      * @param status
      */
-    BigInteger insertAttendanceById(@Param("classId") BigInteger classId,
+    int insertAttendanceById(@Param("classId") BigInteger classId,
                               @Param("seminarId") BigInteger seminarId,
                               @Param("userId") BigInteger userId,
                               @Param("status") int status);
