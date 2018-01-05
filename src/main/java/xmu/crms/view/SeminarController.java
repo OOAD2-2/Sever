@@ -183,25 +183,25 @@ public class SeminarController {
 
     @RequestMapping(value = "/{seminarId}/detail", method = GET)
     @ResponseBody
-    public ResponseEntity getSeminarDetailById(@PathVariable("seminarId") int seminarId) throws IllegalArgumentException, UserNotFoundException, CourseNotFoundException {
+    public SeminarDetailVO getSeminarDetailById(@PathVariable("seminarId") int seminarId,
+    		HttpServletResponse response) throws IllegalArgumentException, UserNotFoundException, CourseNotFoundException {
     	try {
-    		SeminarDetailVO seminarDetailVO=new SeminarDetailVO();
 	        Seminar seminar=seminarService.getSeminarBySeminarId(new BigInteger(String.valueOf(seminarId)));
+	        SeminarDetailVO seminarDetailVO=new SeminarDetailVO(seminar);
 	        List<ClassInfo> classInfos=classService.listClassByCourseId(seminar.getCourse().getId());
-	        Course course=courseService.getCourseByCourseId(seminar.getCourse().getId());
-	        User user=userService.getUserByUserId(course.getTeacher().getId());
-	        seminarDetailVO.setId(seminar.getId().intValue());
-	        seminarDetailVO.setName(seminar.getName());
-	        seminarDetailVO.setStartTime(seminar.getStartTime().toString());
-	        seminarDetailVO.setEndTime(seminar.getEndTime().toString());
-	        seminarDetailVO.setTeacherName(user.getName());
-	        seminarDetailVO.setTeacherEmail(user.getEmail());
+	        seminarDetailVO.setTeacherName(seminar.getCourse().getTeacher().getName());
+	        seminarDetailVO.setTeacherEmail(seminar.getCourse().getTeacher().getEmail());
 	        seminarDetailVO.setSite(classInfos.get(0).getSite());
-        return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarDetailVO);
+	        System.out.println(seminarDetailVO);
+	        //return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarDetailVO);
+	        response.setStatus(200);
+	        return seminarDetailVO;
     	}
         catch (SeminarNotFoundException e)
         {
-        	return ResponseEntity.status(404).build();
+        	//return ResponseEntity.status(404).build();
+        	response.setStatus(404);
+        	return null;
         }
     }
 

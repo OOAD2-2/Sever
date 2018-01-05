@@ -22,6 +22,36 @@ public class StudentSeminarVO {
 	{
 		this.groupingMethod=groupingMethod;
 	}
+	public boolean isLeader() {
+		return isLeader;
+	}
+	public void setLeader(boolean isLeader) {
+		this.isLeader = isLeader;
+	}
+	public int getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getGroupingMethod() {
+		return groupingMethod;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public String getStartTime() {
+		return startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public int getClassCalling() {
+		return classCalling;
+	}
+	public boolean isAreTopicsSeletced() {
+		return areTopicsSeletced;
+	}
 	public void setCourseName(String courseName)
 	{
 		this.courseName=courseName;
