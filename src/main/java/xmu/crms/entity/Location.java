@@ -18,6 +18,15 @@ public class Location {
 	public Location() {
 	}
 
+	public Location(BigInteger id, ClassInfo classInfo, Seminar seminar, Double longitude, Double latitude, Integer status) {
+		this.id = id;
+		this.classInfo = classInfo;
+		this.seminar = seminar;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.status = status;
+	}
+
 	public Location(LocationVO locationVO, ClassInfo classInfo, Seminar seminar){
 		this.id = null;
 		this.classInfo = classInfo;

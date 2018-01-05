@@ -39,6 +39,9 @@ public class ClassController {
     FixGroupService fixGroupService;
     @Autowired
     SeminarGroupService seminarGroupService;
+    @Autowired
+    SeminarService seminarService;
+
 
     @RequestMapping(method = GET)
     @ResponseBody
@@ -94,21 +97,41 @@ public class ClassController {
 
     @RequestMapping(value = "/{classId}", method = PUT)
     public Response updateClassById(@PathVariable("classId") int classId,
-                                    ClassUpdateVO classUpdateVO, HttpServletResponse response) {
+                                    @RequestParam(required = false) int seminarId,
+                                    @RequestParam(required = false) int calling,
+                                    @RequestParam(required = false) double longitude,
+                                    @RequestParam(required = false) double latitude,
+                                    @RequestParam(required = false) ClassUpdateVO classUpdateVO, HttpServletResponse response) {
         try {
-            ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
-            classInfo.setName(classUpdateVO.getName());
-            classInfo.setClassTime(classUpdateVO.getTime());
-            classInfo.setSite(classUpdateVO.getSite());
-            classInfo.setReportPercentage(classUpdateVO.getProportions().getReport());
-            classInfo.setPresentationPercentage(classUpdateVO.getProportions().getPresentation());
-            classInfo.setFivePointPercentage(classUpdateVO.getProportions().getC());
-            classInfo.setFourPointPercentage(classUpdateVO.getProportions().getB());
-            classInfo.setThreePointPercentage(classUpdateVO.getProportions().getA());
-            classService.updateClassByClassId(BigInteger.valueOf(classId), classInfo);
+            if(calling != 0){
+                if (calling == -1) {
+                    classService.endCallRollById(BigInteger.valueOf(seminarId), BigInteger.valueOf(classId));
+                }
+                else {
+                    ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
+                    Seminar seminar = seminarService.getSeminarBySeminarId(BigInteger.valueOf(seminarId));
+                    Location location = new Location(BigInteger.valueOf(0), classInfo, seminar, longitude, latitude, 1);
+                    classService.callInRollById(location);
+                }
+            } else {
+                ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
+                classInfo.setName(classUpdateVO.getName());
+                classInfo.setClassTime(classUpdateVO.getTime());
+                classInfo.setSite(classUpdateVO.getSite());
+                classInfo.setReportPercentage(classUpdateVO.getProportions().getReport());
+                classInfo.setPresentationPercentage(classUpdateVO.getProportions().getPresentation());
+                classInfo.setFivePointPercentage(classUpdateVO.getProportions().getC());
+                classInfo.setFourPointPercentage(classUpdateVO.getProportions().getB());
+                classInfo.setThreePointPercentage(classUpdateVO.getProportions().getA());
+                classService.updateClassByClassId(BigInteger.valueOf(classId), classInfo);
+            }
             response.setStatus(204);
             return null;
         } catch (ClassesNotFoundException e) {
+            e.printStackTrace();
+            response.setStatus(404);
+            return null;
+        } catch (SeminarNotFoundException e) {
             e.printStackTrace();
             response.setStatus(404);
             return null;
