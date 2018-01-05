@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     public BigInteger insertAttendanceById(BigInteger classId, BigInteger seminarId, BigInteger userId, double longitude, double latitude) {
         // 判断签到地点是否正确
         Location location = userMapper.getLocationById(classId, seminarId);
+        System.out.println(location);
+        System.out.println(location);
+        System.out.println(location);
+        System.out.println(location);
+        System.out.println(location);
         // Location有三种状态， CALLING 1 表示正在签到 END 0 表示结束签到 BREAK 2 表示讨论课结束
         // Attendance有三种状态 PRESENT 0 正常签到 LATE 1 迟到 ABSENCE 2 缺勤
         if(location.getStatus().equals(Location.CALLING)){

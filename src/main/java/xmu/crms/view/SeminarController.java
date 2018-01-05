@@ -167,6 +167,7 @@ public class SeminarController {
 	        studentSeminarVO.setClassCalling(location.getStatus());
 	        studentSeminarVO.setId(seminar.getId().intValue());
 	        studentSeminarVO.setName(seminar.getName());
+	        studentSeminarVO.setCourseName(seminar.getCourse().getName());
 	        if(seminar.getFixed())
 	        	studentSeminarVO.setGroupingMethod("fixed");
 	        else
@@ -442,8 +443,7 @@ public class SeminarController {
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/absent", method = GET)
     @ResponseBody
     public ResponseEntity getSeminarClassAbsent(@PathVariable("seminarId") int seminarId,
-                                              @PathVariable("classId") int classId,
-												@RequestParam BigInteger userId) throws IllegalArgumentException, ClassesNotFoundException {
+                                              @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
 			List<User> list1=userService.listAbsenceStudent(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
@@ -458,12 +458,14 @@ public class SeminarController {
 		}
     }
 
-    @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/{studentId}", method = GET)
+    @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/{studentId}", method = PUT)
     @ResponseBody
     public ResponseEntity updateAttendance(@PathVariable("seminarId") int seminarId,
                                    @PathVariable("classId") int classId,
                                    @PathVariable("studentId") int studentId,
-                                   @RequestBody AttendanceVO attendance,
+                                   @RequestParam String latitude,
+                                   @RequestParam String longitude,
+                                   @RequestParam String elevation,
                                    HttpServletRequest httpServletRequest) throws NumberFormatException, IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		try {
