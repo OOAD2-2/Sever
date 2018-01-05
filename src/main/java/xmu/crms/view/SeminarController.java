@@ -215,7 +215,8 @@ public class SeminarController {
 		for(Topic t:topics)
 		{
 			TopicVO temp=new TopicVO(t);
-			temp.SetGroupLeft(t.getGroupNumberLimit()-seminarGroupService.listGroupByTopicId(t.getId()).size());
+			temp.setGroupLeft(t.getGroupNumberLimit()-seminarGroupService.listGroupByTopicId(t.getId()).size());
+			topicVOs.add(temp);
 		}
       return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(topicVOs);
     }
@@ -338,8 +339,10 @@ public class SeminarController {
 			SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), userId);
 			List<User> member = seminarGroupService.listSeminarGroupMemberByGroupId(seminarGroup.getId());
 			MemberVO leader = new MemberVO(seminarGroup.getLeader().getNumber(),seminarGroup.getLeader().getName());
+			leader.setNumber(seminarGroup.getLeader().getId().toString());
 			List<MemberVO> members = new ArrayList<MemberVO>();
 			for (User user : member) {
+				if(!user.getNumber().equals(leader.getId()))
 				members.add(new MemberVO(user.getNumber(),user.getName()));
 			}
 			List<SeminarGroupTopic> list = topicService.listSeminarGroupTopicByGroupId(seminarGroup.getId());
@@ -349,7 +352,7 @@ public class SeminarController {
 				MyTopicVO topicVO = new MyTopicVO(seminarGroupTopic.getTopic().getId().toString(), seminarGroupTopic.getTopic().getName());
 				topics.add(topicVO);
 			}
-			 StudentGroupVO studentGroupVO = new StudentGroupVO(seminarGroup.getId().intValue(), seminarGroup.getName(), leader, members, topics);
+			 StudentGroupVO studentGroupVO = new StudentGroupVO(seminarGroup.getId().intValue(), seminarGroup.getClassInfo().getId()+"-"+seminarGroup.getId(), leader, members, topics);
 			System.out.println(studentGroupVO);
 			 return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(studentGroupVO);
 		} catch (GroupNotFoundException e) {

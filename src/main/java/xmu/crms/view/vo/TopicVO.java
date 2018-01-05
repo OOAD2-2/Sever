@@ -71,10 +71,12 @@ public class TopicVO {
 	}
 
 
-	public void SetGroupLeft(Integer seminar) {
+	public Integer getGroupLeft() {
+		return groupLeft;
+	}
+	public void setGroupLeft(Integer groupLeft) {
 		this.groupLeft = groupLeft;
 	}
-
 	@Override
 	public String toString() {
 		return "Topic{" +
