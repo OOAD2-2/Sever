@@ -359,18 +359,19 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
         if (seminarGroupMapper.getUserById(userId) == null) {
             throw new UserNotFoundException("不存在该学生");
         }
-        if (seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId) != null) {
-            throw new InvalidOperationException("待添加学生已经在小组里了");
-        } else {
+        if (seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId) == null) {
             List<SeminarGroupMember> seminarGroupMemberList = seminarGroupMapper.listSeminarGroupIdByStudentId(userId);
             for (SeminarGroupMember seminarGroupMember : seminarGroupMemberList) {
                 if (seminarGroupMember.getSeminarGroup().getSeminar().getId() == seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getSeminarGroup().getSeminar().getId()) {
                     return BigInteger.valueOf(-1);
                 }
             }
-            seminarGroupMapper.insertSeminarGroupMemberById(userId, groupId);
-            return seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getId();
+        } else {
+            throw new InvalidOperationException("待添加学生已添加进小组");
         }
+        seminarGroupMapper.insertSeminarGroupMemberById(userId, groupId);
+        return seminarGroupMapper.getSeminarGroupMemberByStudentIdAndSeminarGroupId(userId, groupId).getId();
+
     }
 
 
