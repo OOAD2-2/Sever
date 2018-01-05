@@ -67,10 +67,13 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     @Override
     public SeminarGroup getSeminarGroupById(BigInteger seminarId, BigInteger userId) throws IllegalArgumentException, GroupNotFoundException {
         BigInteger group_id;
-        if ((group_id = seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(seminarId, userId)) == null) {
-            throw new GroupNotFoundException("未找到小组");
+        List<BigInteger>  list=seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(userId);
+        for(BigInteger id:list)
+        {
+        	if(seminarGroupMapper.getSeminarGroupByGroupId(id).getSeminar().getId().equals(seminarId))
+        		return seminarGroupMapper.getSeminarGroupByGroupId(id);
         }
-        return seminarGroupMapper.getSeminarGroupByGroupId(group_id);
+            throw new GroupNotFoundException("未找到小组");
     }
 
     @Override
@@ -300,8 +303,8 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     @Override
     public BigInteger getSeminarGroupLeaderById(BigInteger userId, BigInteger seminarId) throws IllegalArgumentException {
         BigInteger groupId;
-        groupId = seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(seminarId, userId);
-        return seminarGroupMapper.getSeminarGroupLeaderByGroupId(groupId);
+        //groupId = seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(userId);
+        return null;
     }
 
     /**

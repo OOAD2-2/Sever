@@ -471,13 +471,48 @@ public class SeminarController {
 		try {
 			//double longtitude = Double.valueOf(httpServletRequest.getParameter("longtitude"));
 			//double latitue = Double.valueOf(httpServletRequest.getParameter("latitude"));
-			userService.insertAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId), BigInteger.valueOf(studentId), Double.valueOf(longitude), Double.valueOf(latitude));
+			System.out.println(userService.insertAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId), BigInteger.valueOf(studentId), Double.valueOf(longitude), Double.valueOf(latitude)));
 			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			AttendanceStatusVO temp;
 			if(location.getStatus()==1)
 				temp=new AttendanceStatusVO("ontime");
 			else
 				temp=new AttendanceStatusVO("late");
+			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(temp);
+		} catch (SeminarNotFoundException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(404).build();
+		}
+    }
+    
+    @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/{studentId}", method = GET)
+    @ResponseBody
+    public ResponseEntity getAttendance(@PathVariable("seminarId") int seminarId,
+                                   @PathVariable("classId") int classId,
+                                   @PathVariable("studentId") int studentId,
+                                   HttpServletRequest httpServletRequest) throws NumberFormatException, IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
+    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		try {
+			//double longtitude = Double.valueOf(httpServletRequest.getParameter("longtitude"));
+			//double latitue = Double.valueOf(httpServletRequest.getParameter("latitude"));
+			List<Attendance> list= userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
+			AttendanceStatusVO temp=null;
+			for(Attendance attendance:list)
+			{
+				System.out.println(attendance);
+				if(attendance.getStudent().getId().equals(BigInteger.valueOf(studentId)))
+					if(attendance.getAttendanceStatus()==0)
+					{
+						temp=new AttendanceStatusVO("ontime");
+						break;
+					}
+					else
+					{
+						temp=new AttendanceStatusVO("late");
+						break;
+					}
+				temp=new AttendanceStatusVO("");
+			}
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(temp);
 		} catch (SeminarNotFoundException e) {
 			e.printStackTrace();
