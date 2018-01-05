@@ -5,8 +5,17 @@ import java.math.BigInteger;
 public class MemberVO {
     private String id;
     private String name;
+    private String number;
 
-    public MemberVO() {
+    public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public MemberVO() {
     }
 
     public MemberVO(String id, String name) {

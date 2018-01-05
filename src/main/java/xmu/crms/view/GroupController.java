@@ -192,10 +192,12 @@ public class GroupController {
 
     @RequestMapping(value = "/{groupId}/topic", method = POST)
     public UrlVO selectTopc(@PathVariable("groupId") int groupId,
+    		 				@RequestParam(value = "topicId") int topicId,
                                    IdVO id, HttpServletResponse response) {
         try {
-            seminarGroupService.insertTopicByGroupId(BigInteger.valueOf(groupId), BigInteger.valueOf(id.getId()));
+            seminarGroupService.insertTopicByGroupId(BigInteger.valueOf(groupId), BigInteger.valueOf(topicId));
             response.setStatus(204);
+            System.out.println(groupId+":"+topicId);
             String url = "/group/" + String.valueOf(groupId) + "/topic/" + String.valueOf(id.getId());
             UrlVO urlVO = new UrlVO(url);
             return urlVO;
