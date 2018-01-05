@@ -251,11 +251,12 @@ public class SeminarController {
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
 				for (SeminarGroup seminarGroup : seminarGroups) {
+					//System.out.println(seminarGroup);
 					if (seminarGroup.getClassInfo().getId().intValue() == classId) {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
 						//System.out.println(topicList);
 						SeminarGroupTopicsVO seminarGroupTopicsVO = new SeminarGroupTopicsVO(seminarGroup, topicList);
-						System.out.println(seminarGroupTopicsVO);
+						//System.out.println(seminarGroupTopicsVO);
 						seminarGroupTopicsVOList.add(seminarGroupTopicsVO);
 					}
 				}
@@ -429,7 +430,7 @@ public class SeminarController {
 			List<User> list1=userService.listLateStudent(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			List<MemberVO> members = new ArrayList<MemberVO>();
 			for (User t : list1) {
-				members.add(new MemberVO(t.getNumber(),t.getName()));
+				members.add(new MemberVO(t.getId().toString(),t.getName()));
 			}
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(members);
 		} catch (SeminarNotFoundException e) {
