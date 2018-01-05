@@ -42,19 +42,26 @@ public class ClassController {
 
     @RequestMapping(method = GET)
     @ResponseBody
-    public List<CourseClassVO> getClasses(@RequestParam String courseName,
-    		@RequestParam String courseTeacher,
+    public List<CourseClassVO> getClasses(@RequestParam(required=false) String courseName,
+    		@RequestParam(required=false) String courseTeacher,
     		@RequestParam BigInteger userId, HttpServletResponse response) {
         try {
             //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
+        	List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
             List<CourseClassVO> courseClassVOList = new ArrayList<CourseClassVO>();
-            for (ClassInfo classInfo : classInfoList) {
-                if (classInfo.getCourse().getName() == courseName && classInfo.getCourse().getTeacher().getName() == courseTeacher) {
-                    List<User> userList = userService.listUserByClassId(classInfo.getId(), "", "");
-                    int numStudent = userList.size();
-                    courseClassVOList.add(new CourseClassVO(classInfo, numStudent));
-                }
+        	if(courseName == null && courseTeacher == null) {
+        		for (ClassInfo classInfo : classInfoList) {List<User> userList = userService.listUserByClassId(classInfo.getId(), "", "");
+            		int numStudent = userList.size();
+            		courseClassVOList.add(new CourseClassVO(classInfo, numStudent));
+            	}
+            } else {
+            	for (ClassInfo classInfo : classInfoList) {
+            		if (classInfo.getCourse().getName() == courseName && classInfo.getCourse().getTeacher().getName() == courseTeacher) {
+            			List<User> userList = userService.listUserByClassId(classInfo.getId(), "", "");
+            			int numStudent = userList.size();
+            			courseClassVOList.add(new CourseClassVO(classInfo, numStudent));
+            		}
+            	}
             }
             return courseClassVOList;
         } catch (ClassesNotFoundException e) {
