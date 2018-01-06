@@ -249,7 +249,7 @@ public class SeminarController {
 											  @PathVariable("seminarId") int seminarId) throws IllegalArgumentException, SeminarNotFoundException {
 
 
-		if (classId!=0 && userId!=0) {
+		if (classId!=0 && userId!=0&&gradeable.equals("false")) {
 			List <SeminarGroupTopicsVO> seminarGroupTopicsVOList = new ArrayList<SeminarGroupTopicsVO>();
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
@@ -273,7 +273,7 @@ public class SeminarController {
         {
         		try {
             		List<SeminarGroup> listGroup=seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
-            		List<SeminarGroupVO> listGroupGradeale=new ArrayList<SeminarGroupVO>();
+            		List<SeminarOtherGradeVO> listGroupGradeale=new ArrayList<SeminarOtherGradeVO>();
             		List<Topic> listTopic=topicService.listTopicBySeminarId(BigInteger.valueOf(seminarId));
             		//List<SeminarGroup> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(groupId);
             		SeminarGroup myGroup=seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), BigInteger.valueOf(userId));
@@ -285,20 +285,22 @@ public class SeminarController {
             		}
             		for(SeminarGroup a:listGroup)
             		{
+            			System.out.println(a);
 	            		if(!a.getId().equals(myGroup.getId())&&a.getClassInfo().getId().equals(myGroup.getId()))
 	            		{
 	            			List<SeminarGroupTopic> listOtherGroupTopic=topicService.listSeminarGroupTopicByGroupId(a.getId());
-	            			boolean flag=true; 
+	            			
 	            			for(SeminarGroupTopic b:listOtherGroupTopic)
 	            			{
+	            				boolean flag=true; 
 	            				for(BigInteger c:listTopicId)
 	                    		{
-	                    			if(c.equals(b.getTopic().getId()))
+	                    			if(c.equals(b.getTopic().getId()));
 	                    				flag=false;
 	                    		}
+	            				if(flag==true)
+	            					listGroupGradeale.add(new SeminarOtherGradeVO(a.getId().intValue(),b.getTopic().getId().intValue()));
 	            			}
-	            			if(flag==true)
-	            				listGroupGradeale.add(new SeminarGroupVO(a.getId().intValue()));
 	            		}
             		}
             		return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(listGroupGradeale);
@@ -363,17 +365,31 @@ public class SeminarController {
     public ResponseEntity getStudentGroupBySeminarId(@PathVariable("seminarId") int seminarId,
 													 @RequestParam BigInteger userId) {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
+    	MemberVO leader = null;
+    	List<MemberVO> members;
+    	try {
 			SeminarGroup seminarGroup = seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), userId);
 			System.out.println(seminarGroup);
 			List<User> member = seminarGroupService.listSeminarGroupMemberByGroupId(seminarGroup.getId());
-			MemberVO leader = new MemberVO(seminarGroup.getLeader().getNumber(),seminarGroup.getLeader().getName());
+			try {
+			leader = new MemberVO(seminarGroup.getLeader().getNumber(),seminarGroup.getLeader().getName());
 			leader.setNumber(seminarGroup.getLeader().getId().toString());
-			List<MemberVO> members = new ArrayList<MemberVO>();
+			members = new ArrayList<MemberVO>();
 			for (User user : member) {
 				if(!user.getNumber().equals(leader.getId()))
 				members.add(new MemberVO(user.getNumber(),user.getName()));
 			}
+			}
+			catch(Exception e)
+			{
+				leader=new MemberVO();
+				leader.setId("0");
+				members = new ArrayList<MemberVO>();
+				for (User user : member) {
+					members.add(new MemberVO(user.getNumber(),user.getName()));
+				}
+			}
+			
 			List<SeminarGroupTopic> list = topicService.listSeminarGroupTopicByGroupId(seminarGroup.getId());
 			List<MyTopicVO> topics = new ArrayList<MyTopicVO>();
 			for (SeminarGroupTopic seminarGroupTopic : list) {

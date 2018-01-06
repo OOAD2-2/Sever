@@ -107,10 +107,10 @@ public class GroupController {
 
     @RequestMapping(value = "/{groupId}/resign", method = PUT)
     public Response resignGroupLeader(@PathVariable("groupId") int groupId,
-                                    IdVO id,
+    					@RequestParam int userId,
                                     HttpServletResponse response) {
         try {
-            User user = userService.getUserByUserId(BigInteger.valueOf(id.getId()));
+            User user = userService.getUserByUserId(BigInteger.valueOf(userId));
             seminarGroupService.resignLeaderById(BigInteger.valueOf(groupId), user.getId());
             response.setStatus(204);
             return null;
@@ -131,9 +131,9 @@ public class GroupController {
 
     @RequestMapping(value = "/{groupId}/assign", method = PUT)
     public Response assignGroupLeader(@PathVariable("groupId") int groupId,
-                                      IdVO id, HttpServletResponse response) {
+    		@RequestParam int userId, HttpServletResponse response) {
         try {
-            User user = userService.getUserByUserId(BigInteger.valueOf(id.getId()));
+            User user = userService.getUserByUserId(BigInteger.valueOf(userId));
             seminarGroupService.assignLeaderById(BigInteger.valueOf(groupId), user.getId());
             response.setStatus(204);
             return null;
@@ -262,12 +262,11 @@ public class GroupController {
     @RequestMapping(value = "/{groupId}/grade/presentation/{studentId}", method = PUT)
     public Response submitGradeByGroupId(@PathVariable("groupId") int groupId,
                                       @PathVariable("studentId") int studentId,
-                                      PresentationsGradeVO presentationsGradeVO,
+                                      @RequestParam BigInteger topicId,
+                                      @RequestParam BigInteger grade,
                                       HttpServletResponse response) {
-        for (PresentationGradeVO presentationGradeVO : presentationsGradeVO.getPresentationGradeVOList()) {
-            gradeService.insertGroupGradeByUserId(BigInteger.valueOf(presentationGradeVO.getTopicId()), BigInteger.valueOf(studentId),
-                    BigInteger.valueOf(groupId), BigInteger.valueOf(presentationGradeVO.getGrade()));
-        }
+            gradeService.insertGroupGradeByUserId(topicId, BigInteger.valueOf(studentId),
+                    BigInteger.valueOf(groupId), grade);
         response.setStatus(204);
         return null;
     }
