@@ -24,6 +24,7 @@ import xmu.crms.exception.UserDuplicatedException;
 import xmu.crms.exception.UserNotFoundException;
 import xmu.crms.mapper.UserMapper;
 import xmu.crms.security.UserDetailsImpl;
+import xmu.crms.service.SchoolService;
 import xmu.crms.service.UserService;
 import xmu.crms.util.MD5Utils;
 import xmu.crms.view.vo.*;
@@ -38,9 +39,14 @@ public class MeController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	SchoolService schoolService;
 	
     @Autowired
 	UserDAO userDAO;
+
+    @Autowired
+	UserMapper userMapper;
 	
     @RequestMapping(value = "/me", method = GET)
     @ResponseBody
@@ -61,9 +67,15 @@ public class MeController {
     }
 
     @RequestMapping(value = "/me", method = PUT)
-	public ResponseEntity updateCurrentUser(@RequestParam(value="id",required=false) String id,@RequestParam(value="typeId",required=false) Integer type,@RequestParam(value="openid") String openid,HttpServletRequest request) {
-		try {
-			if (null == userService.getUserByUserId(BigInteger.valueOf(Integer.valueOf(id)))) {
+	public ResponseEntity updateCurrentUser(@RequestParam(value="typeId",required=false) Integer type,
+											@RequestParam(value="openid") String openid,
+											@RequestParam(value = "schoolId", required = false) Integer schoolId,
+											@RequestParam(required = false) String name,
+											@RequestParam(required = false) String number) {
+
+    	//try {
+			/*
+    		if (null == userService.getUserByUserId(BigInteger.valueOf(Integer.valueOf(id)))) {
 				
 				BufferedReader br = request.getReader();
 				String str, wholeStr = "";
@@ -86,13 +98,26 @@ public class MeController {
 				System.out.println(user.toString());
 				userService.updateUserByUserId(BigInteger.valueOf(Integer.valueOf(id)), user);
 			}
-		} catch (UserNotFoundException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(400).build();
-		}catch (IOException e){
-			e.printStackTrace();
+			*/
+			//if (userMapper.getUserByOpenId(openid) == null) {
+
+		if (type == -1) {
+			userMapper.deleteUserByOpenId(openid);
+		} else {
+			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
+			userMapper.insertUser(new User(openid, type, school, name, number));
 		}
+			//} else {
+
+			//}
+		//} catch (UserNotFoundException e) {
+		//	e.printStackTrace();
+		//	return ResponseEntity.status(400).build();
+		//}catch (IOException e){
+		//	e.printStackTrace();
+		//}
 		return ResponseEntity.status(204).build();
+
 	}
 
     @RequestMapping(value = "/signin", method = GET)
