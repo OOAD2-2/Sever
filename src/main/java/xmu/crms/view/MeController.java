@@ -69,10 +69,9 @@ public class MeController {
     @RequestMapping(value = "/me", method = PUT)
 	public ResponseEntity updateCurrentUser(@RequestParam(value="typeId",required=false) Integer type,
 											@RequestParam(value="openid") String openid,
-											@RequestParam int schoolId,
-											@RequestParam String name,
-											@RequestParam String number,
-											HttpServletRequest request) {
+											@RequestParam(value = "schoolId", required = false) Integer schoolId,
+											@RequestParam(required = false) String name,
+											@RequestParam(required = false) String number) {
 
     	//try {
 			/*
@@ -101,8 +100,13 @@ public class MeController {
 			}
 			*/
 			//if (userMapper.getUserByOpenId(openid) == null) {
-		School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
-				userMapper.insertUser(new User(openid, type, school, name, number));
+
+		if (type == -1) {
+			userMapper.deleteUserByOpenId(openid);
+		} else {
+			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
+			userMapper.insertUser(new User(openid, type, school, name, number));
+		}
 			//} else {
 
 			//}

@@ -166,4 +166,6 @@ public interface UserMapper {
      * @return
      */
     UserDetailsImpl getUserByOpenId(@Param("openid") String openid);
+
+    void deleteUserByOpenId(@Param("openid") String openid);
 }

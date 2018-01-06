@@ -39,8 +39,10 @@ public class SchoolController {
 
 	@RequestMapping(method = POST)
     @ResponseBody
-    public ResponseEntity addSchool(HttpServletRequest httpServletRequest) throws IOException {
-        BufferedReader br = httpServletRequest.getReader();
+    public ResponseEntity addSchool(AddSchoolVO addSchoolVO,
+                                    HttpServletRequest httpServletRequest) throws IOException {
+        /*
+	    BufferedReader br = httpServletRequest.getReader();
         String str, wholeStr = "";
         while((str = br.readLine()) != null){
             wholeStr += str;
@@ -53,14 +55,23 @@ public class SchoolController {
         Map<String, Integer> result = new HashMap<String, Integer>();
         int id = schoolService.insertSchool(school).intValue();
         result.put("id", id);
-        return ResponseEntity.status(201).contentType(MediaType.APPLICATION_JSON_UTF8).body(result);
+        */
+        School school = new School();
+        school.setCity(addSchoolVO.getCity());
+        school.setName(addSchoolVO.getName());
+        school.setProvince(addSchoolVO.getProvince());
+        schoolService.insertSchool(school).intValue();
+        return ResponseEntity.status(201).build();
     }
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/province", method = GET)
     @ResponseBody
     public ResponseEntity getProvinces() {
         List<String> provinces = new ArrayList<String>();
-        provinces = schoolService.listProvince();
+        for (String province : schoolService.listProvince()) {
+            if (!provinces.contains(province))
+                provinces.add(province);
+        }
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(provinces);
     }
 
@@ -69,7 +80,10 @@ public class SchoolController {
     @ResponseBody
     public ResponseEntity getCities(@RequestParam String province) {
     	List<String> citys = new ArrayList<String>();
-        citys = schoolService.listCity(province);
+        for (String city : schoolService.listCity(province)) {
+            if (!citys.contains(city))
+                citys.add(city);
+        }
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(citys);
     }
 

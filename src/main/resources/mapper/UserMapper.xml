@@ -102,7 +102,11 @@
     </insert>
 
     <delete id="deleteUserByUserId" parameterType="java.math.BigInteger">
-        delete from user where id = #{id}
+        delete from user_info where id = #{id}
+    </delete>
+
+    <delete id="deleteUserByOpenId" parameterType="java.lang.String">
+        delete from user_info where openid = #{openid}
     </delete>
 
     <select id="listCourseByTeacherId" parameterType="java.math.BigInteger" resultMap="courseResultMap">
