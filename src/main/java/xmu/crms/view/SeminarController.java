@@ -295,7 +295,7 @@ public class SeminarController {
 	            				boolean flag=true; 
 	            				for(BigInteger c:listTopicId)
 	                    		{
-	                    			if(c.equals(b.getTopic().getId()));
+	                    			if(c.equals(b.getTopic().getId()))
 	                    				flag=false;
 	                    		}
 	            				if(flag==true)
