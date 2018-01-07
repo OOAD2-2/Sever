@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,9 +52,12 @@ public class MeController {
 	
     @RequestMapping(value = "/me", method = GET)
     @ResponseBody
-    public ResponseEntity getCurrentUser(@RequestParam(value = "id") String id) {
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
+    public ResponseEntity getCurrentUser() {
+    	BigInteger id = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	try{
-			User user = userService.getUserByUserId(BigInteger.valueOf(Integer.valueOf(id)));
+    		System.out.println(id);
+			User user = userService.getUserByUserId(id);
 			System.out.println(user.toString());
 			if(user != null){
 				UserDetailVO userDetailVO = new UserDetailVO(user);

@@ -49,6 +49,10 @@ public class User {
 		this.name = name;
 		this.number = number;
 	}
+	public User(String openid, Integer type){
+		this.openid = openid;
+		this.type = type;
+	}
 	public User(UserDetailVO userDetailVO) {
 		this.id = null;
 		this.phone = null;

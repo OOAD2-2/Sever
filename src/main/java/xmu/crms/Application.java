@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import xmu.crms.service.TimerService;
 
@@ -18,6 +19,7 @@ import xmu.crms.service.TimerService;
 @SpringBootApplication
 @MapperScan("xmu.crms.mapper")
 @EnableScheduling
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Application implements WebMvcConfigurer{
 
 	public static void main(String[] args) {

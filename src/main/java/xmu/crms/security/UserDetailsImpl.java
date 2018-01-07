@@ -1,17 +1,16 @@
 package xmu.crms.security;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * 实现 Spring Security的 UserDetail实体
- * 是Spring Security从数据库拿出的User 实体
- * @author LiuXuezhang
- */
-public class UserDetailsImpl {
+public class UserDetailsImpl implements UserDetails,Serializable {
 
     private BigInteger id;
     private String openid;
@@ -69,43 +68,53 @@ public class UserDetailsImpl {
         this.type = type;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        if(this.type == 0){
+            authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        } else if (this.type == 1){
+            authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
+        }
+        return authorities;
+    }
 
-    
+    @Override
     public String getPassword() {
         return this.password;
     }
 
-    
+    @Override
     public String getUsername() {
         return null;
     }
 
-    
+    @Override
     public boolean isAccountNonExpired() {
         return false;
     }
 
-    
+    @Override
     public boolean isAccountNonLocked() {
         return false;
     }
 
-    
+    @Override
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
-    
+    @Override
     public boolean isEnabled() {
         return false;
     }
 
-
+    @Override
     public String getName() {
         return name;
     }
 
-    
+    @Override
     public String toString() {
         return "UserDetailsImpl{" +
                 "id=" + id +
