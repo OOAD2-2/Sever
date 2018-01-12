@@ -74,7 +74,7 @@ public class MeController {
     @RequestMapping(value = "/me", method = PUT)
     @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
 	public ResponseEntity updateCurrentUser(@RequestParam(value="typeId",required=false) Integer type,
-											@RequestParam(value="phone") String phone,
+											@RequestParam(value="phone",required=false) String phone,
 											@RequestParam(value = "schoolId", required = false) Integer schoolId,
 											@RequestParam(value = "password", required = false) String password,
 											@RequestParam(required = false) String name,
