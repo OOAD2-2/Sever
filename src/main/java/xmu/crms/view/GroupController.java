@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.MediaType;
 import xmu.crms.entity.*;
 import xmu.crms.exception.GroupNotFoundException;
@@ -40,7 +41,7 @@ public class GroupController {
     GradeService gradeService;
 
     @RequestMapping(value = "/{groupId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getGourpById(@PathVariable("groupId") int groupId,
                                     @RequestParam(value = "embedTopics", required = false) Boolean embedTopics,
                                     @RequestParam(value = "embedGrade", required = false) Boolean embedGrade) {
@@ -106,6 +107,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/resign", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response resignGroupLeader(@PathVariable("groupId") int groupId,
     					@RequestParam int userId,
                                     HttpServletResponse response) {
@@ -130,6 +132,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/assign", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response assignGroupLeader(@PathVariable("groupId") int groupId,
     		@RequestParam int userId, HttpServletResponse response) {
         try {
@@ -153,6 +156,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/add", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response addGroupMember(@PathVariable("groupId") int groupId,
                                       IdVO id, HttpServletResponse response) {
         try {
@@ -176,6 +180,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/remove", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response removeGroupMember(@PathVariable("groupId") int groupId,
                                       IdVO id, HttpServletResponse response) {
         try {
@@ -191,6 +196,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/topic", method = POST)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public UrlVO selectTopc(@PathVariable("groupId") int groupId,
     		 				@RequestParam(value = "topicId") int topicId,
                                    IdVO id, HttpServletResponse response) {
@@ -209,6 +215,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/topic/{topicId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response deleteTopic(@PathVariable("groupId") int groupId,
                                @PathVariable("topicId") int topicId,
                                HttpServletResponse response) {
@@ -224,7 +231,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/grade", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public GroupGradeVO getGradeByGroupId(@PathVariable("groupId") int groupId,
                                           HttpServletResponse response) {
         try {
@@ -245,6 +252,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/grade/report", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response finalGradeByGroupId(@PathVariable("groupId") int groupId,
                                           ReportGradeVO reportGrade,
                                           HttpServletResponse response) {
@@ -260,6 +268,7 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/{groupId}/grade/presentation/{studentId}", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response submitGradeByGroupId(@PathVariable("groupId") int groupId,
                                       @PathVariable("studentId") int studentId,
                                       @RequestParam BigInteger topicId,

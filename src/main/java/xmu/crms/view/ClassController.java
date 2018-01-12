@@ -2,6 +2,7 @@ package xmu.crms.view;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +48,7 @@ public class ClassController {
 
 
     @RequestMapping(method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<CourseClassVO> getClasses(@RequestParam(required=false) String courseName,
     		@RequestParam(required=false) String courseTeacher,
     		@RequestParam BigInteger userId, HttpServletResponse response) {
@@ -82,7 +83,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ClassByIdVO getClassById(@PathVariable("classId") int classId, HttpServletResponse response) throws ClassesNotFoundException {
         try {
             ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
@@ -99,6 +100,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}", method = PUT)
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response updateClassById(@PathVariable("classId") int classId,
                                     @RequestParam(required = false) int seminarId,
                                     @RequestParam(required = false) int calling,
@@ -139,6 +141,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response deleteClassById(@PathVariable("classId") int classId, HttpServletResponse response) {
         try {
             classService.deleteClassByClassId(BigInteger.valueOf(classId));
@@ -153,7 +156,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/student", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<StudentVO> selectClass1(@PathVariable("classId") int classId,
                                         @RequestParam String numBeginWith,
                                         @RequestParam String nameBeginWith, HttpServletResponse response) {
@@ -173,7 +176,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/student", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response selectClass2(@PathVariable("classId") int classId,
                                  @RequestParam BigInteger userId,
                                  IdVO id, HttpServletResponse response) {
@@ -194,6 +197,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/student/{studentId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response deselectClass(@PathVariable("classId") int classId,
                                   @PathVariable("studentId") int studentId,
                                   HttpServletResponse response) {
@@ -213,7 +217,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/classgroup", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ClassGroupVO getClassGroupByClassId(@PathVariable("classId") int classId,
                                                @RequestParam BigInteger userId,
                                                HttpServletResponse response) {
@@ -239,6 +243,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/classgroup/resign", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response resignClassGroupLeader(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {
@@ -268,6 +273,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/classgroup/assign", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response assignClassGroupLeader(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {
@@ -297,6 +303,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/classgroup/add", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response addClassgroupMember(@PathVariable("classId") int classId,
                                         @RequestParam BigInteger userId,
                                         IdVO id, HttpServletResponse response) {
@@ -331,6 +338,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/{classId}/classgroup/remove", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response removeClassgroupMember(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {

@@ -8,6 +8,7 @@ import xmu.crms.view.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/school")
+
 public class SchoolController {
 
 	@Autowired
@@ -31,14 +33,14 @@ public class SchoolController {
    
 	@SuppressWarnings("rawtypes")
 	@RequestMapping( method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSchools(@RequestParam(value="city", required=true) String city) {
         List<School> schools = schoolService.listSchoolByCity(city);
 		return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(schools);
     }
 
 	@RequestMapping(method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity addSchool(AddSchoolVO addSchoolVO,
                                     HttpServletRequest httpServletRequest) throws IOException {
         /*
@@ -65,7 +67,7 @@ public class SchoolController {
     }
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/province", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getProvinces() {
         List<String> provinces = new ArrayList<String>();
         for (String province : schoolService.listProvince()) {
@@ -77,7 +79,7 @@ public class SchoolController {
 
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/city", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getCities(@RequestParam String province) {
     	List<String> citys = new ArrayList<String>();
         for (String city : schoolService.listCity(province)) {

@@ -72,6 +72,7 @@ public class MeController {
     }
 
     @RequestMapping(value = "/me", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
 	public ResponseEntity updateCurrentUser(@RequestParam(value="typeId",required=false) Integer type,
 											@RequestParam(value="openid") String openid,
 											@RequestParam(value = "schoolId", required = false) Integer schoolId,
@@ -126,7 +127,7 @@ public class MeController {
 	}
 
     @RequestMapping(value = "/signin", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity signinWechat(@RequestParam(value="openid") String openid) {
     	try {
     	UserDetailsImpl userDetailsImpl=userDAO.getUserByOpenid(openid);
@@ -140,7 +141,7 @@ public class MeController {
     }
 
     @RequestMapping(value = "/signin", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity signinPassword(HttpServletRequest httpServletRequest) throws IOException {
     	BufferedReader br = httpServletRequest.getReader();
         String str, wholeStr = "";
@@ -162,7 +163,7 @@ public class MeController {
 
     @SuppressWarnings("unused")
 	@RequestMapping(value = "/register", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity registerPassword(HttpServletRequest httpServletRequest) throws IOException {
     	BufferedReader br = httpServletRequest.getReader();
         String str, wholeStr = "";

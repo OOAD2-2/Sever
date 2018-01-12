@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +61,7 @@ public class CourseController {
      GradeService gradeService;
 
     @RequestMapping(method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<UserCourseVO> getUserCourses(@RequestParam BigInteger userId,
                                              HttpServletResponse response) throws IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,7 +87,7 @@ public class CourseController {
     }
 
     @RequestMapping(method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public int createCourse(@RequestBody CourseVO courseVO,
                             @RequestParam BigInteger userId,HttpServletResponse response) {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -103,7 +104,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public CourseByIdVO getCourseById(@PathVariable("courseId") int courseId, HttpServletResponse response) {
         try {
             Course course = courseService.getCourseByCourseId(BigInteger.valueOf(courseId));
@@ -129,6 +130,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response deleteCourseById(@PathVariable("courseId") int courseId,
                                      HttpServletResponse response) {
         courseService.deleteCourseByCourseId(BigInteger.valueOf(courseId));
@@ -137,7 +139,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/class", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<ClassVO> getClassByCourseId(@PathVariable("courseId") int courseId, HttpServletResponse response) {
         try {
             List<ClassInfo> classInfoList = classService.listClassByCourseId(BigInteger.valueOf(courseId));
@@ -159,7 +161,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/class", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public int createClassByCourseId(@PathVariable("courseId") int courseId,
                                      @RequestBody ClassCreateVO classCreateVO, HttpServletResponse response) {
         try {
@@ -174,7 +176,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/seminar", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<SeminarVO> getSeminarsByCourseId(@PathVariable("courseId") int courseId,
                                                  @RequestParam BigInteger userId,HttpServletResponse respons) {
         try {
@@ -194,7 +196,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/seminar", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public int createSeminarByCourseId(@PathVariable("courseId") int courseId, SeminarCreateVO seminarCreateVO,
                                        HttpServletResponse response) {
         try{
@@ -210,7 +212,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/seminar/current", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public SeminarCurrentVO getCurrentSeminarByCourseId(@PathVariable("courseId") int courseId, HttpServletResponse response) {
         try {
             List<Seminar> seminarList = seminarService.listSeminarByCourseId(BigInteger.valueOf(courseId));
@@ -240,7 +242,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/{courseId}/grade", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<SeminarGradeVO> getGradesByCourseId(@PathVariable("courseId") int courseId,
                                                     @RequestParam BigInteger userId,HttpServletResponse response) {
         try {

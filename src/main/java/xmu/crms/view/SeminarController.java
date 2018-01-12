@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.MediaType;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/seminar")
+@PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
 public class SeminarController {
 
 	@Autowired
@@ -68,7 +70,7 @@ public class SeminarController {
 	SeminarGroupService seminarGroupService;
 
     @RequestMapping(value = "/{seminarId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarById(@PathVariable("seminarId") int seminarId) throws IllegalArgumentException, SeminarNotFoundException {
         SeminarByIdVO seminarByIdVO = new SeminarByIdVO();
         try {
@@ -98,7 +100,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}", method = PUT)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity updateSeminarById(@PathVariable("seminarId") int seminarId,
 											@RequestParam BigInteger userId,
     		HttpServletRequest httpServletRequest) throws java.text.ParseException, IOException {
@@ -140,6 +142,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity deleteSeminarById(@PathVariable("seminarId") int seminarId,
                                       HttpServletResponse response) {
     	try {
@@ -158,7 +161,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/my", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getStudentSeminarById(@PathVariable("seminarId") int seminarId,
     		@RequestParam BigInteger classId) {
     	try {
@@ -184,7 +187,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/detail", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public SeminarDetailVO getSeminarDetailById(@PathVariable("seminarId") int seminarId,
     		HttpServletResponse response) throws IllegalArgumentException, UserNotFoundException, CourseNotFoundException {
     	try {
@@ -208,7 +211,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/topic", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getTopicsBySeminarId(@PathVariable("seminarId") int seminarId) {
 
         List<Topic> topics = topicService.listTopicBySeminarId(new BigInteger(String.valueOf(seminarId)));
@@ -223,7 +226,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/topic", method = POST)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity createTopicBySeminarId(@PathVariable("seminarId") int seminarId,
 												 @RequestParam BigInteger userId,HttpServletRequest httpServletRequest) throws IOException {
     	BufferedReader br = httpServletRequest.getReader();
@@ -242,7 +245,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/group", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getGroupBySeminarId(@RequestParam(value="gradeable", required=false) String gradeable,
 											  @RequestParam(value="classId", required=false) int classId,
 											  @RequestParam(value="userId", required=false) int userId,
@@ -361,7 +364,7 @@ public class SeminarController {
  		}
     }
     @RequestMapping(value = "/{seminarId}/group/my", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getStudentGroupBySeminarId(@PathVariable("seminarId") int seminarId,
 													 @RequestParam BigInteger userId) {
         //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -407,7 +410,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassAttendance(@PathVariable("seminarId") int seminarId,
                                                               @PathVariable("classId") int classId,
 													@RequestParam BigInteger userId) throws IllegalArgumentException, ClassesNotFoundException {
@@ -452,7 +455,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/present", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassPresent(@PathVariable("seminarId") int seminarId,
 												 @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -484,7 +487,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/late", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassLate(@PathVariable("seminarId") int seminarId,
                                               @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -502,7 +505,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/absent", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassAbsent(@PathVariable("seminarId") int seminarId,
                                               @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
     	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -520,7 +523,7 @@ public class SeminarController {
     }
 
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/{studentId}", method = PUT)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity updateAttendance(@PathVariable("seminarId") int seminarId,
                                    @PathVariable("classId") int classId,
                                    @PathVariable("studentId") int studentId,
@@ -547,7 +550,7 @@ public class SeminarController {
     }
     
     @RequestMapping(value = "/{seminarId}/class/{classId}/attendance/{studentId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getAttendance(@PathVariable("seminarId") int seminarId,
                                    @PathVariable("classId") int classId,
                                    @PathVariable("studentId") int studentId,

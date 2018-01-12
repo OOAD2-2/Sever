@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/topic")
+@PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
 public class TopicController {
 
     @Autowired
@@ -37,7 +39,7 @@ public class TopicController {
     SeminarGroupService seminarGroupService;
 
     @RequestMapping(value = "/{topicId}", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public TopicByIdVO getTopicById(@PathVariable("topicId") int topicId, HttpServletResponse response) {
         try{
             Topic topic = topicService.getTopicByTopicId(BigInteger.valueOf(topicId));
@@ -53,6 +55,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/{topicId}", method = PUT)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response updateTopicById(@PathVariable("topicId") int topicId,
                                     @RequestBody TopicUpdateVO topicUpdateVO,
                                     HttpServletResponse response) {
@@ -74,6 +77,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/{topicId}", method = DELETE)
+    @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public Response deleteTopicById(@PathVariable("topicId") int topicId,
                                     HttpServletResponse response) {
         try {
@@ -88,7 +92,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/{topicId}/group", method = GET)
-    @ResponseBody
+    @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<TopicGroupVO> getGroupsByTopicId(@PathVariable("topicId") int topicId, HttpServletResponse response) {
         List<SeminarGroupTopic> seminarGroupTopicList = topicService.listSeminarGroupTopicByGroupId(BigInteger.valueOf(topicId));
 
