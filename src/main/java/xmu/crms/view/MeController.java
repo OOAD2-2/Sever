@@ -109,7 +109,9 @@ public class MeController {
 			//if (userMapper.getUserByOpenId(openid) == null) {
     	BigInteger id = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (type == -1) {
-			userService.updateUserByUserId(id, new User("0",type));
+			User user=userService.getUserByUserId(id);
+			user.setOpenid("0");
+			userService.updateUserByUserId(id, user);
 		} else {
 			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
 			userService.updateUserByUserId(id,new User(phone,password, type, school, name, number));
