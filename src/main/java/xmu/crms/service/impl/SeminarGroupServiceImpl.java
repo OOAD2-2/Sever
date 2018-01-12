@@ -206,8 +206,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             //System.out.println(seminarGroup);
             //BigInteger groupId = seminarGroupDAO.insertSeminarGroupBySeminarId(seminarId, seminarGroup);
 
-            Seminar seminar = new Seminar();
-            seminar = seminarMapper.getSeminarBySeminarId(seminarId);
+            Seminar seminar = seminarMapper.getSeminarBySeminarId(seminarId);
             seminarGroup.setSeminar(seminar);
             seminarGroupMapper.insertSeminarGroupBySeminarId(seminarGroup);
 
@@ -217,6 +216,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             for (int j = 0; j < smallestlimit && (j+i*smallestlimit) < studentIdList.size(); j++) {
                 try {
                     insertSeminarGroupMemberById(studentIdList.get(j + i * smallestlimit), groupId);
+                    studentIdList.remove(studentIdList.get(j + i * smallestlimit));
                     if (j == 0)
                         assignLeaderById(groupId, studentIdList.get(j + i * smallestlimit));
                 } catch (GroupNotFoundException e) {
