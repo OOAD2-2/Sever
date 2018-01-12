@@ -5,6 +5,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +80,7 @@ public class MeController {
 											@RequestParam(value = "schoolId", required = false) Integer schoolId,
 											@RequestParam(value = "password", required = false) String password,
 											@RequestParam(required = false) String name,
-											@RequestParam(required = false) String number) throws UserNotFoundException {
+											@RequestParam(required = false) String number) throws UserNotFoundException, NoSuchAlgorithmException {
 
     	//try {
 			/*
@@ -114,7 +116,7 @@ public class MeController {
 			userService.updateUserByUserId(id, user);
 		} else {
 			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
-			userService.updateUserByUserId(id,new User(phone,MD5Utils.MD5encode(password), type, school, name, number));
+			userService.updateUserByUserId(id,new User(phone,md5Hex(password.substring(8,24)), type, school, name, number));
 		}
 			//} else {
 
@@ -188,4 +190,20 @@ public class MeController {
         	return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(0);
     }
     
+    private String md5Hex(String input) throws NoSuchAlgorithmException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] res = md5.digest(input.getBytes());
+        return toHex(res);
+    }
+
+    private String toHex(byte[] bytes) {
+
+        final char[] theHexDigits = "0123456789ABCDEF".toCharArray();
+        StringBuilder ret = new StringBuilder(bytes.length * 2);
+        for (int i = 0; i < bytes.length; i++) {
+            ret.append(theHexDigits[(bytes[i] >> 4) & 0x0f]);
+            ret.append(theHexDigits[bytes[i] & 0x0f]);
+        }
+        return ret.toString();
+    }
 }
