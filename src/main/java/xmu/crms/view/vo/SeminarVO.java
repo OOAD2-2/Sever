@@ -86,7 +86,14 @@ public class SeminarVO {
         this.endTime = endTime;
     }
 
-    public int getGrade() {
+
+	@Override
+	public String toString() {
+		return "SeminarVO [id=" + id + ", name=" + name + ", description=" + description + ", groupingMethod="
+				+ groupingMethod + ", startTime=" + startTime + ", endTime=" + endTime + ", grade=" + grade + "]";
+	}
+
+	public int getGrade() {
         return grade;
     }
 

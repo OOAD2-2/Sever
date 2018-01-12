@@ -179,27 +179,20 @@ public class CourseController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<SeminarVO> getSeminarsByCourseId(@PathVariable("courseId") int courseId,
                                                  @RequestParam BigInteger userId,HttpServletResponse respons) {
-        try {/*
-            List<SeminarGroup> seminarGroupList = gradeService.listSeminarGradeByCourseId(userId, BigInteger.valueOf(courseId));
-            System.out.println(seminarGroupList);
-            List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
-            for (SeminarGroup seminarGroup : seminarGroupList) {
-                seminarVOList.add(new SeminarVO(seminarGroup.getSeminar(), seminarGroup.getFinalGrade()));
-                
-            }
-            */
-            //List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
+        try {
             List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
             List<Seminar> seminarList = seminarService.listSeminarByCourseId(BigInteger.valueOf(courseId));
-            System.out.println(seminarList);
             List<SeminarGroup> seminarGroupList = seminarGroupService.listSeminarGroupIdByStudentId(userId);
+            System.out.println(seminarList);
             for (Seminar seminar : seminarList) {
                 int grade = -1;
-                for (SeminarGroup seminarGroup : seminarGroupList) {
-                    if (seminarGroup.getSeminar().getId() == seminar.getId())
-                        grade = seminarGroup.getFinalGrade();
-                }
-                seminarVOList.add(new SeminarVO(seminar, grade));
+                System.out.println(seminar);
+                System.out.println(seminarGroupList);
+                System.out.println(seminar);
+                System.out.println(grade);
+                SeminarVO seminarVO=new SeminarVO(seminar, grade);
+                seminarVOList.add(seminarVO);
+                System.out.println(seminarVOList);
             }
             respons.setStatus(200);
             return seminarVOList;
