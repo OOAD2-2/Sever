@@ -191,6 +191,7 @@ public class CourseController {
             //List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
             List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
             List<Seminar> seminarList = seminarService.listSeminarByCourseId(BigInteger.valueOf(courseId));
+            System.out.println(seminarList);
             List<SeminarGroup> seminarGroupList = seminarGroupService.listSeminarGroupIdByStudentId(userId);
             for (Seminar seminar : seminarList) {
                 int grade = -1;

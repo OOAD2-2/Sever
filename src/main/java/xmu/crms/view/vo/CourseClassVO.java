@@ -1,5 +1,7 @@
 package xmu.crms.view.vo;
 
+import java.math.BigInteger;
+
 import xmu.crms.entity.ClassInfo;
 
 public class CourseClassVO {
@@ -10,6 +12,7 @@ public class CourseClassVO {
     private String site;
     private String courseName;
     private String courseTeacher;
+    private BigInteger CourseId;
 
     public CourseClassVO() {
     }
@@ -21,10 +24,19 @@ public class CourseClassVO {
         this.time = classInfo.getClassTime();
         this.site = classInfo.getSite();
         this.courseName = classInfo.getCourse().getName();
+        this.CourseId=classInfo.getCourse().getId();
         this.courseTeacher = classInfo.getCourse().getTeacher().getName();
     }
 
-    public CourseClassVO(int id, String name, int numStudent, String time,
+    public BigInteger getCourseId() {
+		return CourseId;
+	}
+
+	public void setCourseId(BigInteger courseId) {
+		CourseId = courseId;
+	}
+
+	public CourseClassVO(int id, String name, int numStudent, String time,
                          String site, String courseName, String courseTeacher) {
         this.id = id;
         this.name = name;
