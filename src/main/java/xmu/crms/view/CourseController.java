@@ -231,7 +231,7 @@ public class CourseController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date now = sdf.parse(sdf.format(new Date()));
             for (Seminar seminar : seminarList) {
-                if (seminar.getStartTime().getTime() < now.getTime() && seminar.getEndTime().getTime() > now.getTime()) {
+                if (seminar.getStartTime().getTime() <= now.getTime() && seminar.getEndTime().getTime() >= now.getTime()) {
                     List<ClassInfo> classInfoList = classService.listClassByCourseId(seminar.getCourse().getId());
                     List<ClassVO> classVOList = new ArrayList<ClassVO>();
                     for (ClassInfo classInfo : classInfoList) {
