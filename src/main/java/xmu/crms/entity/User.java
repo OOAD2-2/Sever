@@ -42,8 +42,9 @@ public class User {
 		this.education = null;
 		this.avatar = (String)jsonUser.get("avatar");
 	}
-	public User(String openid, Integer type, School school, String name, String number){
-		this.openid = openid;
+	public User(String phone,String password, Integer type, School school, String name, String number){
+		this.phone = phone;
+		this.password = password;
 		this.type = type;
 		this.school = school;
 		this.name = name;

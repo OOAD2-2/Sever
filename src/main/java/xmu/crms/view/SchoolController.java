@@ -62,7 +62,7 @@ public class SchoolController {
         school.setCity(addSchoolVO.getCity());
         school.setName(addSchoolVO.getName());
         school.setProvince(addSchoolVO.getProvince());
-        schoolService.insertSchool(school).intValue();
+        System.out.println("schoolId"+schoolService.insertSchool(school).intValue());
         return ResponseEntity.status(201).build();
     }
     @SuppressWarnings("rawtypes")

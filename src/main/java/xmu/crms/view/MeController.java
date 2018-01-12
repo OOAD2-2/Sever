@@ -74,10 +74,12 @@ public class MeController {
     @RequestMapping(value = "/me", method = PUT)
     @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
 	public ResponseEntity updateCurrentUser(@RequestParam(value="typeId",required=false) Integer type,
-											@RequestParam(value="openid") String openid,
+											@RequestParam(value="phone") String phone,
 											@RequestParam(value = "schoolId", required = false) Integer schoolId,
+											@RequestParam(value = "password", required = false) String password,
+											@RequestParam(required = false) String openid,
 											@RequestParam(required = false) String name,
-											@RequestParam(required = false) String number) {
+											@RequestParam(required = false) String number) throws UserNotFoundException {
 
     	//try {
 			/*
@@ -106,12 +108,12 @@ public class MeController {
 			}
 			*/
 			//if (userMapper.getUserByOpenId(openid) == null) {
-
+    	BigInteger id = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (type == -1) {
 			userMapper.deleteUserByOpenId(openid);
 		} else {
 			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
-			userMapper.insertUser(new User(openid, type, school, name, number));
+			userService.updateUserByUserId(id,new User(phone,password, type, school, name, number));
 		}
 			//} else {
 
