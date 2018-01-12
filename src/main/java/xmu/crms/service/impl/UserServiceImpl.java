@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("用户没找到");
         }
         userMapper.updateUserByUserId(userId, user);
+        System.out.println("解绑");
     }
 
     @Override
