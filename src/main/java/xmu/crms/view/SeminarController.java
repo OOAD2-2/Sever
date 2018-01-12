@@ -168,7 +168,10 @@ public class SeminarController {
     		StudentSeminarVO studentSeminarVO=new StudentSeminarVO();
 	        Seminar seminar=seminarService.getSeminarBySeminarId(new BigInteger(String.valueOf(seminarId)));
 	        Location location=classService.getCallStatusById(classId, BigInteger.valueOf(seminarId));
+	        if(location!=null)
 	        studentSeminarVO.setClassCalling(location.getStatus());
+	        else
+	        	studentSeminarVO.setClassCalling(0);
 	        studentSeminarVO.setId(seminar.getId().intValue());
 	        studentSeminarVO.setName(seminar.getName());
 	        studentSeminarVO.setCourseName(seminar.getCourse().getName());
