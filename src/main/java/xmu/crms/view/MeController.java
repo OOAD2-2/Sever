@@ -114,7 +114,7 @@ public class MeController {
 			userService.updateUserByUserId(id, user);
 		} else {
 			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
-			userService.updateUserByUserId(id,new User(phone,password, type, school, name, number));
+			userService.updateUserByUserId(id,new User(phone,MD5Utils.MD5encode(password), type, school, name, number));
 		}
 			//} else {
 
