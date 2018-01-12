@@ -179,14 +179,26 @@ public class CourseController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public List<SeminarVO> getSeminarsByCourseId(@PathVariable("courseId") int courseId,
                                                  @RequestParam BigInteger userId,HttpServletResponse respons) {
-        try {
-            //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {/*
             List<SeminarGroup> seminarGroupList = gradeService.listSeminarGradeByCourseId(userId, BigInteger.valueOf(courseId));
             System.out.println(seminarGroupList);
             List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
             for (SeminarGroup seminarGroup : seminarGroupList) {
                 seminarVOList.add(new SeminarVO(seminarGroup.getSeminar(), seminarGroup.getFinalGrade()));
                 
+            }
+            */
+            //List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
+            List<SeminarVO> seminarVOList = new ArrayList<SeminarVO>();
+            List<Seminar> seminarList = seminarService.listSeminarByCourseId(BigInteger.valueOf(courseId));
+            List<SeminarGroup> seminarGroupList = seminarGroupService.listSeminarGroupIdByStudentId(userId);
+            for (Seminar seminar : seminarList) {
+                int grade = -1;
+                for (SeminarGroup seminarGroup : seminarGroupList) {
+                    if (seminarGroup.getSeminar().getId() == seminar.getId())
+                        grade = seminarGroup.getFinalGrade();
+                }
+                seminarVOList.add(new SeminarVO(seminar, grade));
             }
             respons.setStatus(200);
             return seminarVOList;
