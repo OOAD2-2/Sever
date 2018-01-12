@@ -9,6 +9,7 @@ import xmu.crms.exception.CourseNotFoundException;
 import xmu.crms.exception.GroupNotFoundException;
 import xmu.crms.exception.SeminarNotFoundException;
 import xmu.crms.exception.UserNotFoundException;
+import xmu.crms.mapper.ClassMapper;
 import xmu.crms.service.ClassService;
 import xmu.crms.service.CourseService;
 import xmu.crms.service.SeminarGroupService;
@@ -59,6 +60,9 @@ public class SeminarController {
 
 	@Autowired
 	ClassService classService;
+
+	@Autowired
+	ClassMapper classMapper;
 
 	//@Autowired
 	CourseService courseService;
@@ -427,7 +431,15 @@ public class SeminarController {
             }
 			List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
 			int numStudent = userList.size();
-			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
+			Location location = new Location();
+			if (classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId)) == null) {
+				ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
+				Seminar seminar = seminarService.getSeminarBySeminarId(BigInteger.valueOf(seminarId));
+				location = new Location(BigInteger.valueOf(0), classInfo, seminar, 0.0, 0.0, 0);
+				classMapper.CallInRollById(location);
+			} else {
+				location = classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
+			}
 			SeminarClassAttendanceVO seminarClassAttendanceVO = new SeminarClassAttendanceVO();
 	        seminarClassAttendanceVO.setNumPresent(PresentNum);
 	        seminarClassAttendanceVO.setNumStudent(userList.size());
