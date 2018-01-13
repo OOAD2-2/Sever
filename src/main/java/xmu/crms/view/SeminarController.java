@@ -283,32 +283,36 @@ public class SeminarController {
         {
         		try {
             		List<SeminarGroup> listGroup=seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
+            		//System.out.println("listGroup"+listGroup);
             		List<SeminarOtherGradeVO> listGroupGradeale=new ArrayList<SeminarOtherGradeVO>();
             		List<Topic> listTopic=topicService.listTopicBySeminarId(BigInteger.valueOf(seminarId));
-            		//List<SeminarGroup> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(groupId);
+            		//System.out.println("listTopic"+listTopic);
             		SeminarGroup myGroup=seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), BigInteger.valueOf(userId));
+            		//System.out.println("myGroup"+myGroup);
             		List<SeminarGroupTopic> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(myGroup.getId());
+            		//System.out.println("listGroupTopic"+listGroupTopic);
             		List<BigInteger> listTopicId=new  ArrayList<BigInteger>();
             		for(SeminarGroupTopic a:listGroupTopic)
             		{
             			listTopicId.add(a.getTopic().getId());
             		}
+            		//System.out.println("listTopicId"+listTopicId);
             		for(SeminarGroup a:listGroup)
             		{
             			System.out.println(a);
-	            		if(!a.getId().equals(myGroup.getId())&&a.getClassInfo().getId().equals(myGroup.getId()))
+	            		if(!a.getId().equals(myGroup.getId())&&a.getClassInfo().getId().equals(myGroup.getClassInfo().getId()))
 	            		{
 	            			List<SeminarGroupTopic> listOtherGroupTopic=topicService.listSeminarGroupTopicByGroupId(a.getId());
-	            			
+	            			ArrayList<Integer> judge=new ArrayList<Integer>(listOtherGroupTopic.size());
 	            			for(SeminarGroupTopic b:listOtherGroupTopic)
 	            			{
 	            				boolean flag=true; 
 	            				for(BigInteger c:listTopicId)
 	                    		{
-	                    			if(c.equals(b.getTopic().getId()))
+	                    			if(!c.equals(b.getTopic().getId()))
 	                    				flag=false;
 	                    		}
-	            				if(flag==true)
+	            				if(flag==false)
 	            					listGroupGradeale.add(new SeminarOtherGradeVO(a.getId().intValue(),b.getTopic().getId().intValue()));
 	            			}
 	            		}
