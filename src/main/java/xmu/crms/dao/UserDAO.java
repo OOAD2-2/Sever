@@ -11,6 +11,9 @@ import xmu.crms.exception.UserNotFoundException;
 import xmu.crms.mapper.UserMapper;
 import xmu.crms.security.UserDetailsImpl;
 
+/**
+ * @author 2-2
+ */
 @Component
 public class UserDAO {
 
@@ -43,9 +46,14 @@ public class UserDAO {
     public User getUserByPhoneAndPassword(User user) {
         User user1 = userMapper.getUserByUserId(userMapper.getUserByNumber(user.getPhone()).getId());
         if(user1.getPassword().equals(user.getPassword()))
-        	return user1;
+        {
+            return user1;
+        }
         else
-        	return null;
+        {
+            return null;
+        }
+
     }
 
 
@@ -68,9 +76,13 @@ public class UserDAO {
     public User getUser(User user) {
     	 User user1 = userMapper.getUserByUserId(userMapper.getUserByNumber(user.getPhone()).getId());
          if(user1.getPassword().equals(user.getPassword()))
-         	return user1;
+         {
+             return user1;
+         }
          else
-         	return null;
+         {
+             return null;
+         }
     }
 
     /**

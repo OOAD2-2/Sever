@@ -341,7 +341,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="endCallRollById">
 		update location set 
-			status=0
+			status=2
 		where class_id=#{classId} and seminar_id=#{seminarId}
 	</update>
 
