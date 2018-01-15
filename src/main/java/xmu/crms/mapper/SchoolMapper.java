@@ -43,7 +43,7 @@ public interface SchoolMapper {
 
 	/**
 	 * 搜索学校
-	 * @param SchoolId
+	 * @param schoolId
 	 * @return School
 	 */
 	School getSchoolBySchoolId(BigInteger schoolId);
