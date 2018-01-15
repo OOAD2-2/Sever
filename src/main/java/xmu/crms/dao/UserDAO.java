@@ -98,11 +98,11 @@ public class UserDAO {
     /**
      * for ali 通过用户名获取用户id
      * @author LUWEIW
-     * @param UserName
+     * @param userName
      * @return BigInteger
      */
-    public BigInteger getUserIdByUserName(String UserName) {
-        return userMapper.getUsersByName(UserName).get(0).getId();
+    public BigInteger getUserIdByUserName(String userName) {
+        return userMapper.getUsersByName(userName).get(0).getId();
     }
 
     public User signUpPhone(User user) throws UserDuplicatedException {
