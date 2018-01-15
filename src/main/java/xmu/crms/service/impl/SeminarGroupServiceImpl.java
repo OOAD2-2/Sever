@@ -209,7 +209,6 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
                     insertSeminarGroupMemberById(studentIdList.get(j + i * smallestlimit), groupId);
                     if (j == 0)
                         {assignLeaderById(groupId, studentIdList.get(j + i * smallestlimit));}
-                    studentIdList.remove(studentIdList.get(j + i * smallestlimit));
                 } catch (GroupNotFoundException e) {
                     e.printStackTrace();
                 } catch (UserNotFoundException e) {

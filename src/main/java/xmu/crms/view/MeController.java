@@ -87,13 +87,14 @@ public class MeController {
 
     	BigInteger id = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (type == -1) {
+			System.out.println(id);
 			User user=userService.getUserByUserId(id);
 			user.setOpenid("0");
+			System.out.println(user);
 			userService.updateUserByUserId(id, user);
 		} else {
 			School school = schoolService.getSchoolBySchoolId(BigInteger.valueOf(schoolId));
-			password=md5Hex(password.substring(8,24));
-			userService.updateUserByUserId(id,new User(phone,password, type, school, name, number));
+			userService.updateUserByUserId(id,new User(phone,md5Hex(password).substring(8,24), type, school, name, number));
 		}
 		return ResponseEntity.status(204).build();
 
