@@ -21,7 +21,7 @@ import java.util.List;
 public interface TimerMapper {
 
     /**
-     * 插入
+     * for ali 插入
      * @param time 事件的时间
      * @param beanName 对象名
      * @param methodName 方法名
@@ -31,7 +31,7 @@ public interface TimerMapper {
     Integer insertEvent(@Param("time") Date time, @Param("bean_name") String beanName, @Param("method_name") String methodName, @Param("parameter")String parameter);
 
     /**
-     * 更新
+     * for ali 更新
      * @param eventId 事件id
      * @param newTime 时间
      * @return Integer id
@@ -39,7 +39,7 @@ public interface TimerMapper {
     Integer updateEvent(@Param("id") BigInteger eventId, @Param("time") Date newTime);
 
     /**
-     *
+     * for ali
      * 查找
      * @param now 时间
      * @return 事件列表
@@ -47,7 +47,7 @@ public interface TimerMapper {
     List<Event> selectEvent(@Param("now") Timestamp now);
 
     /**
-     *
+     * for ali
      * 删除
      * @param id
      * @return id

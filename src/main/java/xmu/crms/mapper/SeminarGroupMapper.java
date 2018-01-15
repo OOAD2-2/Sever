@@ -20,7 +20,7 @@ import java.util.List;
 public interface SeminarGroupMapper {
 
     /**
-     * 删除某小组所有成员
+     * for ali 删除某小组所有成员
      * @param seminarGroupId
      * @return boolean
      * @author zhouwei
@@ -28,15 +28,13 @@ public interface SeminarGroupMapper {
      */
 
     /**
-     * 在某小组中添加某个学生成员
-     * @param userId groupId
-     * @return boolean
-     * @author zhouwei
-     * @date 17:51 2017/12/21 0021
+     * for ali 删除某小组所有成员
+     * @param userId
+     * @param groupId
      */
     void insertSeminarGroupMemberById(@Param("userId") BigInteger userId, @Param("groupId") BigInteger groupId);
     /**
-     *  根据小组的id找到小组的组长
+     * for ali  根据小组的id找到小组的组长
      * @param groupId
      * @return BigInteger
      * @author zhouwei
@@ -44,47 +42,158 @@ public interface SeminarGroupMapper {
      */
 
     /**
-     * 找到课堂下的所有小组
-     * @param seminarId
-     * @return List<SeminarGroup>
-     * @author zhouwei
-     * @date 22:17 2017/12/21 0021
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @param seminarGroupMember
+     * @return
      */
-
-
-
-
     int insertSeminarGroupMemberByGroupId(@Param("groupId") BigInteger groupId, @Param("seminarGroupMember") SeminarGroupMember seminarGroupMember);
 
-
+    /**
+     * for ali 删除某小组所有成员
+     * @param topicId
+     * @return
+     * @throws IllegalArgumentException
+     * @throws GroupNotFoundException
+     */
     List<SeminarGroupTopic> listGroupByTopicId(@Param("topicId") BigInteger topicId)
             throws IllegalArgumentException,GroupNotFoundException;
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @param topicId
+     * @return
+     * @throws IllegalArgumentException
+     * @throws GroupNotFoundException
+     */
     String insertTopicByGroupId(@Param("groupId") BigInteger groupId, @Param("topicId") BigInteger topicId)
             throws IllegalArgumentException,GroupNotFoundException;
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @param userId
+     * @return
+     * @throws IllegalArgumentException
+     * @throws GroupNotFoundException
+     */
     boolean resignLeaderById(@Param("groupId") BigInteger groupId, @Param("userId") BigInteger userId)
             throws IllegalArgumentException,GroupNotFoundException;
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @return
+     * @throws GroupNotFoundException
+     */
     boolean deleteTopicByGroupId(@Param("groupId") BigInteger groupId) throws GroupNotFoundException;
 /*完成的*/
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @param userId
+     */
     void assignLeaderById(@Param("groupId") BigInteger groupId, @Param("userId") BigInteger userId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarId
+     * @param classId
+     */
     void automaticallyGrouping(@Param("seminarId") BigInteger seminarId, @Param("classId") BigInteger classId);
 
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarGroupId
+     */
     void deleteSeminarGroupByGroupId(@Param("seminarGroupId") BigInteger seminarGroupId);
 
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarId
+     */
     void deleteSeminarGroupBySeminarId(@Param("seminarId") BigInteger seminarId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarGroupId
+     */
     void deleteSeminarGroupMemberBySeminarGroupId(BigInteger seminarGroupId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @return
+     */
     SeminarGroup getSeminarGroupByGroupId(@Param("groupId") BigInteger groupId);
 
+    /**
+     * for ali 删除某小组所有成员
+     * @param userId
+     * @return
+     */
     List<BigInteger> getSeminarGroupIdBySeminarIdAndUserId(@Param("userId") BigInteger userId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @return
+     */
     BigInteger getSeminarGroupLeaderByGroupId(@Param("groupId") BigInteger groupId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param groupId
+     * @return
+     */
     List<SeminarGroupMember> listSeminarGroupMemberByGroupId(@Param("groupId") BigInteger groupId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarGroup
+     * @return
+     */
     int insertSeminarGroupBySeminarId(SeminarGroup seminarGroup);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarId
+     * @return
+     */
     List<SeminarGroup> listSeminarGroupBySeminarId(@Param("seminarId") BigInteger seminarId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param userId
+     * @return
+     */
     BigInteger getUserIdByUserId(@Param("userId") BigInteger userId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param grouId
+     * @param userId
+     */
     void deleteSeminarGroupMemberByuId(@Param("groupId")BigInteger grouId, @Param("userId")BigInteger userId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param seminarId
+     * @return
+     */
     BigInteger getSeminarIdBySeminarId(@Param("seminarId") BigInteger seminarId);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param SeminarId
+     * @param ClassId
+     * @return
+     */
     List<BigInteger> listStudentIdBySeminarIdAndClassId(@Param("seminarId")BigInteger SeminarId,@Param("classId")BigInteger ClassId);
     /**
-     *获取某学生所有的讨论课小组.
+     * for ali获取某学生所有的讨论课小组.
      *
      * @param studentId 学生id
      * @return
@@ -93,24 +202,50 @@ public interface SeminarGroupMapper {
      */
     List<SeminarGroupMember> listSeminarGroupIdByStudentId(BigInteger studentId);
 
+    /**
+     * for ali 删除某小组所有成员
+     * @param topicId
+     * @return
+     */
     List<BigInteger> listGroupIdByTopicId(BigInteger topicId);
     //throw
 
     /**
-     *根据id获取topic
-     *
-     * @param
+     * for ali 删除某小组所有成员
+     * @param id
      * @return
-     * @author: YellowPure
-     * @date: 21:44 2017/12/22
      */
     ClassInfo getSeminarById(BigInteger id);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param id
+     * @return
+     */
     ClassInfo getClassInfoById(BigInteger id);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param id
+     * @return
+     */
     Course getCourseById(BigInteger id);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param id
+     * @return
+     */
     School getSchoolById(BigInteger id);
+
+    /**
+     * for ali 删除某小组所有成员
+     * @param id
+     * @return
+     */
     Topic getTopicById(BigInteger id);
     /**
-     *根据id获取seminarGroup
+     * for ali根据id获取seminarGroup
      *
      * @param id 小组id
      * @return
@@ -120,7 +255,7 @@ public interface SeminarGroupMapper {
     SeminarGroup getSeminarGroupById(BigInteger id);
 
     /**
-     *根据id获取user
+     * for ali根据id获取user
      *
      * @param id 用户id
      * @return
@@ -130,7 +265,7 @@ public interface SeminarGroupMapper {
     User getUserById(BigInteger id);
 
     /**
-     *查询该学生是否已经在小组里
+     * for ali查询该学生是否已经在小组里
      *
      * @param studentId 学生id
      * @param seminarGroupId 讨论组id
@@ -141,7 +276,7 @@ public interface SeminarGroupMapper {
     SeminarGroupMember getSeminarGroupMemberByStudentIdAndSeminarGroupId(@Param("studentId") BigInteger studentId, @Param("seminarGroupId") BigInteger seminarGroupId);
 
     /**
-     *小组按id选择话题.
+     * for ali小组按id选择话题.
      *
      * @param topicId 话题id
      * @param seminarGroupId 讨论组id

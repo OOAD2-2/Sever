@@ -21,7 +21,7 @@ public interface FixGroupService {
 
 
     /**
-     * 按班级Id添加固定分组.
+     * for ali 按班级Id添加固定分组.
      * <p>按ClassId和UserId添加带有队长的固定分组<br>
      * @param classId 固定分组Id
      * @param userId  队长的Id
@@ -34,7 +34,7 @@ public interface FixGroupService {
             IllegalArgumentException, UserNotFoundException;
 
     /**
-     * 按FixGroupId删除FixGroupMember.
+     * for ali 按FixGroupId删除FixGroupMember.
      * <p>按FixGroupId删除FixGroupMember<br>
      * @param fixGroupId 固定分组Id
      * @throws IllegalArgumentException  信息不合法，id格式错误
@@ -45,7 +45,7 @@ public interface FixGroupService {
             IllegalArgumentException, FixGroupNotFoundException;
 
     /**
-     * 按FixGroupId和UserId删除FixGroupMember中某个学生.
+     * for ali 按FixGroupId和UserId删除FixGroupMember中某个学生.
      * <p>按FixGroupId和UserId删除FixGroupMember中的某个学生<br>
      *
      * @param fixGroupId 固定分组Id
@@ -60,7 +60,7 @@ public interface FixGroupService {
 
 
     /**
-     * 查询固定小组成员.
+     * for ali 查询固定小组成员.
      * ＜p＞按照固定小组id查询该小组的成员<br>
      *
      * @param groupId 要查询的固定小组id
@@ -73,7 +73,7 @@ public interface FixGroupService {
             IllegalArgumentException, FixGroupNotFoundException;
 
     /**
-     * 按classId查找FixGroup信息.
+     * for ali 按classId查找FixGroup信息.
      * <p>按classId查找FixGroup信息<br>
      *
      * @param classId 班级Id
@@ -86,7 +86,7 @@ public interface FixGroupService {
             IllegalArgumentException, ClassesNotFoundException;
 
     /**
-     * 按classId删除FixGroup
+     * for ali 按classId删除FixGroup
      * <p>先根据classId得到所有的FixGroup信息，再根据FixGroupid删除FixGroupMember表的信息，最后再将FixGroup信息删除<br>*
      *
      * @param classId 班级Id
@@ -100,7 +100,7 @@ public interface FixGroupService {
             IllegalArgumentException, ClassesNotFoundException;
 
     /**
-     * 删除固定小组.
+     * for ali 删除固定小组.
      * ＜p＞按照id删除固定小组<br>
      *
      * @param groupId 固定小组的id
@@ -113,7 +113,7 @@ public interface FixGroupService {
             IllegalArgumentException, FixGroupNotFoundException;
 
     /**
-     * 修改固定小组.
+     * for ali 修改固定小组.
      * ＜p＞修改固定小组的信息（不包括成员）<br>
      *
      * @param groupId    小组的id
@@ -126,7 +126,7 @@ public interface FixGroupService {
             IllegalArgumentException, FixGroupNotFoundException;
 
     /**
-     * 查询固定小组.
+     * for ali 查询固定小组.
      * ＜p＞按照id查询某一固定小组的信息（包括成员）<br>
      *
      * @param groupId 小组的id
@@ -141,7 +141,7 @@ public interface FixGroupService {
 
 
     /**
-     * 将学生加入小组.
+     * for ali 将学生加入小组.
      * ＜p＞将用户加入指定的小组<br>
      *
      * @param userId  学生的id
@@ -159,7 +159,7 @@ public interface FixGroupService {
             InvalidOperationException;
 
     /**
-     * 按id获取小组.
+     * for ali 按id获取小组.
      * <p>通过学生id和班级id获取学生所在的班级固定小组<br>
      *
      * @param userId  学生id
@@ -175,7 +175,7 @@ public interface FixGroupService {
             IllegalArgumentException, ClassesNotFoundException, UserNotFoundException;
 
     /**
-     * 将固定小组作为讨论课小组名单.
+     * for ali 将固定小组作为讨论课小组名单.
      *
      * @param semianrId    讨论课ID
      * @param fixedGroupId 小组ID

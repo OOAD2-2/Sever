@@ -68,7 +68,7 @@ public class FifcosAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     /**
-     * 
+     * for ali
      * @param phone
      * @param password
      */

@@ -15,7 +15,7 @@ import xmu.crms.exception.*;
 public interface TopicService {
 
     /**
-     * 按topicId获取topic.
+     * for ali 按topicId获取topic.
      * <p>按topicId获取topic<br>
      *
      * @param topicId 要获取的topic的topicId
@@ -27,7 +27,7 @@ public interface TopicService {
     Topic getTopicByTopicId(BigInteger topicId) throws TopicNotFoundException, IllegalArgumentException;
 
     /**
-     * 根据topicId修改topic.
+     * for ali 根据topicId修改topic.
      * <p>根据topicId修改topic<br>
      *
      * @param topicId 讨论课的ID
@@ -39,7 +39,7 @@ public interface TopicService {
     void updateTopicByTopicId(BigInteger topicId, Topic topic) throws TopicNotFoundException, IllegalArgumentException;
 
     /**
-     * 删除topic.
+     * for ali 删除topic.
      * <p>删除topic表中相应讨论课的topic<br>
      *
      * @param topicId 要删除的topic的topicId
@@ -50,7 +50,7 @@ public interface TopicService {
 
 
     /**
-     * 按seminarId获取Topic.
+     * for ali 按seminarId获取Topic.
      * <p>按seminarId获取Topic<br>
      *
      * @param seminarId 课程Id
@@ -61,7 +61,7 @@ public interface TopicService {
     List<Topic> listTopicBySeminarId(BigInteger seminarId) throws IllegalArgumentException;
 
     /**
-     * 根据讨论课Id和topic信息创建一个话题.
+     * for ali 根据讨论课Id和topic信息创建一个话题.
      * <p>根据讨论课Id和topic信息创建一个话题<br>
      *
      * @param seminarId 话题所属讨论课的Id
@@ -73,7 +73,7 @@ public interface TopicService {
     BigInteger insertTopicBySeminarId(BigInteger seminarId, Topic topic) throws IllegalArgumentException;
 
     /**
-     * 小组取消选择话题.
+     * for ali 小组取消选择话题.
      * <p>小组取消选择话题  <br>
      * <p>删除seminar_group_topic表的一条记录<br>
      *
@@ -85,7 +85,7 @@ public interface TopicService {
     void deleteSeminarGroupTopicById(BigInteger groupId, BigInteger topicId) throws IllegalArgumentException;
 
     /**
-     * 按topicId删除SeminarGroupTopic表信息.
+     * for ali 按topicId删除SeminarGroupTopic表信息.
      * <p>删除seminar_group_topic表中选择了某个话题的全部记录<br>
      *
      * @param topicId 讨论课Id
@@ -95,7 +95,7 @@ public interface TopicService {
     void deleteSeminarGroupTopicByTopicId(BigInteger topicId) throws IllegalArgumentException;
 
     /**
-     * 按话题id和小组id获取讨论课小组选题信息（包括该小组该话题展示成绩）
+     * for ali 按话题id和小组id获取讨论课小组选题信息（包括该小组该话题展示成绩）
      * <p>按话题id和小组id获取讨论课小组选题信息（包括该小组该话题展示成绩）<br>
      * @param topicId 话题id
      * @param groupId 组id
@@ -105,7 +105,7 @@ public interface TopicService {
     SeminarGroupTopic getSeminarGroupTopicById(BigInteger topicId, BigInteger groupId) throws IllegalArgumentException;
 
     /**
-     * 根据小组id获取该小组该堂讨论课所有选题信息
+     * for ali 根据小组id获取该小组该堂讨论课所有选题信息
      * <p>根据小组id获取该小组该堂讨论课所有选题信息<br>
      * @param groupId
      * @return list 该小组该堂讨论课选题列表
@@ -115,7 +115,7 @@ public interface TopicService {
 
 
     /**
-     * 按seminarId删除话题.
+     * for ali 按seminarId删除话题.
      * <p>删除某讨论课下的所有Topic<br>
      * <p>根据seminarId获得topic信息，然后再根据topic删除seninargrouptopic信息和根据seminarGroupTopicId删除StudentScoreGroup信息，最后再根据删除topic信息<br>
      *

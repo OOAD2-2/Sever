@@ -9,14 +9,14 @@ import xmu.crms.security.UserDetailsImpl;
  */
 public interface AuthDao {
     /**
-     * 根据手机号找用户
+     * for ali 根据手机号找用户
      * @param phone
      * @return
      */
     UserDetailsImpl getUserByNumber(@Param("phone") String phone);
 
     /**
-     * 根据openid登录用
+     * for ali 根据openid登录用
      * @param openid
      * @return
      */

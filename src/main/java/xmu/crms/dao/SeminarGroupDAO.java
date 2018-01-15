@@ -31,7 +31,7 @@ public class SeminarGroupDAO {
 	GradeMapper gradeMapper;
     
     /**
-     * 创建讨论课小组.
+     * for ali 创建讨论课小组.
      * <p>在指定讨论课下创建讨论课小组<br>
      *
      * @param seminarId    讨论课的id

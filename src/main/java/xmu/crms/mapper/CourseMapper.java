@@ -59,6 +59,7 @@ public interface CourseMapper {
 	 * <p>传入courseId和course信息修改course信息 <br>
 	 * @author ZengNan
 	 * @param course 课程信息
+	 * @return int
 	 */
 	 int updateCourseByCourseId(Course course);
 

@@ -22,17 +22,15 @@ import java.util.List;
 @Component
 public interface FixGroupMapper {
     /**
-     * 按班级Id添加固定分组.
-     * <p>按ClassId和UserId添加带有队长的固定分组<br>
-     * @param classId 固定分组Id
-     * @param leaderId  队长的Id
-     * @return Integer 若创建成功返回该条记录的id，失败则返回-1
+     * for ali 按班级Id添加固定分组.
+     * @param fixGroup
+     * @return Integer
      */
     Integer insertFixGroupByClassId(FixGroup fixGroup);
 
 
     /**
-     * 按FixGroupId删除FixGroupMember.
+     * for ali 按FixGroupId删除FixGroupMember.
      * <p>按FixGroupId删除FixGroupMember<br>
      * @param fixGroupId 固定分组Id
      * @return Integer 若删除成功返回该条记录的id，失败则返回-1
@@ -41,7 +39,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 按FixGroupId和UserId删除FixGroupMember中某个学生.
+     * for ali 按FixGroupId和UserId删除FixGroupMember中某个学生.
      * <p>按FixGroupId和UserId删除FixGroupMember中的某个学生<br>
      * @param fixGroupId 固定分组Id
      * @param userId     组员的Id
@@ -51,7 +49,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 查询固定小组成员.
+     * for ali 查询固定小组成员.
      * ＜p＞按照固定小组id查询该小组的成员<br>
      * @param groupId 要查询的固定小组id
      * @return List 固定小组成员信息
@@ -60,7 +58,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 按classId查找FixGroup信息.
+     * for ali 按classId查找FixGroup信息.
      * <p>按classId查找FixGroup信息<br>
      * @param classId 班级Id
      * @return List 固定分组列表
@@ -69,7 +67,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 按classId删除FixGroup
+     * for ali 按classId删除FixGroup
      * <p>先根据classId得到所有的FixGroup信息，再根据FixGroupid删除FixGroupMember表的信息，最后再将FixGroup信息删除<br>*
      * @param classId 班级Id
      * @return Integer 若删除成功返回该条记录的id，失败则返回-1
@@ -80,7 +78,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 删除固定小组.
+     * for ali 删除固定小组.
      * ＜p＞按照id删除固定小组<br>
      * @param groupId 固定小组的id
      * @return Integer 若删除成功返回该条记录的id，失败则返回-1
@@ -90,7 +88,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 修改固定小组.
+     * for ali 修改固定小组.
      * ＜p＞修改固定小组的信息（不包括成员）<br>
      * @param groupId    小组的id
      * @param fixGroupBO 小组信息
@@ -99,7 +97,7 @@ public interface FixGroupMapper {
     Integer updateFixGroupByGroupId(@Param("group_id") BigInteger groupId,@Param("fixGroupBO") FixGroup fixGroupBO);
 
     /**
-     * 查询固定小组.
+     * for ali 查询固定小组.
      * ＜p＞按照id查询某一固定小组的信息（包括成员）<br>
      * @param groupId 小组的id
      * @return List 固定小组成员列表对象，若未找到相关成员返回空(null)
@@ -109,7 +107,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 将学生加入小组.
+     * for ali 将学生加入小组.
      * ＜p＞将用户加入指定的小组<br>
      * @param userId  学生的id
      * @param groupId 要加入小组的id
@@ -119,7 +117,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 按id获取小组.
+     * for ali 按id获取小组.
      * <p>通过学生id和班级id获取学生所在的班级固定小组<br>
      * @param userId  学生id
      * @param classId 班级id
@@ -130,14 +128,14 @@ public interface FixGroupMapper {
 
 
     /**
-     * 将固定小组作为讨论课小组名单.
+     * for ali 将固定小组作为讨论课小组名单.
      * @param seminarId    讨论课ID
      * @param fixedGroupId 小组ID
      * @return Integer 若创建成功返回该条记录的id，失败则返回-1
      */
     Integer fixedGroupToSeminarGroup(@Param("seminar_id") BigInteger seminarId, @Param("fix_group_id") BigInteger fixedGroupId);
     /**
-     * 将固定小组作为讨论课小组名单.
+     * for ali 将固定小组作为讨论课小组名单.
      *
      * @param seminarId    讨论课ID
      * @param fixedGroupId 小组ID
@@ -147,7 +145,7 @@ public interface FixGroupMapper {
 
 
     /**
-     * 自定义接口通过id得到固定分组.
+     * for ali 自定义接口通过id得到固定分组.
      * @param fixedGroupId 小组ID
      * @return FixGroup 返回小组信息
      */

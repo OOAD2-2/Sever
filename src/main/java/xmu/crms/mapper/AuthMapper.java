@@ -10,7 +10,7 @@ import xmu.crms.entity.User;
 public interface AuthMapper {
 
     /**
-     * 根据openid拿用户
+     * for ali 根据openid拿用户
      * @param openid
      * @return
      */

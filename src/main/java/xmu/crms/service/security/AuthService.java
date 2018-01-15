@@ -13,14 +13,14 @@ import java.util.Map;
  */
 public interface AuthService {
     /**
-     * web端注册用户
+     * for ali web端注册用户
      * @param userToAdd
      * @return
      */
     User register(User userToAdd);
 
     /**
-     * Web端登陆
+     * for ali Web端登陆
      * @param username
      * @param password
      * @return
@@ -28,14 +28,14 @@ public interface AuthService {
     String login(String username, String password);
 
     /**
-     * 刷新jwt ， 暂时用不上， jwt过期时间为一周
+     * for ali 刷新jwt ， 暂时用不上， jwt过期时间为一周
      * @param oldToken
      * @return
      */
     String refresh(String oldToken);
 
     /**
-     * 微信端小程序登录
+     * for ali 微信端小程序登录
      * @param code
      * @param type
      * @return

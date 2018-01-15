@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     /**
-     * 
+     * for ali
      * @return FifcosAuthenticationProvider
      */
     public FifcosAuthenticationProvider fifcosAuthenticationProvider(){
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     /**
-     * 
+     * for ali
      * @return PasswordEncoder
      */
     public PasswordEncoder passwordEncoder() {

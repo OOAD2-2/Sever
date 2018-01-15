@@ -28,7 +28,7 @@ public class SeminarServiceImpl implements SeminarService {
     @Autowired(required = false)
     TimerServiceImpl timerServiceImpl;
     /**
-     * 按courseId获取Seminar.
+     * for ali 按courseId获取Seminar.
      *
      * @param courseId 课程Id
      * @return List 讨论课列表
@@ -48,7 +48,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 
     /**
-     * 按courseId删除Seminar.
+     * for ali 按courseId删除Seminar.
      * <p>先根据CourseId获得所有的seminar的信息，然后根据seminar信息删除相关topic的记录，然后再根据SeminarId删除SeminarGroup表记录,最后再将seminar的信息删除<br>
      *
      * @param courseId 课程Id
@@ -81,7 +81,7 @@ public class SeminarServiceImpl implements SeminarService {
     }
 
     /**
-     * 用户通过讨论课id获得讨论课的信息.
+     * for ali 用户通过讨论课id获得讨论课的信息.
      * <p>用户通过讨论课id获得讨论课的信息（包括讨论课名称、讨论课描述、分组方式、开始时间、结束时间）<br>
      *
      * @param seminarId 讨论课的id
@@ -102,7 +102,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 
     /**
-     * finish
+     * for ali finish
      * 按讨论课id修改讨论课.
      * <p>用户（老师）通过seminarId修改讨论课的相关信息<br>
      *
@@ -125,7 +125,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 
     /**
-     * 按讨论课id删除讨论课.
+     * for ali 按讨论课id删除讨论课.
      * <p>用户（老师）通过seminarId删除讨论课<br>(包括删除讨论课包含的topic信息和小组信息).
      *
      * @param seminarId 讨论课的id
@@ -149,7 +149,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 
     /**
-     * 新增讨论课.
+     * for ali 新增讨论课.
      * <p>用户（老师）在指定的课程下创建讨论课<br>
      *
      * @author YeHongjie

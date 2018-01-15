@@ -139,7 +139,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
 
     /**
-     *
+     * for ali
      * @param
      * @return
      * @author zhouwei
@@ -147,7 +147,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
      */
 
     /**
-     * 成为组长.
+     * for ali 成为组长.
      * <p>同学按小组id和自身id成为组长<br>
      *
      * @param groupId 小组id
@@ -225,7 +225,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 删除讨论课小组.
+     * for ali 删除讨论课小组.
      * <p>按照id删除讨论课小组<br>
      *
      * @param seminarGroupId 讨论课小组的id
@@ -239,7 +239,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 按seminarId删除讨论课小组信息.
+     * for ali 按seminarId删除讨论课小组信息.
      * <p>根据seminarId获得SeminarGroup，然后根据SeminarGroupId删除SeminarGroupMember信息，最后再删除SeminarGroup信息<br>
      *
      * @param seminarId 讨论课Id
@@ -258,7 +258,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 按seminarGroupId删除SeminarGroupMember信息.
+     * for ali 按seminarGroupId删除SeminarGroupMember信息.
      * <p>按seminarGroupId删除SeminarGroupMember信息<br>
      *
      * @param seminarGroupId 讨论课小组Id
@@ -270,7 +270,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 查询讨论课小组.
+     * for ali 查询讨论课小组.
      * <p>按照id查询某一讨论课小组的信息（包括成员）<br>
      *
      * @param groupId 小组的id
@@ -289,7 +289,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 获取学生所在讨论课队长.
+     * for ali 获取学生所在讨论课队长.
      * <p>按照用户id和讨论课id获取学生所在讨论课小组队长<br>
      *
      * @param userId    用户的id
@@ -308,7 +308,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 查询讨论课小组队长id.
+     * for ali 查询讨论课小组队长id.
      * <p>按照讨论课小组id查询该小组的队长id<br>
      *
      * @param groupId 要查询的讨论课小组id
@@ -327,7 +327,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
     
     /**
-     * 按seminarId获取SeminarGroup.
+     * for ali 按seminarId获取SeminarGroup.
      * <p>按seminarId获取SeminarGroup<br>
      *
      * @param seminarId 课程Id
@@ -346,7 +346,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
 
     /**
-     * 将学生加入讨论课小组.
+     * for ali 将学生加入讨论课小组.
      *
      * @param userId  用户Id
      * @param groupId 小组Id
@@ -380,7 +380,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
 
     /**
-     * 获取某学生所有的讨论课小组.
+     * for ali 获取某学生所有的讨论课小组.
      *
      * @param userId 用户id
      * @return List<SeminarGroup>
@@ -399,7 +399,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
 
     /**
-     *按seminarId获取SeminarGroup.
+     * for ali按seminarId获取SeminarGroup.
      *
      * @param seminarId 讨论课id
      * @return List<SeminarGroup>
@@ -415,7 +415,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 //      }
 
     /**
-     * 根据话题Id获得选择该话题的所有小组的信息.
+     * for ali 根据话题Id获得选择该话题的所有小组的信息.
      *
      * @param topicId 话题Id
      * @return List<SeminarGroup>
@@ -436,7 +436,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     }
 
     /**
-     * 小组按id选择话题.
+     * for ali 小组按id选择话题.
      *
      * @param groupId 讨论组id
      * @param topicId 话题Id
@@ -456,7 +456,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
 
     /**
-     * 组长辞职.
+     * for ali 组长辞职.
      *
      * @param groupId 讨论组id
      * @param userId  用户Id

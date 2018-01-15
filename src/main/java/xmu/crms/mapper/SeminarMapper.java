@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public interface SeminarMapper {
     /**
-     *根据courseId获取seminar列表
+     * for ali根据courseId获取seminar列表
      *
      * @param courseId 课程Id
      * @return List<Seminar> 讨论课列表
@@ -25,7 +25,7 @@ public interface SeminarMapper {
     List<Seminar> listSeminarByCourseId(BigInteger courseId);
 
     /**
-     *根据讨论课id获取讨论课
+     * for ali根据讨论课id获取讨论课
      *
      * @param seminarId 讨论课Id
      * @return Seminar
@@ -35,7 +35,7 @@ public interface SeminarMapper {
     Seminar getSeminarBySeminarId(BigInteger seminarId);
 
     /**
-     *根据讨论课id删除讨论课
+     * for ali根据讨论课id删除讨论课
      *
      * @param seminarId 讨论课Id
      * @author YellowPure
@@ -44,7 +44,7 @@ public interface SeminarMapper {
     void deleteSeminarByCourseId(BigInteger seminarId);
 
     /**
-     *根据讨论课id删除话题
+     * for ali根据讨论课id删除话题
      *
      * @param seminarId 讨论课id
      * @author YellowPure
@@ -53,7 +53,7 @@ public interface SeminarMapper {
     void deleteTopicBySeminarId(BigInteger seminarId);
 
     /**
-     *根据讨论课id删除讨论课小组
+     * for ali根据讨论课id删除讨论课小组
      *
      * @param seminarId 讨论课Id
      * @author YellowPure
@@ -62,7 +62,7 @@ public interface SeminarMapper {
     void deleteSeminarGroupBySeminarId(BigInteger seminarId);
 
     /**
-     *按讨论课id修改讨论课.
+     * for ali按讨论课id修改讨论课.
      *
      * @param seminar 讨论课信息
      * @author YellowPure
@@ -71,16 +71,17 @@ public interface SeminarMapper {
     void updateSeminarBySeminarId(Seminar seminar);
 
     /**
-     *根据user_id查询小组
+     * for ali根据user_id查询小组
      *
      * @param studentId 学生id
      * @author YellowPure
      * @date 22:03 2017/12/20
+     * @return SeminarGroupMember
      */
     SeminarGroupMember getSeminarGroupMemberByStudentId(BigInteger studentId);
     
     /**
-     *根据seminar_group_id获得seminar_group
+     * for ali根据seminar_group_id获得seminar_group
      *
      * @param id
      * @return SeminarGroup
@@ -90,7 +91,7 @@ public interface SeminarMapper {
     SeminarGroup getSeminarGroupById(BigInteger id);
 
     /**
-     *根据courseId获得course
+     * for ali根据courseId获得course
      *
      * @param id
      * @return Course
@@ -100,25 +101,27 @@ public interface SeminarMapper {
     Course getCourseById(BigInteger id);
 
     /**
-     *根据id获得teacher
+     * for ali根据id获得teacher
      *
      * @param id
      * @author YellowPure
      * @date 22:18 2017/12/20
+     * @return User
      */
     User getUserById(BigInteger id);
 
     /**
-     *新增讨论课.
+     * for ali新增讨论课.
      *
      * @param seminar 讨论课信息
      * @author YellowPure
      * @date 22:23 2017/12/20
+     * @return int
      */
     int insertSeminarByCourseId(Seminar seminar);
 
     /**
-     *根据ID删除讨论课
+     * for ali根据ID删除讨论课
      *
      * @param id 讨论课ID
      * @author YellowPure
@@ -127,7 +130,7 @@ public interface SeminarMapper {
     void deleteSeminarById(BigInteger id);
 
     /**
-     *根据Id查询学校
+     * for ali根据Id查询学校
      *
      * @param id 学校Id
      * @return School

@@ -13,7 +13,7 @@ import xmu.crms.exception.GroupNotFoundException;
 public interface GradeService {
 
     /**
-     * 按seminarGroupTopicId删除学生打分表.
+     * for ali 按seminarGroupTopicId删除学生打分表.
      *
      * @param seminarGroupTopicId  小组话题表的Id
      * @throws IllegalArgumentException topicId格式错误时抛出
@@ -22,7 +22,7 @@ public interface GradeService {
     void deleteStudentScoreGroupByTopicId(BigInteger seminarGroupTopicId) throws IllegalArgumentException;
 
     /**
-     * 获取学生某一堂讨论课的小组信息.
+     * for ali 获取学生某一堂讨论课的小组信息.
      * <p>获取某学生一堂讨论课的小组信息（包括成绩）<br>
      *
      * @param seminarGroupId 讨论课小组id
@@ -37,12 +37,12 @@ public interface GradeService {
 
     
     /**
-     * 删除!.
+     * for ali 删除!.
      * semimarGroupService 中已存在该方法。
      * 获取某学生所有的讨论课小组. List<SeminarGroup> listSeminarGroupIdByStudentId(BigInteger userId)
      */
     /**
-     * 获取某学生所有讨论课的所有成绩
+     * for ali 获取某学生所有讨论课的所有成绩
      * <p>获取某学生所有讨论课的详细信息（包括成绩）<br>
      * @param userId 用户id
      * @return list 学生历史讨论课小组列表（包含成绩）
@@ -55,7 +55,7 @@ public interface GradeService {
 
 
     /**
-     * 按课程id获取学生该课程所有讨论课
+     * for ali 按课程id获取学生该课程所有讨论课
      * <p>通过课程id获取该课程下学生所有讨论课详细信息（包括成绩）<br>
      *
      * @param userId 用户id
@@ -69,7 +69,7 @@ public interface GradeService {
     List<SeminarGroup> listSeminarGradeByCourseId(BigInteger userId,BigInteger courseId) throws IllegalArgumentException;
 
     /**
-     * 提交对其他小组的打分.
+     * for ali 提交对其他小组的打分.
      *
      * @param userId    用户id
      * @param groupId   小组Id
@@ -82,7 +82,7 @@ public interface GradeService {
             throws IllegalArgumentException;
 
     /**
-     * 按ID设置小组报告分.
+     * for ali 按ID设置小组报告分.
      *
      * @param seminarGroupId 讨论课组id
      * @param grade            分数
@@ -94,7 +94,7 @@ public interface GradeService {
             throws GroupNotFoundException, IllegalArgumentException;
 
     /**
-     * 仅作为普通方法，被下面的定时器方法调用.
+     * for ali 仅作为普通方法，被下面的定时器方法调用.
      * 讨论课结束后计算展示得分.
      * <p>条件: 讨论课已结束<br>
      *
@@ -106,7 +106,7 @@ public interface GradeService {
 
 
     /**
-     * 定时器方法.
+     * for ali 定时器方法.
      * 讨论课结束后本次讨论课最终得分.
      * <p>条件: 讨论课已结束，先计算展示得分<br>
      *

@@ -19,7 +19,7 @@ public class SeminarDAO{
 	
 	private TopicDAO topicDAO;
     /**
-     * 按courseId获取Seminar.
+     * for ali 按courseId获取Seminar.
      * @author lhl
      * @param courseId 课程Id
      * @return List 讨论课列表
@@ -33,7 +33,7 @@ public class SeminarDAO{
 
 
     /**
-     * 用户通过讨论课id获得讨论课的信息.
+     * for ali 用户通过讨论课id获得讨论课的信息.
      * <p>用户通过讨论课id获得讨论课的信息（包括讨论课名称、讨论课描述、分组方式、开始时间、结束时间）<br>
      * @author lhl
      * @param seminarId 讨论课的id
@@ -47,7 +47,7 @@ public class SeminarDAO{
 
 
     /**
-     * 按讨论课id删除讨论课.
+     * for ali 按讨论课id删除讨论课.
      * <p>用户（老师）通过seminarId删除讨论课<br>(包括删除讨论课包含的topic信息和小组信息).
      * @author lhl
      * @param seminarId 讨论课的id
@@ -60,7 +60,7 @@ public class SeminarDAO{
 
 
     /**
-     * 新增讨论课.
+     * for ali 新增讨论课.
      * <p>用户（老师）在指定的课程下创建讨论课<br>
      * @author lhl
      * @param courseId 课程的id

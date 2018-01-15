@@ -19,13 +19,13 @@ import java.util.List;
 public interface GradeMapper {
 
     /**
-     * 删除学生打分表
+     * for ali 删除学生打分表
      * @param topicId
      */
     void deleteStudentScoreGroupByTopicId(BigInteger topicId);
 
     /**
-     * 查看组的讨论课成绩
+     * for ali 查看组的讨论课成绩
      * @param seminarGroupId
      * @return
      */
@@ -33,7 +33,7 @@ public interface GradeMapper {
 
 
     /**
-     * 获取FixGroup
+     * for ali 获取FixGroup
      * @param fixGroupId
      * @return
      */
@@ -41,7 +41,7 @@ public interface GradeMapper {
 
 
     /**
-     * 获取seminarGroupTopicId
+     * for ali 获取seminarGroupTopicId
      * @param topicId
      * @param groupId
      * @return
@@ -49,7 +49,7 @@ public interface GradeMapper {
     BigInteger getSeminarGroupTopicId(@Param("topicId")BigInteger topicId,
                                       @Param("groupId")BigInteger groupId);
     /**
-     * 插入学生打分表
+     * for ali 插入学生打分表
      * @param userId
      * @param seminarGroupTopicId
      * @param grade
@@ -60,7 +60,7 @@ public interface GradeMapper {
 
 
     /**
-     * 更新设置小组报告分
+     * for ali 更新设置小组报告分
      * @param seminarGroupId
      * @param grade
      */
@@ -68,14 +68,14 @@ public interface GradeMapper {
                               @Param("grade")BigInteger grade);
 
     /**
-     * 获取SeminarGroupId
+     * for ali 获取SeminarGroupId
      * @param userId
      * @return
      */
     List<BigInteger> getSeminarGroupIdByStudentId(BigInteger userId);
 
     /**
-     * 获取学生所有讨论课成绩
+     * for ali 获取学生所有讨论课成绩
      * @param userId
      * @return
      */
@@ -83,29 +83,30 @@ public interface GradeMapper {
 
 
     /**
-     * 获取所有讨论课成绩
+     * for ali 获取所有讨论课成绩
+     * @param userId
      * @param courseId
-     * @return
+     * @return List<SeminarGroup>
      */
     List<SeminarGroup> listSeminarGradeByCourseId(@Param("userId") BigInteger userId,
                                                   @Param("courseId") BigInteger courseId);
 
     /**
-     * 获取课程的所有讨论课
+     * for ali 获取课程的所有讨论课
      * @param courseId
      * @return
      */
     List<Seminar> listSeminarByCourseId(BigInteger courseId);
 
     /**
-     * 获取学生对该组的打分
+     * for ali 获取学生对该组的打分
      * @param seminarGroupId
      * @return
      */
     List<BigInteger> listGrade(BigInteger seminarGroupId);
 
     /**
-     * 更新展示得分
+     * for ali 更新展示得分
      * @param seminarGroupId
      * @param grade
      */
@@ -113,7 +114,7 @@ public interface GradeMapper {
                                           @Param("grade") BigInteger grade);
 
     /**
-     * 获取ClassId
+     * for ali 获取ClassId
      * @param seminarGroupId
      * @param seminarId
      * @return
@@ -122,42 +123,43 @@ public interface GradeMapper {
                              @Param("seminarId") BigInteger seminarId);
 
     /**
-     * 获取报告分百分比
+     * for ali 获取报告分百分比
      * @param classId
      * @return
      */
     BigInteger getReportPresentationPercentage(BigInteger classId);
 
     /**
-     * 获取报告分
+     * for ali 获取报告分
      * @param seminarGroupId
      * @return
      */
     BigInteger getReportGrade(BigInteger seminarGroupId);
 
     /**
-     * 获取展示分
+     * for ali 获取展示分
      * @param seminarGroupId
      * @return
      */
     BigInteger getPresentationGrade(BigInteger seminarGroupId);
 
     /**
-     * 更新最终成绩
+     * for ali 更新最终成绩
      * @param seminarGroupId
+     * @param grade
      */
     void updateFinalGrade(@Param("seminarGroupId") BigInteger seminarGroupId,
                           @Param("grade") BigInteger grade);
 
     /**
-     * 获取用户
+     * for ali 获取用户
      * @param id
      * @return
      */
     User getUserByUserId(BigInteger id);
 
     /**
-     * 获取学校
+     * for ali 获取学校
      * @param id
      * @return
      */
@@ -165,28 +167,28 @@ public interface GradeMapper {
 
 
     /**
-     * 获取班级信息
+     * for ali 获取班级信息
      * @param id
      * @return
      */
     ClassInfo getClassInfoByClassId(BigInteger id);
 
     /**
-     * 获取Seminar
+     * for ali 获取Seminar
      * @param id
      * @return
      */
     Seminar getSeminarBySeminarId(BigInteger id);
 
     /**
-     * 获取学生姓名
+     * for ali 获取学生姓名
      * @param leaderId
      * @return
      */
     String getLeaderNameByLeaderId(BigInteger leaderId);
 
     /**
-     * 获取讨论课名称
+     * for ali 获取讨论课名称
      * @param seminarId
      * @return
      */
