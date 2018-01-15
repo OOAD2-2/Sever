@@ -15,7 +15,9 @@ import xmu.crms.mapper.CourseMapper;
 import xmu.crms.mapper.GradeMapper;
 import xmu.crms.mapper.SeminarGroupMapper;
 import xmu.crms.mapper.SeminarMapper;
-
+/**
+ * @author 2-2
+ */
 @Component
 public class SeminarGroupDAO {
 
