@@ -47,20 +47,11 @@ public class UserDAO {
         User user1 = userMapper.getUserByUserId(userMapper.getUserByNumber(user.getPhone()).getId());
         if(user1.getPassword().equals(user.getPassword()))
         {
-<<<<<<< HEAD
         	return user1;}
         else
         {
         	return null;}
-=======
-            return user1;
-        }
-        else
-        {
-            return null;
-        }
 
->>>>>>> 1b7d6b94e8d5e4a378e042274e0c1ca7f7db6028
     }
 
 
@@ -82,12 +73,6 @@ public class UserDAO {
      */
     public User getUser(User user) {
     	 User user1 = userMapper.getUserByUserId(userMapper.getUserByNumber(user.getPhone()).getId());
-<<<<<<< HEAD
-         if(user1.getPassword().equals(user.getPassword())) {
-         	return user1;}
-         else {
-         	return null;}
-=======
          if(user1.getPassword().equals(user.getPassword()))
          {
              return user1;
@@ -96,7 +81,6 @@ public class UserDAO {
          {
              return null;
          }
->>>>>>> 1b7d6b94e8d5e4a378e042274e0c1ca7f7db6028
     }
 
     /**
