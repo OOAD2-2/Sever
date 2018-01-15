@@ -451,12 +451,12 @@ public class SeminarController {
 			SeminarClassAttendanceVO seminarClassAttendanceVO = new SeminarClassAttendanceVO();
 	        seminarClassAttendanceVO.setNumPresent(presentNum);
 	        seminarClassAttendanceVO.setNumStudent(userList.size());
-	        if(location.getStatus()==1)
+		        if(location.getStatus()==1)
 	        {
 	        	seminarClassAttendanceVO.setStatus("calling");
 	        	seminarClassAttendanceVO.setGroup("grouping");
 	        }
-	        else
+	        else if(location.getStatus()==2)
 	        {
 	        	seminarClassAttendanceVO.setStatus("callend");
 	        	seminarClassAttendanceVO.setGroup("groupend");
