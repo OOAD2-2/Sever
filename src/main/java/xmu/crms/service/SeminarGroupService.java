@@ -36,10 +36,10 @@ public interface SeminarGroupService {
 	 * @param userId 学生的id
 	 * @param seminarGroupId 要加入讨论课小组的id
 	 * @return BigInteger 若创建成功返回该条记录的id，失败则返回-1
-	 *@exception IllegalArgumentException (信息不合法，id格式错误)
-	 *@exception GroupNotFoundException (未找到小组)
-	 *@exception UserNotFoundException (不存在该学生)
-	 *@exception InvalidOperationException （待添加学生已经在小组里了）
+	 *@throws IllegalArgumentException (信息不合法，id格式错误)
+	 *@throws GroupNotFoundException (未找到小组)
+	 *@throws UserNotFoundException (不存在该学生)
+	 *@throws InvalidOperationException （待添加学生已经在小组里了）
 	 */
 	BigInteger insertSeminarGroupMemberById(BigInteger userId, BigInteger seminarGroupId)
 			throws IllegalArgumentException,GroupNotFoundException,UserNotFoundException,
@@ -51,8 +51,8 @@ public interface SeminarGroupService {
 	 * @author YeHongjie
 	 * @param seminarGroupId 要查询的讨论课小组id
 	 * @return List 讨论课小组成员信息
-	 * @exception IllegalArgumentException 信息不合法，id格式错误
-	 * @exception GroupNotFoundException 未找到小组
+	 * @throws IllegalArgumentException 信息不合法，id格式错误
+	 * @throws GroupNotFoundException 未找到小组
 	 */
 	List<User> listSeminarGroupMemberByGroupId(BigInteger seminarGroupId) throws
 			IllegalArgumentException,GroupNotFoundException;

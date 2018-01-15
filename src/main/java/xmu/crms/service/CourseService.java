@@ -96,6 +96,7 @@ public interface CourseService {
      * @author YeXiaona
      * @see CourseService #listCourseByCourseName(String courseName)
      * @see ClassService #listClassByCourseId(BigInteger courseId)
+     * @throws CourseNotFoundException
      */
     List<ClassInfo> listClassByCourseName(String courseName) throws CourseNotFoundException;
 
@@ -110,6 +111,8 @@ public interface CourseService {
      * @see UserService #listUserIdByUserName(String userName)
      * @see CourseService #listCourseByUserId(BigInteger)
      * @see ClassService #listClassByCourseId(BigInteger)
+     * @throws ClassesNotFoundException
+     * @throws UserNotFoundException
      */
     List<ClassInfo> listClassByTeacherName(String teacherName) throws UserNotFoundException,ClassesNotFoundException;
 

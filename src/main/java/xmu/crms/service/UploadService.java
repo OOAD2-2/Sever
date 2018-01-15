@@ -41,8 +41,18 @@ public interface UploadService {
 	     */
 	    public void uploadAvater(BigInteger userId,String pathName);
 
-		public void uploadReport(SeminarGroup seminarGroup);
+	/**
+	 *
+	 * @param seminarGroup
+	 */
+	public void uploadReport(SeminarGroup seminarGroup);
 
+	/**
+	 *
+	 * @param file
+	 * @param bigInteger
+	 * @param bigInteger2
+	 */
 		public void uploadStudentList(MultipartFile file, BigInteger bigInteger, BigInteger bigInteger2);
 
 }

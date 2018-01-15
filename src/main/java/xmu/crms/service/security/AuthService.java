@@ -37,8 +37,10 @@ public interface AuthService {
     /**
      * 微信端小程序登录
      * @param code
+     * @param type
      * @return
      * @throws IOException
+     * @throws UserDuplicatedException
      */
     Map<String, Object> weChatLogin(String code, Integer type) throws IOException, UserDuplicatedException;
 

@@ -44,7 +44,7 @@ public interface TopicService {
      *
      * @param topicId 要删除的topic的topicId
      * @throws IllegalArgumentException Id格式错误时抛出
-     * @exception TopicNotFoundException 未找到该话题
+     * @throws TopicNotFoundException 未找到该话题
      */
     void deleteTopicByTopicId(BigInteger topicId) throws IllegalArgumentException,TopicNotFoundException;
 
@@ -100,7 +100,7 @@ public interface TopicService {
      * @param topicId 话题id
      * @param groupId 组id
      * @return seminarGroupTopic 讨论课小组选题信息
-     * @exception IllegalArgumentException topicId或groupId格式错误
+     * @throws IllegalArgumentException topicId或groupId格式错误
      */
     SeminarGroupTopic getSeminarGroupTopicById(BigInteger topicId, BigInteger groupId) throws IllegalArgumentException;
 
@@ -109,7 +109,7 @@ public interface TopicService {
      * <p>根据小组id获取该小组该堂讨论课所有选题信息<br>
      * @param groupId
      * @return list 该小组该堂讨论课选题列表
-     * @exception IllegalArgumentException groupId格式错误
+     * @throws IllegalArgumentException groupId格式错误
      */
     List<SeminarGroupTopic> listSeminarGroupTopicByGroupId(BigInteger groupId) throws IllegalArgumentException;
 

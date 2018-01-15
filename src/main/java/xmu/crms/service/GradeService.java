@@ -29,6 +29,7 @@ public interface GradeService {
      * @return seminarGroup 讨论课小组信息（包括成绩）
      * @throws xmu.crms.exception.GroupNotFoundException 无此小组
      * @throws IllegalArgumentException  seminarGrouopId格式错误
+     * @throws GroupNotFoundException
      * @author qinlingyun
      */
     SeminarGroup getSeminarGroupBySeminarGroupId(BigInteger seminarGroupId)
@@ -83,7 +84,7 @@ public interface GradeService {
     /**
      * 按ID设置小组报告分.
      *
-     * @param seminar_group_id 讨论课组id
+     * @param seminarGroupId 讨论课组id
      * @param grade            分数
      * @throws GroupNotFoundException   未找到小组
      * @throws IllegalArgumentException seminar_group_id或grade格式错误

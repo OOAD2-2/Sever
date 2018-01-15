@@ -45,10 +45,13 @@ public interface TimerService {
 	/**
 	 * 每十分钟检查一次Event实体的状况
 	 * @author qinlingyun
+	 * @param time
+	 * @param beanName
+	 * @param methodName
+	 * @param paramList
+	 * @throws JsonProcessingException
 	 * 注解：@Scheduled(fixedRate = 1000*60*10)
 	 */
-	 //void scheduled();
-
 
 	void insertEvent(Date time, String beanName, String methodName, List<Object> paramList)
 			throws JsonProcessingException;
