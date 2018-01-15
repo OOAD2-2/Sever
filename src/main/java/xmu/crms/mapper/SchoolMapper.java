@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 import xmu.crms.entity.School;
+
+/**
+ * @author ASUS7
+ */
 @Mapper
 @Component
 public interface SchoolMapper {
@@ -42,5 +46,5 @@ public interface SchoolMapper {
 	 * @param SchoolId
 	 * @return School
 	 */
-	School getSchoolBySchoolId(BigInteger SchoolId);
+	School getSchoolBySchoolId(BigInteger choolId);
 }

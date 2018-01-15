@@ -317,7 +317,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{classId};
 	</update>
 	
-	<insert id="CallInRollById" useGeneratedKeys="true" keyProperty="location.id">
+	<insert id="insertCallInRollById" useGeneratedKeys="true" keyProperty="location.id">
 		insert into location(
 			class_id,
 			seminar_id,

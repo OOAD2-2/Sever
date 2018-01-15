@@ -441,7 +441,7 @@ public class SeminarController {
 				ClassInfo classInfo = classService.getClassByClassId(BigInteger.valueOf(classId));
 				Seminar seminar = seminarService.getSeminarBySeminarId(BigInteger.valueOf(seminarId));
 				location = new Location(BigInteger.valueOf(0), classInfo, seminar, 0.0, 0.0, 0);
-				classMapper.CallInRollById(location);
+				classMapper.insertCallInRollById(location);
 			} else {
 				location = classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			}

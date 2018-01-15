@@ -191,7 +191,7 @@ public interface SeminarGroupMapper {
      * @param ClassId
      * @return
      */
-    List<BigInteger> listStudentIdBySeminarIdAndClassId(@Param("seminarId")BigInteger SeminarId,@Param("classId")BigInteger ClassId);
+    List<BigInteger> listStudentIdBySeminarIdAndClassId(@Param("seminarId")BigInteger seminarId,@Param("classId")BigInteger classId);
     /**
      * for ali获取某学生所有的讨论课小组.
      *

@@ -13,6 +13,10 @@ import xmu.crms.entity.CourseSelection;
 import xmu.crms.entity.Location;
 import xmu.crms.entity.Seminar;
 import xmu.crms.entity.User;
+
+/**
+ * @author lhl
+ */
 @Mapper
 @Component
 public interface ClassMapper {
@@ -260,7 +264,7 @@ public interface ClassMapper {
      * @param location
      * @return
      */
-    public int CallInRollById(@Param("location")Location location);
+    public int insertCallInRollById(@Param("location")Location location);
 
     /**
      * for ali

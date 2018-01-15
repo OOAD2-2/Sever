@@ -288,7 +288,7 @@ public class ClassDao {
 			throw new SeminarNotFoundException("无此seminarId的讨论课");
 		}else {
 			ClassInfo classInfo=classMapper.getClassByClassId(location.getClassInfo().getId());
-			classMapper.CallInRollById(location);
+			classMapper.insertCallInRollById(location);
 		}
 		return location.getId();
 	}
