@@ -43,8 +43,8 @@ public class SchoolServiceImpl implements SchoolService{
     }
 
 	@Override
-    public School getSchoolBySchoolId(BigInteger SchoolId){
-    	return schoolMapper.getSchoolBySchoolId(SchoolId);
+    public School getSchoolBySchoolId(BigInteger schoolId){
+    	return schoolMapper.getSchoolBySchoolId(schoolId);
 
     }
 }

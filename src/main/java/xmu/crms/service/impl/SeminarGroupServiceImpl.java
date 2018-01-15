@@ -60,7 +60,6 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
 
     @Override
     public SeminarGroup getSeminarGroupById(BigInteger seminarId, BigInteger userId) throws IllegalArgumentException, GroupNotFoundException {
-        BigInteger group_id;
         List<BigInteger>  list=seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(userId);
         System.out.println(seminarGroupMapper.getSeminarGroupByGroupId(BigInteger.valueOf(42)));
         if(list==null) {
@@ -200,16 +199,11 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             ClassInfo classInfo = new ClassInfo();
             classInfo.setId(classId);
             seminarGroup.setClassInfo(classInfo);
-            //System.out.println(seminarGroup);
-            //BigInteger groupId = seminarGroupDAO.insertSeminarGroupBySeminarId(seminarId, seminarGroup);
-
             Seminar seminar = seminarMapper.getSeminarBySeminarId(seminarId);
             seminarGroup.setSeminar(seminar);
             seminarGroupMapper.insertSeminarGroupBySeminarId(seminarGroup);
 
             BigInteger groupId = seminarGroup.getId();
-            //add this student  in seminargroup member (set groupid for each student)
-//            for (int j = i * smallestlimit; (j < (i+1)*smallestlimit) && ((i * smallestlimit + j) < studentIdList.size()); j++) {
             for (int j = 0; j < smallestlimit && (j+i*smallestlimit) < studentIdList.size(); j++) {
                 try {
                     insertSeminarGroupMemberById(studentIdList.get(j + i * smallestlimit), groupId);
@@ -310,7 +304,6 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
     @Override
     public BigInteger getSeminarGroupLeaderById(BigInteger userId, BigInteger seminarId) throws IllegalArgumentException {
         BigInteger groupId;
-        //groupId = seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(userId);
         return null;
     }
 
@@ -373,7 +366,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             List<SeminarGroupMember> seminarGroupMemberList = seminarGroupMapper.listSeminarGroupIdByStudentId(userId);
             for (SeminarGroupMember seminarGroupMember : seminarGroupMemberList) {
                 if (seminarGroupMember.getSeminarGroup() != null) {
-                    if (seminarGroupMember.getSeminarGroup().getSeminar().getId() == this.getSeminarGroupByGroupId(groupId).getSeminar().getId()) {
+                    if (seminarGroupMember.getSeminarGroup().getSeminar().getId().equals(this.getSeminarGroupByGroupId(groupId).getSeminar().getId())) {
                         return BigInteger.valueOf(-1);
                     }
                 }

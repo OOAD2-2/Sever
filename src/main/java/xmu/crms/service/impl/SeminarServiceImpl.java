@@ -171,18 +171,6 @@ public class SeminarServiceImpl implements SeminarService {
         course.setId(courseId);
         seminar.setCourse(course);
         seminarMapper.insertSeminarByCourseId(seminar);
-        //return seminarMapper.insertSeminarByCourseId(seminar);
-        //return BigInteger.valueOf(seminarMapper.insertSeminarByCourseId(seminar));
-
-        //如果是固定分组，在插入event计时器，随机分组在随机分组之后
-//        @Test
-//        public void testInsertEvent() throws JsonProcessingException {
-//            Integer insert = 0;
-//            List<Object> paramList=new ArrayList<>();
-//            paramList.add(new BigInteger("11"));
-//            paramList.add(new Date());
-//            timerService.insertEvent(new Date(),"TimerService","updateEvent",paramList);
-//        }
 
         List<Object> paramList = new ArrayList<Object>();
         System.out.println("seminar:" + seminar.getId());

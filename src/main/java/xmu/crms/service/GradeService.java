@@ -89,7 +89,7 @@ public interface GradeService {
      * @throws IllegalArgumentException seminar_group_id或grade格式错误
      * @author Huhui
      */
-    void updateGroupByGroupId(BigInteger seminar_group_id, BigInteger grade)
+    void updateGroupByGroupId(BigInteger seminarGroupId, BigInteger grade)
             throws GroupNotFoundException, IllegalArgumentException;
 
     /**
