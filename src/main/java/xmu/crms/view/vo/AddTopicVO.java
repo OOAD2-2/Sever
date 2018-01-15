@@ -5,11 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
 
-public class AddTopicVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class AddTopicVO {
 
     private String serial;
     private String name;

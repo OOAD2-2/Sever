@@ -1,9 +1,10 @@
 package xmu.crms.view.vo;
 
+/**
+ * @author LUWEIW
+ */
+
 public class CourseSelectionVO {
-    /**
-     * @author: LUWEIW
-     */
     public int numStudent;
 
     public CourseSelectionVO(int numStudent) {

@@ -3,11 +3,11 @@ package xmu.crms.view.vo;
 import java.math.BigInteger;
 import java.util.List;
 
-public class GetTopicVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class GetTopicVO {
 
     private BigInteger id;
     private String serial;

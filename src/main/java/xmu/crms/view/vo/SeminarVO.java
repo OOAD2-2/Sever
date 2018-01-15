@@ -5,11 +5,11 @@ import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class SeminarVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class SeminarVO {
 
     private int id;
     private String name;

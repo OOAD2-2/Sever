@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class AttendanceStatusVO {
+/**
+ * @author LUWEIW
+ */
 
-	/**
-	 * @author: LUWEIW
-	 */
+public class AttendanceStatusVO {
 
 private String status;
 public AttendanceStatusVO(String status)

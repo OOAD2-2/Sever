@@ -26,11 +26,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/school")
 
-public class SchoolController {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class SchoolController {
 
 	@Autowired
 	SchoolService schoolService;

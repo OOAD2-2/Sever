@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class UrlVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class UrlVO {
 
     private String url;
 

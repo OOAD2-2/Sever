@@ -3,11 +3,11 @@ package xmu.crms.view.vo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class GroupVO {
 
     private int id;
     private String name;

@@ -3,11 +3,11 @@ package xmu.crms.view.vo;
 import java.math.BigInteger;
 import java.util.List;
 
-public class StudentCourseVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class StudentCourseVO {
 
     private BigInteger courseId;
     private String courseName;

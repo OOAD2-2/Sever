@@ -4,11 +4,11 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public class GroupDetailsVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class GroupDetailsVO {
 
     private BigInteger id;
     private String name;

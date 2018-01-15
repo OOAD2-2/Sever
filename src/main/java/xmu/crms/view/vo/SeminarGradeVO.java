@@ -4,11 +4,11 @@ import xmu.crms.entity.Seminar;
 import xmu.crms.entity.SeminarGroup;
 import xmu.crms.entity.User;
 
-public class SeminarGradeVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class SeminarGradeVO {
 
     private String seminarName;
     private String groupName;

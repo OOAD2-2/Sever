@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class ClassCreateVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class ClassCreateVO {
 
     private String name;
     private String site;

@@ -7,13 +7,11 @@ import java.io.IOException;
 
 import java.util.Map;
 
-
+/**
+ * @author LUWEIW
+ */
 
 public class SeminarUpdateVO {
-
-    /**
-     * @author: LUWEIW
-     */
 
     private String name;
 

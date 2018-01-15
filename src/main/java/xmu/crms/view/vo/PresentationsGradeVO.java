@@ -2,11 +2,11 @@ package xmu.crms.view.vo;
 
 import java.util.List;
 
-public class PresentationsGradeVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class PresentationsGradeVO {
 
     private List<PresentationGradeVO> presentationGradeVOList;
 

@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+/**
+ * @author LUWEIW
+ */
+
 @Controller
 public class UploadController {
-
-    /**
-     * @author: LUWEIW
-     */
 
     @Autowired
     private ResourceLoader resourceLoader;

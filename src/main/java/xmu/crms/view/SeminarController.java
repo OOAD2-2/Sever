@@ -64,9 +64,6 @@ public class SeminarController {
 	@Autowired
 	ClassMapper classMapper;
 
-	//@Autowired
-	CourseService courseService;
-
 	@Autowired
 	UserService userService;
 
@@ -244,7 +241,7 @@ public class SeminarController {
 		System.out.println(addTopicVO.toString());
 		Topic topic = new Topic(addTopicVO);
 		BigInteger id = topicService.insertTopicBySeminarId(BigInteger.valueOf(seminarId), topic);
-		Map<String, BigInteger> result = new HashMap<String, BigInteger>();
+		Map<String, BigInteger> result = new HashMap<String, BigInteger>(10);
 		result.put("id", id);
 		return ResponseEntity.status(201).contentType(MediaType.APPLICATION_JSON_UTF8).body(result);
     }

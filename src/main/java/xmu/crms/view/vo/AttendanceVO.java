@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class AttendanceVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class AttendanceVO {
 
     private double longitude;
     private double latitude;

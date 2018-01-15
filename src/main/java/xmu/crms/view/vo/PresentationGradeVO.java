@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class PresentationGradeVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class PresentationGradeVO {
 
     private int topicId;
     private int grade;
