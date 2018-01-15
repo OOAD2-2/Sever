@@ -91,4 +91,17 @@ public class GetTopicVO {
     public void setGroupList(List<String> groupList) {
         this.groupList = groupList;
     }
+
+    @Override
+    public String toString() {
+        return "GetTopicVO{" +
+                "id=" + id +
+                ", serial='" + serial + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupLimit=" + groupLimit +
+                ", groupMemberLimit=" + groupMemberLimit +
+                ", groupList=" + groupList +
+                '}';
+    }
 }

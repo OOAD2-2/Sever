@@ -44,4 +44,14 @@ public class ClassCreateVO {
     public void setProportions(Proportions proportions) {
         this.proportions = proportions;
     }
+
+    @Override
+    public String toString() {
+        return "ClassCreateVO{" +
+                "name='" + name + '\'' +
+                ", site='" + site + '\'' +
+                ", time='" + time + '\'' +
+                ", proportions=" + proportions +
+                '}';
+    }
 }

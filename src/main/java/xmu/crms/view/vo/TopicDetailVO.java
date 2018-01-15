@@ -107,4 +107,18 @@ public class TopicDetailVO {
     public void setGroupList(List<String> groupList) {
         this.groupList = groupList;
     }
+
+    @Override
+    public String toString() {
+        return "TopicDetailVO{" +
+                "id=" + id +
+                ", serial='" + serial + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupLimit=" + groupLimit +
+                ", groupMemberLimit=" + groupMemberLimit +
+                ", groupLeft=" + groupLeft +
+                ", groupList=" + groupList +
+                '}';
+    }
 }

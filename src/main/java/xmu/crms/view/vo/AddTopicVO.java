@@ -73,4 +73,14 @@ public class AddTopicVO {
         this.groupMemberLimit = groupMemberLimit;
     }
 
+    @Override
+    public String toString() {
+        return "AddTopicVO{" +
+                "serial='" + serial + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupLimit=" + groupLimit +
+                ", groupMemberLimit=" + groupMemberLimit +
+                '}';
+    }
 }

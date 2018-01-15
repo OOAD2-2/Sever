@@ -12,4 +12,11 @@ public class PresentationsGradeVO {
     public void setPresentationGradeVOList(List<PresentationGradeVO> presentationGradeVOList) {
         this.presentationGradeVOList = presentationGradeVOList;
     }
+
+    @Override
+    public String toString() {
+        return "PresentationsGradeVO{" +
+                "presentationGradeVOList=" + presentationGradeVOList +
+                '}';
+    }
 }

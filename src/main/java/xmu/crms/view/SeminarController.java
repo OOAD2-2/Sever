@@ -82,10 +82,11 @@ public class SeminarController {
 	        seminarByIdVO.setId(seminar.getId().intValue());
 	        seminarByIdVO.setName(seminar.getName());
 	        seminarByIdVO.setDescription(seminar.getDescription());
-	        if(seminar.getFixed())
-	        	seminarByIdVO.setGroupingMethod("Fixed");
-	        else
-	        	seminarByIdVO.setGroupingMethod("Random");
+	        if(seminar.getFixed()) {
+				seminarByIdVO.setGroupingMethod("Fixed");
+			} else {
+				seminarByIdVO.setGroupingMethod("Random");
+			}
 	        seminarByIdVO.setStartTime(seminar.getStartTime().toString());
 	        seminarByIdVO.setEndTime(seminar.getEndTime().toString());
 	        List<SeminarTopicVO> topicVOs = new ArrayList<SeminarTopicVO>();
@@ -112,8 +113,6 @@ public class SeminarController {
 
 			BufferedReader br = httpServletRequest.getReader();
 
-			//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
 			String str, wholeStr = "";
 
 			while((str = br.readLine()) != null){
@@ -129,7 +128,7 @@ public class SeminarController {
 	        seminar.setId(new BigInteger(String.valueOf(seminarId)));
 	        seminar.setName(seminarUpdateVO.getName());
 	        seminar.setDescription (seminarUpdateVO.getDescription());
-	        seminar.setFixed(seminarUpdateVO.getGroupingMethod().equals("fixed"));
+	        seminar.setFixed("fixed".equals(seminarUpdateVO.getGroupingMethod()));
 	        seminar.setStartTime(simpleDateFormat.parse(seminarUpdateVO.getStartTime()));
 			seminar.setEndTime (simpleDateFormat.parse(seminarUpdateVO.getEndTime()));
 			seminarService.updateSeminarBySeminarId(BigInteger.valueOf(seminarId), seminar);
@@ -172,17 +171,19 @@ public class SeminarController {
     		StudentSeminarVO studentSeminarVO=new StudentSeminarVO();
 	        Seminar seminar=seminarService.getSeminarBySeminarId(new BigInteger(String.valueOf(seminarId)));
 	        Location location=classService.getCallStatusById(classId, BigInteger.valueOf(seminarId));
-	        if(location!=null)
-	        studentSeminarVO.setClassCalling(location.getStatus());
-	        else
-	        	studentSeminarVO.setClassCalling(0);
+	        if(location!=null) {
+				studentSeminarVO.setClassCalling(location.getStatus());
+			} else {
+				studentSeminarVO.setClassCalling(0);
+			}
 	        studentSeminarVO.setId(seminar.getId().intValue());
 	        studentSeminarVO.setName(seminar.getName());
 	        studentSeminarVO.setCourseName(seminar.getCourse().getName());
-	        if(seminar.getFixed())
-	        	studentSeminarVO.setGroupingMethod("fixed");
-	        else
-	        	studentSeminarVO.setGroupingMethod("random");
+	        if(seminar.getFixed()) {
+				studentSeminarVO.setGroupingMethod("fixed");
+			} else {
+				studentSeminarVO.setGroupingMethod("random");
+			}
 	        studentSeminarVO.setStartTime(seminar.getStartTime().toString());
 	        studentSeminarVO.setEndTime(seminar.getEndTime().toString());
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(studentSeminarVO);
@@ -205,13 +206,11 @@ public class SeminarController {
 	        seminarDetailVO.setTeacherEmail(seminar.getCourse().getTeacher().getEmail());
 	        seminarDetailVO.setSite(classInfos.get(0).getSite());
 	        System.out.println(seminarDetailVO);
-	        //return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarDetailVO);
 	        response.setStatus(200);
 	        return seminarDetailVO;
     	}
         catch (SeminarNotFoundException e)
         {
-        	//return ResponseEntity.status(404).build();
         	response.setStatus(404);
         	return null;
         }
@@ -237,8 +236,7 @@ public class SeminarController {
     public ResponseEntity createTopicBySeminarId(@PathVariable("seminarId") int seminarId,
 												 @RequestParam BigInteger userId,HttpServletRequest httpServletRequest) throws IOException {
     	BufferedReader br = httpServletRequest.getReader();
-		//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String str, wholeStr = "";
+    	String str, wholeStr = "";
 		while((str = br.readLine()) != null){
 			wholeStr += str;
 		}
@@ -259,7 +257,9 @@ public class SeminarController {
 											  @PathVariable("seminarId") int seminarId) throws IllegalArgumentException, SeminarNotFoundException {
 
 
-		if (classId!=0 && userId!=0&&gradeable.equals("false")) {
+    	String falseString = "false";
+		String trueString = "true";
+		if (classId!=0 && userId!=0&& falseString.equals(gradeable)) {
 			List <SeminarGroupTopicsVO> seminarGroupTopicsVOList = new ArrayList<SeminarGroupTopicsVO>();
 			try {
 				List<SeminarGroup> seminarGroups = seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
@@ -267,9 +267,9 @@ public class SeminarController {
 					System.out.println(seminarGroup);
 					if (seminarGroup.getClassInfo().getId().intValue() == classId) {
 						List<Topic> topicList = topicService.listTopicBySeminarId(seminarGroup.getId());
-						//System.out.println(topicList);
+
 						SeminarGroupTopicsVO seminarGroupTopicsVO = new SeminarGroupTopicsVO(seminarGroup, topicList);
-						//System.out.println(seminarGroupTopicsVO);
+
 						seminarGroupTopicsVOList.add(seminarGroupTopicsVO);
 					}
 				}
@@ -279,24 +279,25 @@ public class SeminarController {
 				return ResponseEntity.status(404).build();
 			}
 		}
-        else if(gradeable.equals("true"))
+
+        else if(trueString.equals(gradeable))
         {
         		try {
             		List<SeminarGroup> listGroup=seminarGroupService.listSeminarGroupBySeminarId(BigInteger.valueOf(seminarId));
-            		//System.out.println("listGroup"+listGroup);
+
             		List<SeminarOtherGradeVO> listGroupGradeale=new ArrayList<SeminarOtherGradeVO>();
             		List<Topic> listTopic=topicService.listTopicBySeminarId(BigInteger.valueOf(seminarId));
-            		//System.out.println("listTopic"+listTopic);
+
             		SeminarGroup myGroup=seminarGroupService.getSeminarGroupById(BigInteger.valueOf(seminarId), BigInteger.valueOf(userId));
-            		//System.out.println("myGroup"+myGroup);
+
             		List<SeminarGroupTopic> listGroupTopic=topicService.listSeminarGroupTopicByGroupId(myGroup.getId());
-            		//System.out.println("listGroupTopic"+listGroupTopic);
+
             		List<BigInteger> listTopicId=new  ArrayList<BigInteger>();
             		for(SeminarGroupTopic a:listGroupTopic)
             		{
             			listTopicId.add(a.getTopic().getId());
             		}
-            		//System.out.println("listTopicId"+listTopicId);
+
             		for(SeminarGroup a:listGroup)
             		{
             			System.out.println(a);
@@ -309,11 +310,13 @@ public class SeminarController {
 	            				boolean flag=true; 
 	            				for(BigInteger c:listTopicId)
 	                    		{
-	                    			if(!c.equals(b.getTopic().getId()))
-	                    				flag=false;
+	                    			if(!c.equals(b.getTopic().getId())) {
+										flag=false;
+									}
 	                    		}
-	            				if(flag==false)
-	            					listGroupGradeale.add(new SeminarOtherGradeVO(a.getId().intValue(),b.getTopic().getId().intValue()));
+	            				if(flag==false) {
+									listGroupGradeale.add(new SeminarOtherGradeVO(a.getId().intValue(),b.getTopic().getId().intValue()));
+								}
 	            			}
 	            		}
             		}
@@ -336,8 +339,9 @@ public class SeminarController {
      					List<SeminarGroupTopic> seminarGroupTopics = topicService.listSeminarGroupTopicByGroupId(t.getId());
      					for(SeminarGroupTopic p:seminarGroupTopics)
      					{
-     						if(p.getTopic().getSeminar().getId().toString().equals(seminarId))
-     						list.add(new SeminarGroupTopicVO(t.getId().intValue(), p.getTopic().getName()));
+     						if(p.getTopic().getSeminar().getId().toString().equals(seminarId)) {
+								list.add(new SeminarGroupTopicVO(t.getId().intValue(), p.getTopic().getName()));
+							}
      					}
      				}
      			}
@@ -378,7 +382,6 @@ public class SeminarController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getStudentGroupBySeminarId(@PathVariable("seminarId") int seminarId,
 													 @RequestParam BigInteger userId) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	MemberVO leader = null;
     	List<MemberVO> members;
     	try {
@@ -390,8 +393,9 @@ public class SeminarController {
 			leader.setNumber(seminarGroup.getLeader().getId().toString());
 			members = new ArrayList<MemberVO>();
 			for (User user : member) {
-				if(!user.getNumber().equals(leader.getId()))
-				members.add(new MemberVO(user.getNumber(),user.getName()));
+				if(!user.getNumber().equals(leader.getId())) {
+					members.add(new MemberVO(user.getNumber(),user.getName()));
+				}
 			}
 			}
 			catch(Exception e)
@@ -425,13 +429,13 @@ public class SeminarController {
     public ResponseEntity getSeminarClassAttendance(@PathVariable("seminarId") int seminarId,
                                                               @PathVariable("classId") int classId,
 													@RequestParam BigInteger userId) throws IllegalArgumentException, ClassesNotFoundException {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
+       try {
 			List<Attendance> list1=userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
-			int PresentNum=0;
+			int presentNum=0;
 			for (Attendance attendance : list1) {
-			    if (attendance.getAttendanceStatus() == 0)
-			        PresentNum++;
+			    if (attendance.getAttendanceStatus() == 0) {
+					presentNum++;
+				}
             }
 			List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
 			int numStudent = userList.size();
@@ -445,7 +449,7 @@ public class SeminarController {
 				location = classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			}
 			SeminarClassAttendanceVO seminarClassAttendanceVO = new SeminarClassAttendanceVO();
-	        seminarClassAttendanceVO.setNumPresent(PresentNum);
+	        seminarClassAttendanceVO.setNumPresent(presentNum);
 	        seminarClassAttendanceVO.setNumStudent(userList.size());
 	        if(location.getStatus()==1)
 	        {
@@ -457,12 +461,10 @@ public class SeminarController {
 	        	seminarClassAttendanceVO.setStatus("callend");
 	        	seminarClassAttendanceVO.setGroup("groupend");
 	        }
-			//List<User> userList = userService.listUserByClassId(BigInteger.valueOf(classId), "", "");
-			//int numStudent = userList.size();
-			//CourseSelectionVO courseSelectionVO = new CourseSelectionVO(numStudent);
+
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(seminarClassAttendanceVO);
-			//return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(courseSelectionVO);
-		}
+
+       }
 		catch (SeminarNotFoundException e) {
 			e.printStackTrace();
 			return ResponseEntity.status(404).build();
@@ -477,21 +479,7 @@ public class SeminarController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassPresent(@PathVariable("seminarId") int seminarId,
 												 @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
-    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		/*
-		try {
-			List<Attendance> list1=userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
-			List<MemberVO> members = new ArrayList<MemberVO>();
-			for (Attendance t : list1) {
-				if (t.getAttendanceStatus() == 0)
-					members.add(new MemberVO(t.getStudent().getNumber(),t.getStudent().getName()));
-			}
-			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(members);
-		} catch (SeminarNotFoundException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(404).build();
-		}
-		*/
+
 		try {
 			List<User> list1=userService.listPresentStudent(BigInteger.valueOf(seminarId), BigInteger.valueOf(classId));
 			List<MemberVO> members = new ArrayList<MemberVO>();
@@ -509,8 +497,7 @@ public class SeminarController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassLate(@PathVariable("seminarId") int seminarId,
                                               @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
-    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
+    	try {
 			List<User> list1=userService.listLateStudent(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			List<MemberVO> members = new ArrayList<MemberVO>();
 			for (User t : list1) {
@@ -527,8 +514,7 @@ public class SeminarController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity getSeminarClassAbsent(@PathVariable("seminarId") int seminarId,
                                               @PathVariable("classId") int classId) throws IllegalArgumentException, ClassesNotFoundException {
-    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
+    	try {
 			List<User> list1=userService.listAbsenceStudent(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			List<MemberVO> members = new ArrayList<MemberVO>();
 			for (User t : list1) {
@@ -550,17 +536,15 @@ public class SeminarController {
                                    @RequestParam String longitude,
                                    @RequestParam String elevation,
                                    HttpServletRequest httpServletRequest) throws NumberFormatException, IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
-    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
-			//double longtitude = Double.valueOf(httpServletRequest.getParameter("longtitude"));
-			//double latitue = Double.valueOf(httpServletRequest.getParameter("latitude"));
+    	try {
 			System.out.println(userService.insertAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId), BigInteger.valueOf(studentId), Double.valueOf(longitude), Double.valueOf(latitude)));
 			Location location=classService.getCallStatusById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			AttendanceStatusVO temp;
-			if(location.getStatus()==1)
+			if(location.getStatus()==1) {
 				temp=new AttendanceStatusVO("ontime");
-			else
+			} else {
 				temp=new AttendanceStatusVO("late");
+			}
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(temp);
 		} catch (SeminarNotFoundException e) {
 			e.printStackTrace();
@@ -574,16 +558,13 @@ public class SeminarController {
                                    @PathVariable("classId") int classId,
                                    @PathVariable("studentId") int studentId,
                                    HttpServletRequest httpServletRequest) throws NumberFormatException, IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
-    	//BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		try {
-			//double longtitude = Double.valueOf(httpServletRequest.getParameter("longtitude"));
-			//double latitue = Double.valueOf(httpServletRequest.getParameter("latitude"));
+    	try {
 			List<Attendance> list= userService.listAttendanceById(BigInteger.valueOf(classId), BigInteger.valueOf(seminarId));
 			AttendanceStatusVO temp=null;
 			for(Attendance attendance:list)
 			{
 				System.out.println(attendance);
-				if(attendance.getStudent().getId().equals(BigInteger.valueOf(studentId)))
+				if(attendance.getStudent().getId().equals(BigInteger.valueOf(studentId))) {
 					if(attendance.getAttendanceStatus()==0)
 					{
 						temp=new AttendanceStatusVO("ontime");
@@ -594,6 +575,7 @@ public class SeminarController {
 						temp=new AttendanceStatusVO("late");
 						break;
 					}
+				}
 				temp=new AttendanceStatusVO("");
 			}
 			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(temp);

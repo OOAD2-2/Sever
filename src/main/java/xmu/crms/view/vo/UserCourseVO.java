@@ -78,4 +78,16 @@ public class UserCourseVO {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return "UserCourseVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", numClass=" + numClass +
+                ", numStudent=" + numStudent +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
+    }
 }

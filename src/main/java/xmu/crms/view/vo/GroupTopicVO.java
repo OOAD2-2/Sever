@@ -1,5 +1,7 @@
 package xmu.crms.view.vo;
 
+import java.util.Arrays;
+
 /**
  * @author mads
  */
@@ -40,5 +42,14 @@ public class GroupTopicVO {
 
     public void setTopics(TopicVO[] topics) {
         this.topics = topics;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupTopicVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", topics=" + Arrays.toString(topics) +
+                '}';
     }
 }

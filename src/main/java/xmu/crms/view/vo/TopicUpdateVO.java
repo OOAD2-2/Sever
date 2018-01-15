@@ -54,4 +54,15 @@ public class TopicUpdateVO {
     public void setGroupMemberLimit(int groupMemberLimit) {
         this.groupMemberLimit = groupMemberLimit;
     }
+
+    @Override
+    public String toString() {
+        return "TopicUpdateVO{" +
+                "serial='" + serial + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupLimit=" + groupLimit +
+                ", groupMemberLimit=" + groupMemberLimit +
+                '}';
+    }
 }

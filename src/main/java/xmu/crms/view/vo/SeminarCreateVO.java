@@ -64,4 +64,16 @@ public class SeminarCreateVO {
     public void setProportions(Proportions proportions) {
         this.proportions = proportions;
     }
+
+    @Override
+    public String toString() {
+        return "SeminarCreateVO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupingMethod='" + groupingMethod + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", proportions=" + proportions +
+                '}';
+    }
 }

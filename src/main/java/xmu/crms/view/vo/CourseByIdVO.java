@@ -67,4 +67,15 @@ public class CourseByIdVO {
     public void setTeacherEmail(String teacherEmail) {
         this.teacherEmail = teacherEmail;
     }
+
+    @Override
+    public String toString() {
+        return "CourseByIdVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                ", teacherEmail='" + teacherEmail + '\'' +
+                '}';
+    }
 }

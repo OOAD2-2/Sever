@@ -47,4 +47,14 @@ public class SeminarClassAttendanceVO {
     public void setGroup(String group) {
         this.group = group;
     }
+
+    @Override
+    public String toString() {
+        return "SeminarClassAttendanceVO{" +
+                "numPresent=" + numPresent +
+                ", numStudent=" + numStudent +
+                ", status='" + status + '\'' +
+                ", group='" + group + '\'' +
+                '}';
+    }
 }

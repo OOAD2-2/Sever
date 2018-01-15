@@ -64,4 +64,16 @@ public class UserUpdateVO {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    @Override
+    public String toString() {
+        return "UserUpdateVO{" +
+                "name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", title='" + title + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
+    }
 }

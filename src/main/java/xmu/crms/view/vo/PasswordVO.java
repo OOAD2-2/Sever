@@ -24,4 +24,12 @@ public class PasswordVO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "PasswordVO{" +
+                "phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

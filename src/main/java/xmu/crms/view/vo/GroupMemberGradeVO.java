@@ -66,4 +66,16 @@ public class GroupMemberGradeVO {
     public void setReport(String report) {
         this.report = report;
     }
+
+    @Override
+    public String toString() {
+        return "GroupMemberGradeVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", leader=" + leader +
+                ", members=" + members +
+                ", group=" + group +
+                ", report='" + report + '\'' +
+                '}';
+    }
 }

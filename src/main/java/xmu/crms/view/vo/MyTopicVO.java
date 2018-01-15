@@ -20,4 +20,12 @@ public MyTopicVO(String id,String name)
 	this.id=id;
 	this.name=name;
 }
+
+	@Override
+	public String toString() {
+		return "MyTopicVO{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				'}';
+	}
 }

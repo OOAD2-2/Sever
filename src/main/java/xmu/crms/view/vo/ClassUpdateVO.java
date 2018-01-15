@@ -74,4 +74,17 @@ public class ClassUpdateVO {
     public void setProportions(Proportions proportions) {
         this.proportions = proportions;
     }
+
+    @Override
+    public String toString() {
+        return "ClassUpdateVO{" +
+                "name='" + name + '\'' +
+                ", numStudent=" + numStudent +
+                ", time='" + time + '\'' +
+                ", site='" + site + '\'' +
+                ", calling=" + calling +
+                ", roster='" + roster + '\'' +
+                ", proportions=" + proportions +
+                '}';
+    }
 }

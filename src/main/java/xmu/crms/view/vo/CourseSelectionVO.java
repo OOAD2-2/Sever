@@ -14,4 +14,11 @@ public class CourseSelectionVO {
     public void setNumStudent(int numStudent) {
         this.numStudent = numStudent;
     }
+
+    @Override
+    public String toString() {
+        return "CourseSelectionVO{" +
+                "numStudent=" + numStudent +
+                '}';
+    }
 }

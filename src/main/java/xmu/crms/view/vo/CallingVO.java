@@ -1,17 +1,24 @@
 package xmu.crms.view.vo;
 
 public class CallingVO {
-    public int Calling;
+    public int calling;
 
     public CallingVO(int calling) {
-        Calling = calling;
+        calling = calling;
     }
 
     public int getCalling() {
-        return Calling;
+        return calling;
     }
 
     public void setCalling(int calling) {
-        Calling = calling;
+        calling = calling;
+    }
+
+    @Override
+    public String toString() {
+        return "CallingVO{" +
+                "calling=" + calling +
+                '}';
     }
 }

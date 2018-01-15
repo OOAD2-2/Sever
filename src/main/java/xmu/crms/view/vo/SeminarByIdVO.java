@@ -82,4 +82,17 @@ public class SeminarByIdVO {
     public void setTopicVOList(List<SeminarTopicVO> topics) {
         this.topics = topics;
     }
+
+    @Override
+    public String toString() {
+        return "SeminarByIdVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", groupingMethod='" + groupingMethod + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", topics=" + topics +
+                '}';
+    }
 }

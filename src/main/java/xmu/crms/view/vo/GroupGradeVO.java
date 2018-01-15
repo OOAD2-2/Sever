@@ -44,4 +44,13 @@ public class GroupGradeVO {
     public void setGrade(int grade) {
         this.grade = grade;
     }
+
+    @Override
+    public String toString() {
+        return "GroupGradeVO{" +
+                "presentationGrade=" + presentationGrade +
+                ", reportGrade=" + reportGrade +
+                ", grade=" + grade +
+                '}';
+    }
 }

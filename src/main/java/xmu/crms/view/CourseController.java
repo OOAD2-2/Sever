@@ -130,8 +130,6 @@ public class CourseController {
 
                                              HttpServletResponse response) throws IllegalArgumentException, ClassesNotFoundException, UserNotFoundException {
 
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         List<UserCourseVO> courseVOList = new ArrayList<UserCourseVO>();
 
 
@@ -181,8 +179,6 @@ public class CourseController {
     public int createCourse(@RequestBody CourseVO courseVO,
 
                             @RequestParam BigInteger userId,HttpServletResponse response) {
-
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         try{
 
@@ -505,8 +501,6 @@ public class CourseController {
                                                     @RequestParam BigInteger userId,HttpServletResponse response) {
 
         try {
-
-            //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             List<SeminarGroup> seminarGroupList = gradeService.listSeminarGradeByCourseId(userId, BigInteger.valueOf(courseId));
 

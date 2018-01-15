@@ -19,4 +19,12 @@ public int getTopicId() {
 public void setTopicId(int topicId) {
 	this.topicId = topicId;
 }
+
+	@Override
+	public String toString() {
+		return "SeminarOtherGradeVO{" +
+				"id=" + id +
+				", topicId=" + topicId +
+				'}';
+	}
 }

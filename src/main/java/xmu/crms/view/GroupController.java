@@ -48,9 +48,9 @@ public class GroupController {
         try {
             List<User> userList = seminarGroupService.listSeminarGroupMemberByGroupId(BigInteger.valueOf(groupId));
             SeminarGroup group = seminarGroupService.getSeminarGroupByGroupId(BigInteger.valueOf(groupId));
-            //System.out.println(group);
+
             User groupLeader = group.getLeader();
-            //System.out.println(groupLeader);
+
             StudentVO leader = new StudentVO(groupLeader.getId().intValue(), groupLeader.getName(), groupLeader.getNumber());
             List<StudentVO> members = new ArrayList<StudentVO>();
             for (User user : userList) {

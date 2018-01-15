@@ -12,7 +12,7 @@ public class CourseClassVO {
     private String site;
     private String courseName;
     private String courseTeacher;
-    private BigInteger CourseId;
+    private BigInteger courseId;
 
     public CourseClassVO() {
     }
@@ -24,27 +24,8 @@ public class CourseClassVO {
         this.time = classInfo.getClassTime();
         this.site = classInfo.getSite();
         this.courseName = classInfo.getCourse().getName();
-        this.CourseId=classInfo.getCourse().getId();
+        this.courseId=classInfo.getCourse().getId();
         this.courseTeacher = classInfo.getCourse().getTeacher().getName();
-    }
-
-    public BigInteger getCourseId() {
-		return CourseId;
-	}
-
-	public void setCourseId(BigInteger courseId) {
-		CourseId = courseId;
-	}
-
-	public CourseClassVO(int id, String name, int numStudent, String time,
-                         String site, String courseName, String courseTeacher) {
-        this.id = id;
-        this.name = name;
-        this.numStudent = numStudent;
-        this.time = time;
-        this.site = site;
-        this.courseName = courseName;
-        this.courseTeacher = courseTeacher;
     }
 
     public int getId() {
@@ -101,5 +82,27 @@ public class CourseClassVO {
 
     public void setCourseTeacher(String courseTeacher) {
         this.courseTeacher = courseTeacher;
+    }
+
+    public BigInteger getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(BigInteger courseId) {
+        this.courseId = courseId;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseClassVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", numStudent=" + numStudent +
+                ", time='" + time + '\'' +
+                ", site='" + site + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", courseTeacher='" + courseTeacher + '\'' +
+                ", courseId=" + courseId +
+                '}';
     }
 }

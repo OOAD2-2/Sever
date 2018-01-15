@@ -35,4 +35,13 @@ public class AttendanceVO {
     public void setElevation(double elevation) {
         this.elevation = elevation;
     }
+
+    @Override
+    public String toString() {
+        return "AttendanceVO{" +
+                "longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", elevation=" + elevation +
+                '}';
+    }
 }

@@ -17,4 +17,11 @@ public class AvatarVO {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "AvatarVO{" +
+                "url='" + url + '\'' +
+                '}';
+    }
 }

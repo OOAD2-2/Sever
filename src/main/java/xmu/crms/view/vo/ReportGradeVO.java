@@ -17,4 +17,11 @@ public class ReportGradeVO {
     public void setReportGrade(int reportGrade) {
         this.reportGrade = reportGrade;
     }
+
+    @Override
+    public String toString() {
+        return "ReportGradeVO{" +
+                "reportGrade=" + reportGrade +
+                '}';
+    }
 }

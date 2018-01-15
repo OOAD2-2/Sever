@@ -37,4 +37,13 @@ public class LocationVO {
     public void setElevation(Double elevation) {
         this.elevation = elevation;
     }
+
+    @Override
+    public String toString() {
+        return "LocationVO{" +
+                "longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", elevation=" + elevation +
+                '}';
+    }
 }

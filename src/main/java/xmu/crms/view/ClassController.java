@@ -53,8 +53,7 @@ public class ClassController {
     		@RequestParam(required=false) String courseTeacher,
     		@RequestParam BigInteger userId, HttpServletResponse response) {
         try {
-            //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        	List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
+           List<ClassInfo> classInfoList = classService.listClassByUserId(userId);
             List<CourseClassVO> courseClassVOList = new ArrayList<CourseClassVO>();
         	if(courseName == null && courseTeacher == null) {
         		for (ClassInfo classInfo : classInfoList) {List<User> userList = userService.listUserByClassId(classInfo.getId(), "", "");
@@ -180,7 +179,6 @@ public class ClassController {
     public Response selectClass2(@PathVariable("classId") int classId,
                                  @RequestParam BigInteger userId,
                                  IdVO id, HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             classService.insertCourseSelectionById(userId, BigInteger.valueOf(classId));
             response.setStatus(201);
@@ -221,7 +219,6 @@ public class ClassController {
     public ClassGroupVO getClassGroupByClassId(@PathVariable("classId") int classId,
                                                @RequestParam BigInteger userId,
                                                HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             FixGroup fixGroup = fixGroupService.getFixedGroupById(userId, BigInteger.valueOf(classId));
             List<User> members = fixGroupService.listFixGroupMemberByGroupId(fixGroup.getId());
@@ -247,7 +244,6 @@ public class ClassController {
     public Response resignClassGroupLeader(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             FixGroup fixGroup = fixGroupService.getFixedGroupById(userId, BigInteger.valueOf(classId));
             seminarGroupService.resignLeaderById(fixGroup.getId(), userId);
@@ -277,7 +273,6 @@ public class ClassController {
     public Response assignClassGroupLeader(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             FixGroup fixGroup = fixGroupService.getFixedGroupById(userId, BigInteger.valueOf(classId));
             seminarGroupService.assignLeaderById(fixGroup.getId(), userId);
@@ -307,7 +302,6 @@ public class ClassController {
     public Response addClassgroupMember(@PathVariable("classId") int classId,
                                         @RequestParam BigInteger userId,
                                         IdVO id, HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             FixGroup fixGroup = fixGroupService.getFixedGroupById(userId, BigInteger.valueOf(classId));
             //当前无该小组
@@ -342,7 +336,6 @@ public class ClassController {
     public Response removeClassgroupMember(@PathVariable("classId") int classId,
                                            @RequestParam BigInteger userId,
                                            IdVO id, HttpServletResponse response) {
-        //BigInteger userId = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         try {
             FixGroup fixGroup = fixGroupService.getFixedGroupById(userId, BigInteger.valueOf(classId));
             //当前无该小组

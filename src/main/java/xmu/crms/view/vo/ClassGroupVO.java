@@ -43,4 +43,12 @@ public class ClassGroupVO {
     public void setMembers(List<StudentVO> members) {
         this.members = members;
     }
+
+    @Override
+    public String toString() {
+        return "ClassGroupVO{" +
+                "leader=" + leader +
+                ", members=" + members +
+                '}';
+    }
 }

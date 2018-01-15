@@ -43,21 +43,7 @@ public class SchoolController {
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity addSchool(AddSchoolVO addSchoolVO,
                                     HttpServletRequest httpServletRequest) throws IOException {
-        /*
-	    BufferedReader br = httpServletRequest.getReader();
-        String str, wholeStr = "";
-        while((str = br.readLine()) != null){
-            wholeStr += str;
-        }
-        AddSchoolVO addSchoolVO = new AddSchoolVO(wholeStr);
-        School school = new School();
-        school.setCity(addSchoolVO.getCity());
-        school.setName(addSchoolVO.getName());
-        school.setProvince(addSchoolVO.getProvince());
-        Map<String, Integer> result = new HashMap<String, Integer>();
-        int id = schoolService.insertSchool(school).intValue();
-        result.put("id", id);
-        */
+
         School school = new School();
         school.setCity(addSchoolVO.getCity());
         school.setName(addSchoolVO.getName());
@@ -71,8 +57,9 @@ public class SchoolController {
     public ResponseEntity getProvinces() {
         List<String> provinces = new ArrayList<String>();
         for (String province : schoolService.listProvince()) {
-            if (!provinces.contains(province))
+            if (!provinces.contains(province)) {
                 provinces.add(province);
+            }
         }
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(provinces);
     }
@@ -83,8 +70,9 @@ public class SchoolController {
     public ResponseEntity getCities(@RequestParam String province) {
     	List<String> citys = new ArrayList<String>();
         for (String city : schoolService.listCity(province)) {
-            if (!citys.contains(city))
+            if (!citys.contains(city)) {
                 citys.add(city);
+            }
         }
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(citys);
     }

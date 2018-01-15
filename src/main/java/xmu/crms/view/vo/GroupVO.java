@@ -41,4 +41,13 @@ public class GroupVO {
     public void setTopicVOList(List<TopicVO> topicVOList) {
         this.topicVOList = topicVOList;
     }
+
+    @Override
+    public String toString() {
+        return "GroupVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", topicVOList=" + topicVOList +
+                '}';
+    }
 }

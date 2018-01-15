@@ -55,4 +55,13 @@ public class SeminarGroupTopicsVO {
     public void setSeminarTopicVOList(List<SeminarTopicVO> seminarTopicVOList) {
         this.seminarTopicVOList = seminarTopicVOList;
     }
+
+    @Override
+    public String toString() {
+        return "SeminarGroupTopicsVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", seminarTopicVOList=" + seminarTopicVOList +
+                '}';
+    }
 }

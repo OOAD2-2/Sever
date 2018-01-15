@@ -82,33 +82,6 @@ public class MeController {
 											@RequestParam(required = false) String name,
 											@RequestParam(required = false) String number) throws UserNotFoundException, NoSuchAlgorithmException {
 
-    	//try {
-			/*
-    		if (null == userService.getUserByUserId(BigInteger.valueOf(Integer.valueOf(id)))) {
-				
-				BufferedReader br = request.getReader();
-				String str, wholeStr = "";
-				while((str = br.readLine()) != null){
-					wholeStr += str;
-				}
-				Map<String, Object> object = new ObjectMapper().readValue(wholeStr, Map.class);
-				User user = new User(object);
-				System.out.println(user.toString());
-				userDAO.insertUser(user);
-				return ResponseEntity.status(204).contentType(MediaType.APPLICATION_JSON_UTF8).body(user.getId());
-			}else{
-				BufferedReader br = request.getReader();
-				String str, wholeStr = "";
-				while((str = br.readLine()) != null){
-					wholeStr += str;
-				}
-				Map<String, Object> object = new ObjectMapper().readValue(wholeStr, Map.class);
-				User user = new User(object);
-				System.out.println(user.toString());
-				userService.updateUserByUserId(BigInteger.valueOf(Integer.valueOf(id)), user);
-			}
-			*/
-			//if (userMapper.getUserByOpenId(openid) == null) {
     	BigInteger id = (BigInteger) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (type == -1) {
 			User user=userService.getUserByUserId(id);
@@ -119,15 +92,6 @@ public class MeController {
 			password=md5Hex(password.substring(8,24));
 			userService.updateUserByUserId(id,new User(phone,password, type, school, name, number));
 		}
-			//} else {
-
-			//}
-		//} catch (UserNotFoundException e) {
-		//	e.printStackTrace();
-		//	return ResponseEntity.status(400).build();
-		//}catch (IOException e){
-		//	e.printStackTrace();
-		//}
 		return ResponseEntity.status(204).build();
 
 	}
@@ -156,10 +120,10 @@ public class MeController {
         }
         @SuppressWarnings("unchecked")
 		Map<String, Object> o = new ObjectMapper().readValue(wholeStr, Map.class);
-        User user_temp=new User();
-        user_temp.setPhone((String)o.get("phone"));
-        user_temp.setPassword((String)o.get("password"));
-        User user = userDAO.getUserByPhoneAndPassword(user_temp);	
+        User userTemp=new User();
+        userTemp.setPhone((String)o.get("phone"));
+        userTemp.setPassword((String)o.get("password"));
+        User user = userDAO.getUserByPhoneAndPassword(userTemp);
         if(user==null)
     	{
     		return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(0);
@@ -171,25 +135,24 @@ public class MeController {
 	@RequestMapping(value = "/register", method = POST)
     @ResponseBody @PreAuthorize("hasRole('TEACHER') or hasRole('STUDENT')")
     public ResponseEntity registerPassword(HttpServletRequest httpServletRequest) throws IOException {
-    	BufferedReader br = httpServletRequest.getReader();
-        String str, wholeStr = "";
-        while((str = br.readLine()) != null){
-            wholeStr += str;
-        }
-        @SuppressWarnings("unchecked")
+		BufferedReader br = httpServletRequest.getReader();
+		String str, wholeStr = "";
+		while ((str = br.readLine()) != null) {
+			wholeStr += str;
+		}
+		@SuppressWarnings("unchecked")
 		Map<String, Object> o = new ObjectMapper().readValue(wholeStr, Map.class);
-        User user_temp=new User();
-        user_temp.setPhone((String)o.get("phone"));
-        user_temp.setPassword((String)o.get("password"));
-        User user = userDAO.getUserByPhoneAndPassword(user_temp);	
-        if(user==null)
-    	{
-        	userDAO.insertUserByPhoneAndPassword(user);
-        	return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(user.getId());
-    	}
-        else
-        	return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(0);
-    }
+		User userTemp = new User();
+		userTemp.setPhone((String) o.get("phone"));
+		userTemp.setPassword((String) o.get("password"));
+		User user = userDAO.getUserByPhoneAndPassword(userTemp);
+		if (user == null) {
+			userDAO.insertUserByPhoneAndPassword(user);
+			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(user.getId());
+		} else {
+			return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON_UTF8).body(0);
+		}
+	}
     
     private String md5Hex(String input) throws NoSuchAlgorithmException {
         MessageDigest md5 = MessageDigest.getInstance("MD5");

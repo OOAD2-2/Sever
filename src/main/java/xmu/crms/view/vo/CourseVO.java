@@ -71,4 +71,15 @@ public class CourseVO {
     public void setProportions(Proportions proportions) {
         this.proportions = proportions;
     }
+
+    @Override
+    public String toString() {
+        return "CourseVO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", proportions=" + proportions +
+                '}';
+    }
 }

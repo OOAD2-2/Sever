@@ -57,4 +57,15 @@ public class MyGroupVO {
     public void setTopics(List<TopicVO> topics) {
         this.topics = topics;
     }
+
+    @Override
+    public String toString() {
+        return "MyGroupVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", leader=" + leader +
+                ", members=" + members +
+                ", topics=" + topics +
+                '}';
+    }
 }
