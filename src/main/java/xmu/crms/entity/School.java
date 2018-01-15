@@ -5,6 +5,10 @@ import xmu.crms.view.vo.SchoolVO;
 
 import java.math.BigInteger;
 
+/**
+ * @author LUWEIW
+ */
+
 public class School {
 	private BigInteger id;
 	private String name;

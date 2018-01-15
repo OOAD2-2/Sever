@@ -7,6 +7,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author LUWEIW
+ */
+
 public class Course {
 	private BigInteger id;
 	private String name;

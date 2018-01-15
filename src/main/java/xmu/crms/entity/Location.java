@@ -4,6 +4,10 @@ import xmu.crms.view.vo.LocationVO;
 
 import java.math.BigInteger;
 
+/**
+ * @author LUWEIW
+ */
+
 public class Location {
 	private BigInteger id;
 	private ClassInfo classInfo;

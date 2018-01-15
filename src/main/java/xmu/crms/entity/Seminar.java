@@ -9,6 +9,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author LUWEIW
+ */
+
 public class Seminar {
     private BigInteger id;
     private String name;
@@ -24,7 +28,7 @@ public class Seminar {
         this.name = seminarVO.getName();
         this.description = seminarVO.getDescription();
         this.course = null;
-        this.fixed = seminarVO.getGroupingMethod().equals("fixed");
+        this.fixed = "fixed".equals(seminarVO.getGroupingMethod());
         try {
             this.startTime = simpleDateFormat.parse(seminarVO.getStartTime());
             this.endTime = simpleDateFormat.parse(seminarVO.getEndTime());
@@ -54,7 +58,7 @@ public class Seminar {
         this.name = seminarUpdateVO.getName();
         this.description = seminarUpdateVO.getDescription();
         this.course = null;
-        this.fixed = seminarUpdateVO.getGroupingMethod().equals("fixed");
+        this.fixed = "fixed".equals(seminarUpdateVO.getGroupingMethod());
         try {
             this.startTime = simpleDateFormat.parse(seminarUpdateVO.getStartTime());
             this.endTime = simpleDateFormat.parse(seminarUpdateVO.getEndTime());

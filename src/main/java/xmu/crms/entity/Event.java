@@ -3,6 +3,10 @@ package xmu.crms.entity;
 import java.math.BigInteger;
 import java.util.Date;
 
+/**
+ * @author LUWEIW
+ */
+
 public class Event {
 
     private BigInteger id;

@@ -8,6 +8,10 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author LUWEIW
+ */
+
 public class ClassInfo {
 	private BigInteger id;
 	private String name;

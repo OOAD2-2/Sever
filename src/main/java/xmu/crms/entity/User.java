@@ -6,6 +6,10 @@ import xmu.crms.view.vo.UserDetailVO;
 import java.math.BigInteger;
 import java.util.Map;
 
+/**
+ * @author LUWEIW
+ */
+
 public class User {
 	private BigInteger id;
 	private String phone;
@@ -32,12 +36,14 @@ public class User {
 		this.number = (String)jsonUser.get("id");
 		this.phone = (String)jsonUser.get("phone");
 		this.email = (String)jsonUser.get("email");
-		if(jsonUser.get("gender")!=null){
-			this.gender = (((String)jsonUser.get("gender")).equals("男"))?0:1;
+		String genderString = "gender";
+		if(jsonUser.get(genderString)!=null){
+			this.gender = ("男".equals((String) jsonUser.get("gender")))?0:1;
 		}
 		this.school = new School(new SchoolVO(null, (String)jsonUser.get("school")));
-		if(jsonUser.get("title")!=null){
-			this.title = ((String)jsonUser.get("title")).equals("教授")?1:0;
+		String titleString = "title";
+		if(jsonUser.get(titleString)!=null){
+			this.title = "教授".equals((String) jsonUser.get("title")) ?1:0;
 		}
 		this.education = null;
 		this.avatar = (String)jsonUser.get("avatar");
@@ -63,13 +69,13 @@ public class User {
 		this.password = null;
 		this.name = userDetailVO.getName();
 		this.school = new School(userDetailVO.getSchool());
-		this.gender = userDetailVO.getGender().equals("男")?0:1;
+		this.gender = "男".equals(userDetailVO.getGender()) ?0:1;
 		this.type = null;
 		this.number = null;
 		this.education =
-				(userDetailVO.getEducation().equals("本科"))?1:
-						(userDetailVO.getEducation().equals("研究生"))?2:
-								(userDetailVO.getEducation().equals("博士"))?3:0;
+				("本科".equals(userDetailVO.getEducation()))?1:
+						("研究生".equals(userDetailVO.getEducation()))?2:
+								("博士".equals(userDetailVO.getEducation()))?3:0;
 	}
 
 	public User(BigInteger id, String phone, String wechatId, String openid, String avatar, String password, String name, School school, Integer gender, Integer type, String number, Integer education, Integer title, String email) {

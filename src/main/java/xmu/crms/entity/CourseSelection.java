@@ -2,6 +2,10 @@ package xmu.crms.entity;
 
 import java.math.BigInteger;
 
+/**
+ * @author LUWEIW
+ */
+
 public class CourseSelection {
 	private BigInteger id;
 	private ClassInfo classInfo;
