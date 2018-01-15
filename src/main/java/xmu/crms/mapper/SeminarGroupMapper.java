@@ -187,8 +187,8 @@ public interface SeminarGroupMapper {
 
     /**
      * for ali 删除某小组所有成员
-     * @param SeminarId
-     * @param ClassId
+     * @param seminarId
+     * @param classId
      * @return
      */
     List<BigInteger> listStudentIdBySeminarIdAndClassId(@Param("seminarId")BigInteger seminarId,@Param("classId")BigInteger classId);

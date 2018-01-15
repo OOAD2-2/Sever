@@ -46,5 +46,5 @@ public interface SchoolMapper {
 	 * @param SchoolId
 	 * @return School
 	 */
-	School getSchoolBySchoolId(BigInteger choolId);
+	School getSchoolBySchoolId(BigInteger schoolId);
 }
