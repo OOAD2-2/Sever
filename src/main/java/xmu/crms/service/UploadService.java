@@ -42,13 +42,13 @@ public interface UploadService {
 	    public void uploadAvater(BigInteger userId,String pathName);
 
 	/**
-	 *
+	 * 上传报告
 	 * @param seminarGroup
 	 */
 	public void uploadReport(SeminarGroup seminarGroup);
 
 	/**
-	 *
+	 * 上传学生名单
 	 * @param file
 	 * @param bigInteger
 	 * @param bigInteger2

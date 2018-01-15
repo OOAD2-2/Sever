@@ -23,6 +23,7 @@ public interface LoginService {
 	 * @param successUrl 微信OAuth2授权后跳转到的网址
 	 * @return user 该用户信息
 	 * @throws UserNotFoundException 登录失败时抛出
+	 * @throws IOException
 	 */
 	Map<String, Object> signInWeChat(BigInteger userId, String code, String state, String successUrl)  throws IOException;
 

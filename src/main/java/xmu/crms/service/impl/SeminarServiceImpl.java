@@ -155,8 +155,8 @@ public class SeminarServiceImpl implements SeminarService {
      * @author YeHongjie
      * @param courseId 课程的id
      * @param seminar 讨论课信息
-     * @exception IllegalArgumentException CourseId 格式错误时抛出
-     * @exception CourseNotFoundException 该课程不存在时抛出
+     * @throws IllegalArgumentException CourseId 格式错误时抛出
+     * @throws CourseNotFoundException 该课程不存在时抛出
      */
     SeminarGroupService seminarGroupService;
 
