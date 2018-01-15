@@ -5,11 +5,11 @@ import xmu.crms.entity.Seminar;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class SeminarCurrentVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class SeminarCurrentVO {
 
     private int id;
     private String name;

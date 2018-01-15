@@ -1,11 +1,10 @@
 package xmu.crms.view.vo;
 
+/**
+ * @author LUWEIW
+ */
 
 public class Proportions {
-
-    /**
-     * @author: LUWEIW
-     */
 
     private int report;
     private int presentation;

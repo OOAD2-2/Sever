@@ -4,11 +4,11 @@ import xmu.crms.entity.SeminarGroup;
 
 import java.util.List;
 
-public class GroupGradeVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class GroupGradeVO {
 
     private List<PresentationGradeVO> presentationGrade;
     private int reportGrade;

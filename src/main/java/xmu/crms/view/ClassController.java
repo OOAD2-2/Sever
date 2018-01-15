@@ -34,7 +34,6 @@ public class ClassController {
 
     @Autowired
     ClassService classService;
-    //public CourseServiceImpl courseService;
     @Autowired
     UserService userService;
     @Autowired

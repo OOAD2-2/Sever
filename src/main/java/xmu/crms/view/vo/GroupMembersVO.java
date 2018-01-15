@@ -2,11 +2,11 @@ package xmu.crms.view.vo;
 
 import java.util.List;
 
-public class GroupMembersVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class GroupMembersVO {
 
     private int id;
     private String name;

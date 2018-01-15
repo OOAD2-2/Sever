@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class PasswordVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class PasswordVO {
 
     private String phone;
     private String password;

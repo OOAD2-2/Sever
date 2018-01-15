@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class SeminarGroupTopicVO {
+/**
+ * @author LUWEIW
+ */
 
-	/**
-	 * @author: LUWEIW
-	 */
+public class SeminarGroupTopicVO {
 
 private Integer id;
 private String topicName;

@@ -4,12 +4,11 @@ import xmu.crms.entity.SeminarGroup;
 
 import java.math.BigInteger;
 
+/**
+ * @author LUWEIW
+ */
 
 public class GroupByIdVO {
-
-    /**
-     * @author: LUWEIW
-     */
 
     private BigInteger id;
     private String name;

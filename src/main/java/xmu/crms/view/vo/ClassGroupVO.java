@@ -6,11 +6,11 @@ import xmu.crms.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassGroupVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class ClassGroupVO {
 
     private StudentVO leader;
     private List<StudentVO> members;

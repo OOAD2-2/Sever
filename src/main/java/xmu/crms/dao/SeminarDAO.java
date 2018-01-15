@@ -8,7 +8,9 @@ import java.util.List;
 
 import xmu.crms.entity.Seminar;
 import xmu.crms.mapper.SeminarMapper;
-
+/**
+ * @author 2-2
+ */
 @Component
 public class SeminarDAO{
 

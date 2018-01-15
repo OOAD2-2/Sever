@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class UserUpdateVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class UserUpdateVO {
 
     private String name;
     private String number;

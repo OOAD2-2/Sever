@@ -2,11 +2,11 @@ package xmu.crms.view.vo;
 
 import java.math.BigInteger;
 
-public class MemberVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class MemberVO {
 
     private String id;
     private String name;

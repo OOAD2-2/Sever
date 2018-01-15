@@ -4,11 +4,12 @@ import xmu.crms.entity.ClassInfo;
 
 import java.math.BigInteger;
 
-public class StudentClassVO {
 
-    /**
-     * @author: LUWEIW
-     */
+/**
+ * @author LUWEIW
+ */
+
+public class StudentClassVO {
 
     private String courseName;
     private BigInteger courseId;

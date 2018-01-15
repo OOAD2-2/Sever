@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class MyTopicVO {
+/**
+ * @author LUWEIW
+ */
 
-	/**
-	 * @author: LUWEIW
-	 */
+public class MyTopicVO {
 
 public String getId() {
 		return id;

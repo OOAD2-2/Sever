@@ -4,11 +4,11 @@ import java.math.BigInteger;
 
 import xmu.crms.entity.Topic;
 
-public class TopicVO {
+/**
+ * @author LUWEIW
+ */
 
-	/**
-	 * @author: LUWEIW
-	 */
+public class TopicVO {
 
 	private BigInteger id;
 	private String name;

@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class LocationVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class LocationVO {
 
     private Double longitude;
     private Double latitude;

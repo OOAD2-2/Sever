@@ -6,11 +6,11 @@ import xmu.crms.entity.Topic;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeminarGroupTopicsVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class SeminarGroupTopicsVO {
 
     public int id;
     public String name;

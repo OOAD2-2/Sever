@@ -2,11 +2,11 @@ package xmu.crms.view.vo;
 
 import xmu.crms.entity.User;
 
-public class StudentVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class StudentVO {
 
     private int id;
     private String name;

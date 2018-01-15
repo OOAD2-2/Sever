@@ -1,10 +1,10 @@
 package xmu.crms.view.vo;
 
-public class IdVO {
+/**
+ * @author LUWEIW
+ */
 
-    /**
-     * @author: LUWEIW
-     */
+public class IdVO {
 
     private int id;
 
