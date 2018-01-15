@@ -26,7 +26,7 @@ import xmu.crms.mapper.UserMapper;
 import xmu.crms.security.UserDetailsImpl;
 import xmu.crms.security.UserDetailsServiceImpl;
 import xmu.crms.service.security.AuthService;
-import xmu.crms.util.MD5Utils;
+import xmu.crms.util.Md5Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,7 +67,7 @@ public class AuthController {
         System.out.println("post登陆信息"+o.toString());
         final String password = (String)o.get("password");
 
-        final String token = authService.login((String)o.get("phone"), MD5Utils.MD5encode(password));
+        final String token = authService.login((String)o.get("phone"), Md5Utils.useMd5Encode(password));
         UserDetailsImpl user = userMapper.getUserByPhone((String)o.get("phone"));
         // Return the token
         String type;

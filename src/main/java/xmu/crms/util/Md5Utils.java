@@ -1,13 +1,16 @@
 package xmu.crms.util;
-
 import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-public class MD5Utils {
-    public static String MD5encode(String str) {
+/** 
+ * 
+ * @author lsqlh
+ *
+ */
+public class Md5Utils {
+    public static String useMd5Encode(String str) {
         //确定计算方法
         try{
             MessageDigest md5=MessageDigest.getInstance("MD5");

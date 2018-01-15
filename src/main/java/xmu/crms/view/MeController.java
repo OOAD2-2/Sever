@@ -30,7 +30,6 @@ import xmu.crms.mapper.UserMapper;
 import xmu.crms.security.UserDetailsImpl;
 import xmu.crms.service.SchoolService;
 import xmu.crms.service.UserService;
-import xmu.crms.util.MD5Utils;
 import xmu.crms.view.vo.*;
 import org.springframework.web.bind.annotation.ResponseBody;
 

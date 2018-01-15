@@ -147,29 +147,7 @@ public class CourseServiceImpl implements CourseService {
 			return null;
 		}
 	}
-//	@Override
-//	public List<ClassInfo> listClassByUserId(BigInteger userId)
-//			throws IllegalArgumentException, CourseNotFoundException,
-//			ClassNotFoundException {
-//		// TODO Auto-generated method stub
-//		if(!(userId.intValue() > 0)) {
-//			throw new IllegalArgumentException("用户ID格式错误");
-//		}
-//		List<Course> courseList = courseServiceImpl.listCourseByUserId(userId);
-//		if(courseList == null) {
-//			throw new CourseNotFoundException("没有找到课程！");
-//		}
-//		List<ClassInfo> classInfoList = new LinkedList<ClassInfo>();
-//		for(int i = 0; i < courseList.size(); i++)
-//		{
-//			BigInteger courseId = courseList.get(i).getId();
-//			classInfoList.addAll(classServiceImpl.listClassByCourseId(courseId));
-//		}
-//		if(classInfoList == null) {
-//			throw new ClassNotFoundException("没有找到班级！");
-//		}
-//		return classInfoList;
-//	}
+
 	@Override
 	public List<ClassInfo> listClassByName(String courseName, String teacherName)
 			throws UserNotFoundException, CourseNotFoundException {

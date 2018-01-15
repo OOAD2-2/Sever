@@ -1,5 +1,10 @@
 package xmu.crms.entity;
-
+/** 
+ * 
+ * @author lsqlh
+ *
+ * @param <T>
+ */
 public class ErrorInfo<T> {
 
     public static final Integer OK = 0;
