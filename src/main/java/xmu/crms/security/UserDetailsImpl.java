@@ -9,7 +9,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+/** 
+ * @author lsqlh
+ */
 public class UserDetailsImpl implements UserDetails,Serializable {
 
     private BigInteger id;

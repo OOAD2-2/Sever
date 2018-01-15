@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * Created by stephan on 04.07.17.
+ * @author lsqlh
  */
 @Component
 public class TimeProvider implements Serializable {

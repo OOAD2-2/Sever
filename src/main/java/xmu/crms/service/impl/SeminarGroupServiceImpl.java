@@ -40,8 +40,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
    
     private SeminarGroupDAO seminarGroupDAO;
 
-    //
-//
+
     @Override
     public List<User> listSeminarGroupMemberByGroupId(BigInteger groupId) throws IllegalArgumentException, GroupNotFoundException {
         List<User> users = new ArrayList<User>();
@@ -52,29 +51,24 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
         return users;
     }
 
-    //
-//
-//
-//
+
     @Override
     public BigInteger insertSeminarGroupMemberByGroupId(BigInteger groupId, SeminarGroupMember seminarGroupMember) {
         return BigInteger.valueOf(seminarGroupMapper.insertSeminarGroupMemberByGroupId(groupId, seminarGroupMember));
     }
 
-    //
-//
-//
+
     @Override
     public SeminarGroup getSeminarGroupById(BigInteger seminarId, BigInteger userId) throws IllegalArgumentException, GroupNotFoundException {
         BigInteger group_id;
         List<BigInteger>  list=seminarGroupMapper.getSeminarGroupIdBySeminarIdAndUserId(userId);
         System.out.println(seminarGroupMapper.getSeminarGroupByGroupId(BigInteger.valueOf(42)));
-        if(list==null)
-        	throw new GroupNotFoundException("未找到小组");
+        if(list==null) {
+        	throw new GroupNotFoundException("未找到小组");}
         for(BigInteger id:list)
         {
         	if(seminarGroupMapper.getSeminarGroupByGroupId(id).getSeminar().getId().equals(seminarId))
-        		return seminarGroupMapper.getSeminarGroupByGroupId(id);
+        		{return seminarGroupMapper.getSeminarGroupByGroupId(id);}
         }
         return null;
     }
@@ -221,7 +215,7 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
                     insertSeminarGroupMemberById(studentIdList.get(j + i * smallestlimit), groupId);
                     studentIdList.remove(studentIdList.get(j + i * smallestlimit));
                     if (j == 0)
-                        assignLeaderById(groupId, studentIdList.get(j + i * smallestlimit));
+                        {assignLeaderById(groupId, studentIdList.get(j + i * smallestlimit));}
                 } catch (GroupNotFoundException e) {
                     e.printStackTrace();
                 } catch (UserNotFoundException e) {

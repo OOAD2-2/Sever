@@ -10,35 +10,39 @@ import xmu.crms.service.SchoolService;
 import java.math.BigInteger;
 import java.util.List;
 
+/**
+ * @author lhl
+ */
 @Service
 @Component
 public class SchoolServiceImpl implements SchoolService{
 	@Autowired(required = false)
 	SchoolMapper schoolMapper;
 	
+	@Override
     public List<School> listSchoolByCity(String city){
     	
     	return schoolMapper.listSchoolByCity(city);
     }
 
-   
+	@Override
     public BigInteger insertSchool(School school){
         schoolMapper.insertSchool(school);
     	return school.getId();
     }
 
-   
+	@Override
     public List<String> listProvince(){
     	return schoolMapper.listProvince();
     }
 
-   
+	@Override
     public List<String> listCity(String province){
     	return schoolMapper.listCity(province);
 
     }
 
-    
+	@Override
     public School getSchoolBySchoolId(BigInteger SchoolId){
     	return schoolMapper.getSchoolBySchoolId(SchoolId);
 

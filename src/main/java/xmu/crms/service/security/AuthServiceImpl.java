@@ -25,7 +25,7 @@ import xmu.crms.exception.UserDuplicatedException;
 import xmu.crms.security.UserDetailsServiceImpl;
 import xmu.crms.service.UserService;
 import xmu.crms.util.JwtTokenUtil;
-import xmu.crms.util.MD5Utils;
+import xmu.crms.util.Md5Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,13 +64,13 @@ public class AuthServiceImpl implements AuthService {
 
     private String url = "https://api.weixin.qq.com/sns/jscode2session?appid=wxba25ff360af27cad&secret=8fae9e5f3ecc06fd6e4bfaa22813fccc&grant_type=authorization_code";
 
-
+    public static final String ERRCODE = "errcode";  
 
     @Override
     public User register(User userToAdd) {
         final String username = userToAdd.getNumber();
         final String rawPassword = userToAdd.getPassword();
-        userToAdd.setPassword(MD5Utils.MD5encode(rawPassword));
+        userToAdd.setPassword(Md5Utils.useMd5Encode(rawPassword));
         try{
             User user = userDAO.signUpPhone(userToAdd);
             return user;
@@ -87,7 +87,7 @@ public class AuthServiceImpl implements AuthService {
         final Authentication authentication = fifcosAuthenticationProvider.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        Map<String, Object> claims = new HashMap<String, Object>();
+        Map<String, Object> claims = new HashMap<String, Object>(0);
         claims.put("type", ((FifcosAuthenticationToken)authentication).getType());
         final String token = jwtTokenUtil.doGenerateToken(claims, ((FifcosAuthenticationToken)authentication).getPhone(),null);
         return token;
@@ -116,7 +116,7 @@ public class AuthServiceImpl implements AuthService {
         }
         System.out.println(json.toString());
         Map<String, Object> auth = new ObjectMapper().readValue(json.toString(), Map.class);
-        if(auth.get("errcode") != null){
+        if(auth.get(ERRCODE) != null){
             throw new IllegalArgumentException("参数错误");
         }
         User user = authMapper.getUserByOpenId((String)auth.get("openid"));
@@ -126,9 +126,13 @@ public class AuthServiceImpl implements AuthService {
 
         if(user == null){
         	if(userDAO==null)
+        	{
         		System.out.println(1);
+        	}
         	if(userNew==null)
+        	{
         		System.out.println(2);
+        	}
             userDAO.signUpPhone(userNew);
             auth.put("status", "unbind");
         }
@@ -141,7 +145,7 @@ public class AuthServiceImpl implements AuthService {
         final Authentication authentication = fifcosAuthenticationProvider.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        Map<String, Object> claims = new HashMap<String, Object>();
+        Map<String, Object> claims = new HashMap<String, Object>(0);
         claims.put("type", ((FifcosAuthenticationToken)authentication).getType());
         final String token = jwtTokenUtil.doGenerateToken(claims, ((FifcosAuthenticationToken)authentication).getOpenid(),"miniprogram");
         auth.put("jwt", token);

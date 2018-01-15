@@ -67,7 +67,11 @@ public class FifcosAuthenticationToken extends AbstractAuthenticationToken {
         this.password = password;
     }
 
-    // web认证之前
+    /**
+     * 
+     * @param phone
+     * @param password
+     */
     public FifcosAuthenticationToken(String phone, String password) {
         super(null);
         this.id=null;
@@ -77,7 +81,15 @@ public class FifcosAuthenticationToken extends AbstractAuthenticationToken {
         super.setAuthenticated(false);
     }
 
-    // web认证之后，带一个type
+    /** 
+     *  web认证之后，带一个type
+     * @param id
+     * @param number
+     * @param phone
+     * @param password
+     * @param type
+     * @param authorities
+     */
     public FifcosAuthenticationToken(BigInteger id, String number,String phone, String password, String type, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.openid = null;
@@ -89,7 +101,11 @@ public class FifcosAuthenticationToken extends AbstractAuthenticationToken {
         super.setAuthenticated(true);
     }
 
-    // 小程序认证之前
+    /** 
+     * 小程序认证之前
+     * @param openid
+     * @param type
+     */
     public FifcosAuthenticationToken(String openid, Integer type){
         super(null);
         this.id = null;
@@ -99,7 +115,15 @@ public class FifcosAuthenticationToken extends AbstractAuthenticationToken {
         this.type = (type==0?"student":"teacher" );
         super.setAuthenticated(false);
     }
-    // 小程序认证之后
+    /** 
+     * 小程序认证之后
+     * @param openid
+     * @param id
+     * @param number
+     * @param phone
+     * @param type
+     * @param authorities
+     */
     public FifcosAuthenticationToken(String openid, BigInteger id, String number, String phone, String type, Collection<? extends GrantedAuthority> authorities){
         super(authorities);
         this.password = null;

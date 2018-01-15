@@ -25,7 +25,11 @@ import org.springframework.web.bind.annotation.*;
 import xmu.crms.exception.*;
 import xmu.crms.service.ClassService;
 import java.math.BigInteger;
-
+/** 
+ * 
+ * @author lsqlh
+ *
+ */
 @Service
 @Component
 public class ClassServiceImpl implements ClassService{
