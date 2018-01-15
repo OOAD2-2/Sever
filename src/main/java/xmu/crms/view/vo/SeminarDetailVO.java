@@ -10,7 +10,7 @@ import xmu.crms.entity.Seminar;
 
 public class SeminarDetailVO {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String startTime;
 	private String endTime;

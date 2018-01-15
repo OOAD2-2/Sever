@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GroupVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private List<TopicVO> topicVOList;
 

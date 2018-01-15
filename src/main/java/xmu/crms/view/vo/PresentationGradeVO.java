@@ -6,8 +6,8 @@ package xmu.crms.view.vo;
 
 public class PresentationGradeVO {
 
-    private int topicId;
-    private int grade;
+    private Integer topicId;
+    private Integer grade;
 
     public PresentationGradeVO(int topicId, int grade) {
         this.topicId = topicId;

@@ -8,7 +8,7 @@ import xmu.crms.entity.ClassInfo;
 
 public class ClassVO {
 
-    private int id;
+    private Integer id;
     private String name;
 
     public ClassVO() {

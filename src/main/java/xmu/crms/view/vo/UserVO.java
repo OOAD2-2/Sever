@@ -8,7 +8,7 @@ import xmu.crms.entity.User;
 
 public class UserVO {
 
-    private int id;
+    private Integer id;
     private String type;
     private String name;
 

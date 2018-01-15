@@ -8,13 +8,13 @@ import xmu.crms.entity.Topic;
 
 public class TopicByIdVO {
 
-    private int id;
+    private Integer id;
     private String serial;
     private String name;
     private String description;
-    private int groupLimit;
-    private int groupMemberLimit;
-    private int groupLeft;
+    private Integer groupLimit;
+    private Integer groupMemberLimit;
+    private Integer groupLeft;
 
     public TopicByIdVO() {
     }

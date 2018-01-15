@@ -13,8 +13,8 @@ public class GetTopicVO {
     private String serial;
     private String name;
     private String description;
-    private int groupLimit;
-    private int groupMemberLimit;
+    private Integer groupLimit;
+    private Integer groupMemberLimit;
     private List<String> groupList;
 
     public GetTopicVO() {

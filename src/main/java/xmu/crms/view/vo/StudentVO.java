@@ -8,7 +8,7 @@ import xmu.crms.entity.User;
 
 public class StudentVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String number;
 

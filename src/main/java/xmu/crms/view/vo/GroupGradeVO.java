@@ -11,8 +11,8 @@ import java.util.List;
 public class GroupGradeVO {
 
     private List<PresentationGradeVO> presentationGrade;
-    private int reportGrade;
-    private int grade;
+    private Integer reportGrade;
+    private Integer grade;
 
     public GroupGradeVO(List<PresentationGradeVO> presentationGradeVO, SeminarGroup seminarGroup) {
         this.presentationGrade = presentationGradeVO;

@@ -6,7 +6,7 @@ package xmu.crms.view.vo;
 
 public class TopicGroupVO {
 
-    private int id;
+    private Integer id;
     private String name;
 
     public TopicGroupVO(int id, String name) {

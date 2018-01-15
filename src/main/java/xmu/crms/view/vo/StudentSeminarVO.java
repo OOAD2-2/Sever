@@ -6,15 +6,15 @@ package xmu.crms.view.vo;
 
 public class StudentSeminarVO {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String groupingMethod;
 	private String courseName;
 	private String startTime;
 	private String endTime;
-	private int classCalling;
-	private boolean isLeader;
-	private boolean areTopicsSeletced;
+	private Integer classCalling;
+	private Boolean isLeader;
+	private Boolean areTopicsSeletced;
 	public void setId(int id)
 	{
 		this.id=id;

@@ -10,9 +10,9 @@ import xmu.crms.entity.ClassInfo;
 
 public class CourseClassVO {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int numStudent;
+    private Integer numStudent;
     private String time;
     private String site;
     private String courseName;

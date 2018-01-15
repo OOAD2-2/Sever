@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GroupMemberGradeVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private StudentVO leader;
     private List<StudentVO> members;

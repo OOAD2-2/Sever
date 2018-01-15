@@ -14,8 +14,8 @@ public class AddTopicVO {
     private String serial;
     private String name;
     private String description;
-    private int groupLimit;
-    private int groupMemberLimit;
+    private Integer groupLimit;
+    private Integer groupMemberLimit;
 
     public AddTopicVO(String serial, String name, String description, int groupLimit, int groupMemberLimit) {
         this.serial = serial;

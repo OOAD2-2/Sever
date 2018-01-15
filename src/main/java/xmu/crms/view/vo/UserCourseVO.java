@@ -10,10 +10,10 @@ import java.text.SimpleDateFormat;
 
 public class UserCourseVO {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int numClass;
-    private int numStudent;
+    private Integer numClass;
+    private Integer numStudent;
     private String startTime;
     private String endTime;
 

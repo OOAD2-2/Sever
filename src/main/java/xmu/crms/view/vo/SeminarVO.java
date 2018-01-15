@@ -11,13 +11,13 @@ import java.util.List;
 
 public class SeminarVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String groupingMethod;
     private String startTime;
     private String endTime;
-    private int grade;
+    private Integer grade;
 
 
     public SeminarVO(Seminar seminar, int grade) {

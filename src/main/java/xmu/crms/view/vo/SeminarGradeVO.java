@@ -13,9 +13,9 @@ public class SeminarGradeVO {
     private String seminarName;
     private String groupName;
     private String leaderName;
-    private int presentationGrade;
-    private int reportGrade;
-    private int grade;
+    private Integer presentationGrade;
+    private Integer reportGrade;
+    private Integer grade;
 
     public SeminarGradeVO() {
     }

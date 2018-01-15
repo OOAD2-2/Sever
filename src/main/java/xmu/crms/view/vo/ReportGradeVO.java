@@ -6,7 +6,7 @@ package xmu.crms.view.vo;
 
 public class ReportGradeVO {
 
-    private int reportGrade;
+    private Integer reportGrade;
 
     public ReportGradeVO() {
     }

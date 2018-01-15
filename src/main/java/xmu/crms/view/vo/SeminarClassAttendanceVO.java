@@ -6,8 +6,8 @@ package xmu.crms.view.vo;
 
 public class SeminarClassAttendanceVO {
 
-    private int numPresent;
-    private int numStudent;
+    private Integer numPresent;
+    private Integer numStudent;
     private String status;
     private String group;
 

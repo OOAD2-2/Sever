@@ -6,7 +6,7 @@ package xmu.crms.view.vo;
 
 public class SeminarTopicVO {
 
-    private int id;
+    private Integer id;
     private String name;
 
     public SeminarTopicVO(int id, String name) {

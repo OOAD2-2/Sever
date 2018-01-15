@@ -6,9 +6,9 @@ package xmu.crms.view.vo;
 
 public class AttendanceVO {
 
-    private double longitude;
-    private double latitude;
-    private double elevation;
+    private Double longitude;
+    private Double latitude;
+    private Double elevation;
 
     public AttendanceVO(double longitude, double latitude, double elevation) {
         this.longitude = longitude;

@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author mads
  */
 public class GroupDetailVO {
-    private int id;
+    private Integer id;
     private String name;
     private UserVO leader;
     private UserVO[] members;

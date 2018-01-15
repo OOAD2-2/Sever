@@ -7,10 +7,10 @@ package xmu.crms.view.vo;
 public class ClassUpdateVO {
 
     private String name;
-    private int numStudent;
+    private Integer numStudent;
     private String time;
     private String site;
-    private int calling;
+    private Integer calling;
     private String roster;
     private Proportions proportions;
 

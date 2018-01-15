@@ -8,12 +8,12 @@ import xmu.crms.entity.ClassInfo;
 
 public class ClassByIdVO {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int numStudent;
+    private Integer numStudent;
     private String time;
     private String site;
-    private int calling;
+    private Integer calling;
     private String roster;
     private Proportions proportions;
 

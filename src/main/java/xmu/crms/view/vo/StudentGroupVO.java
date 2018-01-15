@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StudentGroupVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private MemberVO leader;
     private List<MemberVO> members;

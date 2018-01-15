@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SeminarCurrentVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String courseName;
     private String groupingMethod;

@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class GroupTopicVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private TopicVO[] topics;
 

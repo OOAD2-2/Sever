@@ -8,7 +8,7 @@ import xmu.crms.entity.Course;
 
 public class CourseByIdVO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String teacherName;

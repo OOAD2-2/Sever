@@ -6,8 +6,8 @@ package xmu.crms.view.vo;
 
 public class SeminarOtherGradeVO {
 
-	private int id;
-	private int topicId;
+	private Integer id;
+	private Integer topicId;
 	public int getId() {
 	return id;
 }
