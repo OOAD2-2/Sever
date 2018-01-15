@@ -207,9 +207,9 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
             for (int j = 0; j < smallestlimit && (j+i*smallestlimit) < studentIdList.size(); j++) {
                 try {
                     insertSeminarGroupMemberById(studentIdList.get(j + i * smallestlimit), groupId);
-                    studentIdList.remove(studentIdList.get(j + i * smallestlimit));
                     if (j == 0)
                         {assignLeaderById(groupId, studentIdList.get(j + i * smallestlimit));}
+                    studentIdList.remove(studentIdList.get(j + i * smallestlimit));
                 } catch (GroupNotFoundException e) {
                     e.printStackTrace();
                 } catch (UserNotFoundException e) {
@@ -219,8 +219,6 @@ public class SeminarGroupServiceImpl implements SeminarGroupService {
                 }
             }
         }
-        Seminar seminar = new Seminar();
-        seminar = seminarMapper.getSeminarBySeminarId(seminarId);
 
     }
 
