@@ -3,6 +3,11 @@ package xmu.crms.view.vo;
 import xmu.crms.entity.Topic;
 
 public class TopicByIdVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String serial;
     private String name;

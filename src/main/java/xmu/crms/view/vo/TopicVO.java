@@ -5,6 +5,11 @@ import java.math.BigInteger;
 import xmu.crms.entity.Topic;
 
 public class TopicVO {
+
+	/**
+	 * @author: LUWEIW
+	 */
+
 	private BigInteger id;
 	private String name;
 	private String serial;

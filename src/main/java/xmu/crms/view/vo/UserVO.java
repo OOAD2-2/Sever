@@ -3,6 +3,11 @@ package xmu.crms.view.vo;
 import xmu.crms.entity.User;
 
 public class UserVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String type;
     private String name;

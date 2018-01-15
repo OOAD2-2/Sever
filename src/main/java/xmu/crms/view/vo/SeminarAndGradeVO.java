@@ -5,6 +5,11 @@ import xmu.crms.entity.SeminarGroup;
 import java.text.SimpleDateFormat;
 
 public class SeminarAndGradeVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private String description;

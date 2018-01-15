@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class IdVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
 
     public IdVO() {

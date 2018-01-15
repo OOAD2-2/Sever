@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class ClassCreateVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String name;
     private String site;
     private String time;

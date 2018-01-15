@@ -3,6 +3,11 @@ package xmu.crms.view.vo;
 import java.util.List;
 
 public class PresentationsGradeVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private List<PresentationGradeVO> presentationGradeVOList;
 
     public List<PresentationGradeVO> getPresentationGradeVOList() {

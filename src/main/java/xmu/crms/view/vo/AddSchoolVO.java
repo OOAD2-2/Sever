@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.util.Map;
 
 public class AddSchoolVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String name;
     private String province;
     private String city;

@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class TopicUpdateVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String serial;
     private String name;
     private String description;

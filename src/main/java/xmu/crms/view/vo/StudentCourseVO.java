@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class StudentCourseVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger courseId;
     private String courseName;
     private String className;

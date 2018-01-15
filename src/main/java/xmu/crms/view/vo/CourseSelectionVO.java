@@ -1,6 +1,9 @@
 package xmu.crms.view.vo;
 
 public class CourseSelectionVO {
+    /**
+     * @author: LUWEIW
+     */
     public int numStudent;
 
     public CourseSelectionVO(int numStudent) {

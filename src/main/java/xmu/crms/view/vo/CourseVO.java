@@ -8,6 +8,11 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CourseVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String name;
     private String description;
     private String startTime;

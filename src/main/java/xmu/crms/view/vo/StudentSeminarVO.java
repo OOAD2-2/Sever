@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class StudentSeminarVO {
+
+	/**
+	 * @author: LUWEIW
+	 */
+
 	private int id;
 	private String name;
 	private String groupingMethod;

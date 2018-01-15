@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class CallingVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     public int calling;
 
     public CallingVO(int calling) {

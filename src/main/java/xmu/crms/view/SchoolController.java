@@ -28,6 +28,10 @@ import java.util.Map;
 
 public class SchoolController {
 
+    /**
+     * @author: LUWEIW
+     */
+
 	@Autowired
 	SchoolService schoolService;
    

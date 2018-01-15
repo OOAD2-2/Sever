@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.util.Map;
 
 public class AddTopicVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String serial;
     private String name;
     private String description;

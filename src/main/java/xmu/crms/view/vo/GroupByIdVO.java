@@ -6,6 +6,11 @@ import java.math.BigInteger;
 
 
 public class GroupByIdVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger id;
     private String name;
 

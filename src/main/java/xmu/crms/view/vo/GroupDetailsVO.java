@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 public class GroupDetailsVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger id;
     private String name;
     private StudentVO leader;

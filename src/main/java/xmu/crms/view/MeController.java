@@ -41,6 +41,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class MeController {
 
+	/**
+	 * @author: LUWEIW
+	 */
+
 	@Autowired
 	UserService userService;
 	@Autowired

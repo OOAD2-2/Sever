@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class ReportGradeVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int reportGrade;
 
     public ReportGradeVO() {

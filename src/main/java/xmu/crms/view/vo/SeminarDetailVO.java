@@ -5,6 +5,11 @@ import java.text.SimpleDateFormat;
 import xmu.crms.entity.Seminar;
 
 public class SeminarDetailVO {
+
+	/**
+	 * @author: LUWEIW
+	 */
+
 	private int id;
 	private String name;
 	private String startTime;

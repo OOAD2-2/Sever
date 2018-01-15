@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class LocationVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private Double longitude;
     private Double latitude;
     private Double elevation;

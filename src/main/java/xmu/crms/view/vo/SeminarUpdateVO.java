@@ -11,6 +11,10 @@ import java.util.Map;
 
 public class SeminarUpdateVO {
 
+    /**
+     * @author: LUWEIW
+     */
+
     private String name;
 
     private String description;

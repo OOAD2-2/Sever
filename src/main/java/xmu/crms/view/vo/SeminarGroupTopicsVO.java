@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeminarGroupTopicsVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     public int id;
     public String name;
     public List<SeminarTopicVO> seminarTopicVOList;

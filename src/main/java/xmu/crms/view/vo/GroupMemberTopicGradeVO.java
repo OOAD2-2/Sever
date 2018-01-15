@@ -3,6 +3,11 @@ package xmu.crms.view.vo;
 import java.util.List;
 
 public class GroupMemberTopicGradeVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private StudentVO leader;

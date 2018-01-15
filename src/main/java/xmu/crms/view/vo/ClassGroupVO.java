@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassGroupVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private StudentVO leader;
     private List<StudentVO> members;
 

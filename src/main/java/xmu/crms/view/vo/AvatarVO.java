@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class AvatarVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     public String url;
 
     public AvatarVO() {

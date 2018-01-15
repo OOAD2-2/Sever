@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class SeminarClassAttendanceVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int numPresent;
     private int numStudent;
     private String status;

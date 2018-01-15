@@ -7,6 +7,10 @@ import java.util.List;
 
 public class SeminarCurrentVO {
 
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private String courseName;

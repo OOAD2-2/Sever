@@ -2,6 +2,11 @@ package xmu.crms.view.vo;
 
 
 public class Proportions {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int report;
     private int presentation;
     private int c;

@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class GetTopicVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger id;
     private String serial;
     private String name;

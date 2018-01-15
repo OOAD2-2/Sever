@@ -5,6 +5,11 @@ import java.math.BigInteger;
 import xmu.crms.entity.ClassInfo;
 
 public class CourseClassVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private int numStudent;

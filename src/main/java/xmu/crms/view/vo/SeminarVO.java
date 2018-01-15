@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SeminarVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private String description;

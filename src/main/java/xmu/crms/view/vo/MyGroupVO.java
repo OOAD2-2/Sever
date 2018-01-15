@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class MyGroupVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger id;
     private String name;
     private UserVO leader;

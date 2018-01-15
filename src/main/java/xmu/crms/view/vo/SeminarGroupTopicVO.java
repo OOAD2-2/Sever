@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class SeminarGroupTopicVO {
+
+	/**
+	 * @author: LUWEIW
+	 */
+
 private Integer id;
 private String topicName;
 public SeminarGroupTopicVO(Integer id,String topicName)

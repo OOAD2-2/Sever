@@ -3,6 +3,11 @@ package xmu.crms.view.vo;
 import java.math.BigInteger;
 
 public class StudentSeminarBriefVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private BigInteger seminarId;
     private String name;
     private String groupingMethod;

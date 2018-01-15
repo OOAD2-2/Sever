@@ -5,6 +5,11 @@ import xmu.crms.entity.Course;
 import java.text.SimpleDateFormat;
 
 public class UserCourseVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private int id;
     private String name;
     private int numClass;

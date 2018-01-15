@@ -1,6 +1,11 @@
 package xmu.crms.view.vo;
 
 public class ClassUpdateVO {
+
+    /**
+     * @author: LUWEIW
+     */
+
     private String name;
     private int numStudent;
     private String time;
